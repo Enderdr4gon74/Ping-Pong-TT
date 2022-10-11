@@ -3,18 +3,17 @@
     <button
       class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
       @click="login"
-      v-if="!user.isAuthenticated"
-    >
+      v-if="!user.isAuthenticated">
       Login
     </button>
+
 
     <div class="dropdown my-2 my-lg-0" v-else>
       <div
         class="dropdown-toggle selectable"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        id="authDropdown"
-      >
+        id="authDropdown">
         <div v-if="account.picture || user.picture">
           <img
             :src="account.picture || user.picture"
