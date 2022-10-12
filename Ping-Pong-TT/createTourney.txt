@@ -1,0 +1,7 @@
+ // "wat!" 
+ function setWinner(matchSet, matchNum, winner) {
+  const wonMatch = findMatch(matchSet, matchNum)
+  wonMatch.winner = winner
+
+
+}

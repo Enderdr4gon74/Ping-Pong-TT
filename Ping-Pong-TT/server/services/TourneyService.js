@@ -3,9 +3,6 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class TourneyService {
-  addPlayerUsingTourneyId(id, id1) {
-    throw new Error("Method not implemented.")
-  }
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
     const tourney = await this.getTourneyById(tourneyId)
     if (tourney.creatorId != userId) {

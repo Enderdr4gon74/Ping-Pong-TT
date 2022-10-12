@@ -3,6 +3,7 @@ import BaseController from "../utils/BaseController.js";
 import { tourneyService } from "../services/TourneyService.js";
 import { logger } from "../utils/Logger.js";
 import { matchesService } from "../services/MatchesService.js";
+import { playersService } from "../services/PlayersService.js";
 
 export class TourneysController extends BaseController {
   constructor() {
@@ -16,11 +17,23 @@ export class TourneysController extends BaseController {
       .put('/:id', this.editTourney)
       .put('/:id/player', this.addPlayerUsingTourneyId)
       .delete("/:id", this.deleteTourney)
+      .delete('/:id/player', this.removePlayerUsingTourneyId)
+  }
+
+  // 
+  
+  async removePlayerUsingTourneyId(req, res, next) {
+    try {
+      const player = await playersService.removePlayerUsingTourneyId(req.params.id, req.userInfo)
+      res.send(player)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async addPlayerUsingTourneyId(req, res, next) {
     try {
-      const player = await tourneyService.addPlayerUsingTourneyId(req.params.id, req.userInfo.id)
+      const player = await playersService.addPlayerUsingTourneyId(req.params.id, req.userInfo)
       res.send(player)
     } catch (error) {
       next(error)

@@ -10,7 +10,8 @@ export const TourneySchema = new Schema({
   startDate: {type: Date},
   type: {type: String, enum: ['single', 'double'], default: 'single'},
   poolLimit: {type: Number, minlength: 1, required: true},
-  status: {type: String, enum: ['pending', 'active', 'complete', 'canceled'], default: 'pending'}
+  status: {type: String, enum: ['pending', 'active', 'complete', 'canceled'], default: 'pending'},
+  players: {type: [Object], default: []}
 
 }, SCHEMA_OPTIONS)
 
