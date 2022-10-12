@@ -1,8 +1,8 @@
 <template>
-<div class="container mt-5">
-  <!-- SECTION: global leader board -->
-    <ScoreBoard/>
-  
+  <div class="container mt-5">
+    <!-- SECTION: global leader board -->
+    <ScoreBoard />
+
 
 
 
@@ -15,7 +15,7 @@
         the place for you, we here at KING PONG™️ believe in fair treatment of all ping pongers.
         </p>
     </div> -->
-</div>
+  </div>
 </template>
 
 
@@ -27,10 +27,12 @@
 
 
 <script>
+import ScoreBoard from "../components/ScoreBoard.vue";
 export default {
   setup() {
-    return {}
-  }
+    return {};
+  },
+  components: { ScoreBoard }
 }
 </script>
 
@@ -43,14 +45,14 @@ export default {
 
 
 <style scoped lang="scss">
-.background-image{
+.background-image {
   background-image: url('https://4.bp.blogspot.com/-tc-p6CzK6O0/WmWakDr5KmI/AAAAAAAACgU/pa2vTQ_KYho7pRQWFWLPDCwJIrEz08p5QCLcBGAs/s1600/comeback.jpg');
   min-height: 87vh;
-  background-size: cover; 
+  background-size: cover;
 }
 
-.pink{
-  color:  pink;
+.pink {
+  color: pink;
   font-weight: bold;
 }
 </style>
