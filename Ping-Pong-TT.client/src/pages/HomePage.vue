@@ -8,12 +8,13 @@
 
     <!-- SECTION: welcome + intro text -->
     <!-- <div class="row background-imag">
-        <h1 class="text-center pink" >Welcome to Ping Pong Tournament Tracker!</h1>
+      <h1 class="text-center pink">Welcome to Ping Pong Tournament Tracker!</h1>
 
-        <h3 class="text-center mt-2 mb-2" >Join the Future of Ping Pong</h3>
-        <p>Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping ong prowess? well then this is 
+      <h3 class="text-center mt-2 mb-2">Join the Future of Ping Pong</h3>
+      <p>Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping ong
+        prowess? well then this is
         the place for you, we here at KING PONG™️ believe in fair treatment of all ping pongers.
-        </p>
+      </p>
     </div> -->
   </div>
 </template>
