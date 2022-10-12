@@ -1,21 +1,24 @@
 <template>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5 d-flex justify-content-between">
     <!-- SECTION: global leader board -->
-    <ScoreBoard />
+    <div class="col-7">
+      <ScoreBoard />
+    </div>
 
 
 
 
     <!-- SECTION: welcome + intro text -->
-    <!-- <div class="row background-imag">
-      <h1 class="text-center pink">Welcome to Ping Pong Tournament Tracker!</h1>
+    <div class="row background-imag col-5">
+      <p class="text-center pink">Welcome to Ping Pong Tournament Tracker!</p>
 
-      <h3 class="text-center mt-2 mb-2">Join the Future of Ping Pong</h3>
-      <p>Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping ong
+      <p class="text-center mt-2 mb-2">Join the Future of Ping Pong</p>
+      <p class="">Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your
+        ping ong
         prowess? well then this is
         the place for you, we here at KING PONG™️ believe in fair treatment of all ping pongers.
       </p>
-    </div> -->
+    </div>
   </div>
 </template>
 
