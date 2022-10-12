@@ -2,7 +2,7 @@
   <div class="container">
 
     <!-- team 1 -->
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center gap-3 mb-3">
       <div class="col-3 bg-danger rounded-pill d-flex align-items-center justify-content-center mt-3 fs-5">
         <strong>Team Name (red)</strong>
       </div>
@@ -28,7 +28,7 @@
 
 
     <!-- team 1 score -->
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center m-3">
       <div class="col-6 d-flex justify-content-around mt-4 p-4 bluish rounded-bottom h7">
         <div class="col-3 border border-light bg-dark d-flex justify-content-center align-items-center h-4 rounded-3">
           <strong>09</strong>
