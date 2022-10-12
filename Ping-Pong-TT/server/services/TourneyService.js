@@ -8,10 +8,11 @@ class TourneyService {
     if (tourney.creatorId != userId) {
       throw new Forbidden("You can't edit what isn't yours")
     }
-    if (tourney.status = 'canceled') {
+    if (tourney.status == 'canceled') {
       throw new BadRequest("That tourney has already been canceled, can't edit it now...")
     }
     const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourneyData)
+    logger.log('log', newTourney)
     return newTourney
   }
   async deleteTourney(tourneyId, userId) {
@@ -23,11 +24,13 @@ class TourneyService {
       throw new BadRequest("You already canceled this tourney...")
     }
     tourney.status = 'canceled'
-    const newtourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney)
-    return newtourney
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney)
+    return newTourney
   }
-  async getAllTourneys() {
-    const tourneys = await dbContext.Tourneys.find().populate('creator', 'name picture')
+  async getAllTourneys(query) {
+    const tourneys = await dbContext.Tourneys.find({
+      ...query
+    }).populate('creator', 'name picture')
     return tourneys
   }
   async getTourneyById(id) {

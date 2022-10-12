@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { tourneyService } from "../services/TourneyService.js";
+import { logger } from "../utils/Logger.js";
 
 export class TourneysController extends BaseController {
   constructor() {
@@ -10,11 +11,13 @@ export class TourneysController extends BaseController {
       .get('/:id', this.getTourneyById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createTourney)
+      .put('/:id', this.editTourney)
+      .delete("/:id", this.deleteTourney)
   }
 
   async getAllTourneys(req,res,next) {
     try {
-      const tourneys = await tourneyService.getAllTourneys()
+      const tourneys = await tourneyService.getAllTourneys(req.query)
       res.send(tourneys)
     } catch (error) {
       next(error)
@@ -35,7 +38,7 @@ export class TourneysController extends BaseController {
       req.body.creatorId = req.userInfo.id
       const tourneyData = req.body
       const tourney = await tourneyService.createTourney(tourneyData)
-      res.send(tourney)
+      logger.log(tourney)
     } catch (error) {
       next(error)
     }
