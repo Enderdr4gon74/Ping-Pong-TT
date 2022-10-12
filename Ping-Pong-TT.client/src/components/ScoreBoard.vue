@@ -2,19 +2,36 @@
   <div class="container">
 
     <div class="d-flex gap-3">
-      <div class="col-2 bg-danger rounded-pill d-flex align-items-center justify-content-center mt-3">
-        Team Name (red)
+      <!-- SECTION: team 1 -->
+      <div class="col-2 bg-danger rounded-pill d-flex align-items-center justify-content-center mt-3 fs-5">
+        <strong>Team Name (red)</strong>
       </div>
 
       <div class="col-2 d-flex align-items-center justify-content-center flex-column mb-3 rounded-bottom">
-        <div class="pb-3 fs-5"><strong>Round: </strong><span>1</span></div>
+        <!-- SECTION: round count -->
+        <div class="pb-3 fs-5 ">
+          <strong>Round: </strong>
+          <span>1</span>
+        </div>
+
         <div class="red-black fs-3 W d-flex justify-content-center">
-          VS
+          <strong>VS</strong>
         </div>
       </div>
 
-      <div class="col-2 bg-primary rounded-pill d-flex align-items-center justify-content-center mt-3">
-        Team Name (blue)
+      <!-- SECTION: team 2 -->
+      <div class="col-2 bg-primary rounded-pill d-flex align-items-center justify-content-center mt-3 fs-5">
+        <strong>Team Name (blue)</strong>
+      </div>
+    </div>
+
+    <div class="col-6 d-flex justify-content-between p-3 px-4 mt-3 mx-4">
+      <div class="col-3">
+        <p>Team 1 score </p>
+      </div>
+
+      <div class="col-3">
+        <p> Team 2 score</p>
       </div>
     </div>
 
