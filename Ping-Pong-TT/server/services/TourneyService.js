@@ -66,28 +66,22 @@ class TourneyService {
 
     let set = 1
     let matchNum = 1
-    let buyRound = false
     let matches = []
     let match
 
-    // Fix Player Numbers if needed
-    if (players.length % 2 != 0) {
-      buyRound = true
-    }
-    
     let awayPlayer;
     // Generate Outer Matches
     for (let i = 0; i < players.length; i += 2) {
 
-      if (i != players.length) {
-        awayPlayer = players[i + 1]
+      if (i != players.length - 1) {
+        awayPlayer = players[i + 1].id
       } else {
-        awayPlayer = "buy"
+        awayPlayer = undefined;
       }
 
       match = {
-        tourneyId: tourneyId, 
-        homePlayer: players[i],
+        tourneyId: tourneyId,
+        homePlayer: players[i].id,
         awayPlayer: awayPlayer,
         set: set,
         matchNum: matchNum

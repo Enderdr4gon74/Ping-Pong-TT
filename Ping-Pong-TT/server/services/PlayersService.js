@@ -11,7 +11,7 @@ class PlayersService {
     tourney.players.splice(tourney.players.findIndex(p => p.id == user.id), 1)
     tourney.save()
 
-    tourneyService.generateMatches(tourneyId)
+    await tourneyService.generateMatches(tourneyId)
 
     user = { name: user.name, picture: user.picture, id: user.id }
     return user
@@ -26,7 +26,7 @@ class PlayersService {
     tourney.players = [...tourney.players, user]
     tourney.save()
 
-    tourneyService.generateMatches(tourneyId)
+    await tourneyService.generateMatches(tourneyId)
 
     return user
     // const tourney2 = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, {$set: {
