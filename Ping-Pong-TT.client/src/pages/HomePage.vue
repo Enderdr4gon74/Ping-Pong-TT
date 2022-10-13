@@ -11,8 +11,8 @@
     <div class="mt-5 d-flex justify-content-between">
       <!-- SECTION: global leader board -->
       <!-- scoreboard is a placeholder here, it can be replaced with the global one once it's is built, DO NOT delete it completely -->
-      <div class="col-8 fs-3">
-        <ScoreBoard />
+      <div class="col-8">
+        <GlobalScore />
       </div>
 
 
@@ -20,7 +20,7 @@
 
 
       <!-- SECTION: welcome + intro text -->
-      <div class="row background-imag col-5">
+      <div class="row background-imag col-4">
         <p class="text-center pink fs-1">Welcome to Ping Pong Tournament Tracker!</p>
         <p class="text-center mt-2 mb-2 fs-2">Join the Future of Ping Pong</p>
 
@@ -69,12 +69,12 @@
 
 
 <script>
-import ScoreBoard from "../components/ScoreBoard.vue";
+import GlobalScore from "../components/GlobalScore.vue";
 export default {
   setup() {
     return {};
   },
-  components: { ScoreBoard }
+  components: { GlobalScore }
 }
 </script>
 
