@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { BadRequest, Forbidden, Unexpected } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class TourneyService {
@@ -11,11 +11,13 @@ class TourneyService {
     if (tourney.status == 'canceled') {
       throw new BadRequest("That tourney has already been canceled, can't edit it now...")
     }
-    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, {$set:{
-      name: tourneyData.name,
-      description: tourneyData.description,
-      coverImg: tourneyData.coverImg,
-    }}, {new: true}).populate('creator', 'name picture')
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, {
+      $set: {
+        name: tourneyData.name,
+        description: tourneyData.description,
+        coverImg: tourneyData.coverImg,
+      }
+    }, { new: true }).populate('creator', 'name picture')
     logger.log('log', newTourney)
     return newTourney
   }
@@ -28,7 +30,7 @@ class TourneyService {
       throw new BadRequest("You already canceled this tourney...")
     }
     tourney.status = 'canceled'
-    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, {new: true}).populate('creator', 'name picture')
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator', 'name picture')
     return newTourney
   }
   async getAllTourneys(query) {
@@ -50,6 +52,20 @@ class TourneyService {
     logger.log('log', tourney)
     return tourney
   }
+
+
+  async generateMatches(tourneyId) {
+    const tourney = await this.getTourneyById(tourneyId)
+    const players = tourney.players
+
+    if (!players.length) {
+      throw new Unexpected("Not enough players to generate bracket")
+    }
+
+
+  }
+
+
 }
 
 export const tourneyService = new TourneyService()
