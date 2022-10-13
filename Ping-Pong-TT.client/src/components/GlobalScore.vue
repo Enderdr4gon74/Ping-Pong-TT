@@ -1,7 +1,6 @@
 <template>
 
   <div class="col-3 m-2">
-
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
         <h3 class="text-center text-success">
