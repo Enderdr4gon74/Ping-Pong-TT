@@ -5,15 +5,8 @@
         <img alt="logo" src="../assets/img/Tourney_Tracker_Logo.png" height="75" />
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -21,6 +14,11 @@
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase ms-3">
             About
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Profile'}" class="btn text-success lighten-30 selectable text-uppercase ms-3">
+            Profile
           </router-link>
         </li>
       </ul>
