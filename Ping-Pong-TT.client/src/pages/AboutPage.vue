@@ -1,6 +1,8 @@
 <template>
-  <div class="about">
-    <h1>This is the about page</h1>
+  <!-- <GlobalScore /> -->
+  <div class="row justify-content-center">
+
+    <TeamScore />
   </div>
 </template>
 

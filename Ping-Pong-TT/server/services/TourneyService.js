@@ -1,6 +1,7 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden, Unexpected } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
+import { matchesService } from "./MatchesService.js"
 
 class TourneyService {
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
@@ -55,11 +56,57 @@ class TourneyService {
 
 
   async generateMatches(tourneyId) {
+    await matchesService.deleteMatchesByTournamentId(tourneyId)
     const tourney = await this.getTourneyById(tourneyId)
     const players = tourney.players
 
-    if (!players.length) {
+    if (players.length < 1) {
       throw new Unexpected("Not enough players to generate bracket")
+    }
+
+    let set = 1
+    let matchNum = 1
+    let matches = []
+    let match
+
+    let awayPlayer;
+    // Generate Outer Matches
+    for (let i = 0; i < players.length; i += 2) {
+
+      if (i != players.length - 1) {
+        awayPlayer = players[i + 1].id
+      } else {
+        awayPlayer = undefined;
+      }
+
+      match = {
+        tourneyId: tourneyId,
+        homePlayer: players[i].id,
+        awayPlayer: awayPlayer,
+        set: set,
+        matchNum: matchNum
+      }
+
+      match = await matchesService.createMatch(match)
+      matches = [...matches, match]
+
+      matchNum++
+    }
+
+    // Generate Inner Matches
+    set++
+    let prevSet = matches
+    let awayPull
+    while (prevSet.length != 1) {
+      matchNum = 1
+
+      for (let i = 0; i < prevSet.length; i += 2) {
+        if (i + 1 == prevSet.length) {
+          awayPull = "buy"
+        } else {
+          awayPull = prevSet[i + 1].matchNum
+        }
+      }
     }
 
 
