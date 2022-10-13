@@ -10,7 +10,7 @@
   <div class="container">
     <div class="mt-5 d-flex justify-content-between">
       <!-- SECTION: global leader board -->
-      <!-- scoreboard is a placeholder here, it can be replaced with the global one once it's is built, but DO NOT delete it completely -->
+      <!-- scoreboard is a placeholder here, it can be replaced with the global one once it's is built, DO NOT delete it completely -->
       <div class="col-8 fs-3">
         <ScoreBoard />
       </div>
