@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest } from "../utils/Errors.js"
+import { logger } from "../utils/Logger.js"
 import { tourneyService } from "./TourneyService.js"
 
 class MatchesService {
@@ -23,7 +24,17 @@ class MatchesService {
 
   async createMatch(matchData) {
     const match = await dbContext.Matches.create(matchData)
+    logger.log('log', match)
     return match
+  }
+
+  async deleteMatchesByTournamentId(tourneyId) {
+    const tourney = await tourneyService.getTourneyById(tourneyId)
+    const matches = await this.getMatchesByTourneyId(tourneyId)
+
+    matches.forEach(async m => {
+      await m.remove()
+    })
   }
 }
 

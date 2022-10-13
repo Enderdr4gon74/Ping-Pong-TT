@@ -56,6 +56,7 @@ class TourneyService {
 
 
   async generateMatches(tourneyId) {
+    await matchesService.deleteMatchesByTournamentId(tourneyId)
     const tourney = await this.getTourneyById(tourneyId)
     const players = tourney.players
 
@@ -92,7 +93,8 @@ class TourneyService {
         matchNum: matchNum
       }
 
-      matchesService.createMatch(match)
+      match = await matchesService.createMatch(match)
+      matches = [...matches, match]
 
       matchNum++
     }

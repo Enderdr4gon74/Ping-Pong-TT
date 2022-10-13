@@ -10,23 +10,23 @@
 
 
 
-      <li class="list-group-item d-flex align-items-center global-board text-light">
-        <div>
+      <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
+        <div class="text-success d-flex gap-2 align-items-center">
           <img
             src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
             alt="" class="pfp">
           Dugus
         </div>
-
+      
         <div>
-          <span class="badge bg-primary rounded-pill justify-content-between">250</span>
+          <span class="badge bg-success rounded-pill">500</span>
         </div>
       </li>
 
 
 
       <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
-        <div>
+        <div class="d-flex gap-2 align-items-center text-success">
           <img
             src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
             alt="" class="pfp">
@@ -34,14 +34,14 @@
         </div>
 
         <div>
-          <span class="badge bg-primary rounded-pill">50</span>
+          <span class="badge bg-success rounded-pill">50</span>
         </div>
       </li>
 
 
 
-      <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
-        <div>
+      <li class="list-group-item d-flex justify-content-between align-items-center global-board text-success">
+        <div class="d-flex gap-2 align-items-center">
           <img
             src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
             alt="" class="pfp">
@@ -49,7 +49,7 @@
         </div>
 
         <div>
-          <span class="badge bg-primary rounded-pill">1</span>
+          <span class="badge bg-success rounded-pill">20</span>
         </div>
       </li>
     </ul>
