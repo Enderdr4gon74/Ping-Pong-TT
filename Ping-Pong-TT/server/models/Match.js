@@ -12,7 +12,8 @@ export const MatchSchema = new Schema({
   status: { type: String, enum: ['pending', 'active', 'complete'], default: 'pending' },
   set: { type: Number, default: 1 },
   matchNum: { type: Number, default: 1 },
-  matchPull: { type: Number }
+  homePull: { type: Number },
+  awayPull: { type: Number }
 }, SCHEMA_OPTIONS)
 
 MatchSchema.virtual('tourney', {

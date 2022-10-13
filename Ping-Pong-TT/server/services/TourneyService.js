@@ -102,11 +102,27 @@ class TourneyService {
 
       for (let i = 0; i < prevSet.length; i += 2) {
         if (i + 1 == prevSet.length) {
-          awayPull = "buy"
+          awayPull = 0
         } else {
           awayPull = prevSet[i + 1].matchNum
         }
+
+        match = {
+          tourneyId: tourneyId,
+          set: set,
+          matchNum: matchNum,
+          homePull: prevSet[i].matchNum,
+          awayPull: awayPull
+        }
+
+        match = await matchesService.createMatch(match)
+        matches = [...matches, match]
+
+        matchNum++
       }
+
+      set++
+      prevSet = matches.filter(m => m.set == set - 1)
     }
 
 
