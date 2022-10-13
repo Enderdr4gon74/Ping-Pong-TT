@@ -38,27 +38,6 @@
     "cSpell.words": [
       "leaderboard",
       "pongers"
-    ],
-    "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#95a9d5",
-      "activityBar.background": "#95a9d5",
-      "activityBar.foreground": "#15202b",
-      "activityBar.inactiveForeground": "#15202b99",
-      "activityBarBadge.background": "#b7486b",
-      "activityBarBadge.foreground": "#e7e7e7",
-      "commandCenter.border": "#15202b99",
-      "panel.border": "#95a9d5",
-      "sash.hoverBorder": "#95a9d5",
-      "statusBar.background": "#708bc7",
-      "statusBar.foreground": "#15202b",
-      "statusBarItem.hoverBackground": "#4b6db9",
-      "statusBarItem.remoteBackground": "#708bc7",
-      "statusBarItem.remoteForeground": "#15202b",
-      "titleBar.activeBackground": "#708bc7",
-      "titleBar.activeForeground": "#15202b",
-      "titleBar.inactiveBackground": "#708bc799",
-      "titleBar.inactiveForeground": "#15202b99"
-    },
-    "peacock.color": "#708bc7"
+    ]
   }
 }
