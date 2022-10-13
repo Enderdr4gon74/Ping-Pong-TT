@@ -21,8 +21,9 @@ class MatchesService {
     // TODO - implement update matches function
   }
 
-  async createMatch() {
-    
+  async createMatch(matchData) {
+    const match = await dbContext.Matches.create(matchData)
+    return match
   }
 }
 

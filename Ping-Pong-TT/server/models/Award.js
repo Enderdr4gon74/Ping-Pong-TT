@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Types.ObjectId
 
-export const _____Schema = new Schema({
+export const AwardSchema = new Schema({
   name: {type: String, required: true},
   img: {type: String, required: true},
-  
+  accountId: {type: ObjectId, required: true}
   // type: String  <-- whatever type you need it to be
   // required: true  <-- whether it needs to be provided or not
   // default: ""  <-- if its not required then set it's default to something so that it sets it
@@ -18,8 +18,8 @@ export const _____Schema = new Schema({
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-_____Schema.virtual("", {
-  localField: "_____Id", // for whatever id it applies to in your schema
+AwardSchema.virtual("account", {
+  localField: "accountId", // for whatever id it applies to in your schema
   foreignField: "_id", // this compares to the id of the referenced object
   justOne: true, // or false based on if you want just one or multiple objects
   ref: "Account" // for accounts change to what ever db context

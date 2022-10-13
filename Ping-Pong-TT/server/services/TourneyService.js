@@ -1,6 +1,7 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden, Unexpected } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
+import { matchesService } from "./MatchesService.js"
 
 class TourneyService {
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
@@ -73,20 +74,28 @@ class TourneyService {
       buyRound = true
     }
     
+    let awayPlayer;
     // Generate Outer Matches
     for (let i = 0; i < players.length; i += 2) {
 
-      
+      if (i != players.length) {
+        awayPlayer = players[i + 1]
+      } else {
+        awayPlayer = "buy"
+      }
+
       match = {
-        tourneyId: tourneyId, homePlayer: players[i],
-        awayPlayer: players[i + 1],
+        tourneyId: tourneyId, 
+        homePlayer: players[i],
+        awayPlayer: awayPlayer,
         set: set,
         matchNum: matchNum
       }
+
+      matchesService.createMatch(match)
+
+      matchNum++
     }
-
-
-
 
     // Generate Inner Matches
 

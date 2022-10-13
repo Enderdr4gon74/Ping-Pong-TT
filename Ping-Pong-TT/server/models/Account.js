@@ -6,13 +6,10 @@ export const AccountSchema = new Schema(
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String }
-    /* 
-    wins: {type: number, default: 0 }
-    losses: {type: number, default: 0 }
-    team: { type: string, enum: [red, blue], default: "red" }
-    awards: { type: [awardObject] }
-    */
+    picture: { type: String },
+    wins: {type: Number, default: 0 },
+    losses: {type: Number, default: 0 },
+    team: { type: String, enum: ['red', 'blue'], default: "red" }
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }
