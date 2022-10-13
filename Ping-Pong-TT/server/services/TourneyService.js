@@ -94,6 +94,20 @@ class TourneyService {
     }
 
     // Generate Inner Matches
+    set++
+    let prevSet = matches
+    let awayPull
+    while (prevSet.length != 1) {
+      matchNum = 1
+
+      for (let i = 0; i < prevSet.length; i += 2) {
+        if (i + 1 == prevSet.length) {
+          awayPull = "buy"
+        } else {
+          awayPull = prevSet[i + 1].matchNum
+        }
+      }
+    }
 
 
   }
