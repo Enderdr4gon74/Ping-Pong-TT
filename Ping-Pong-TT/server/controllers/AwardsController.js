@@ -19,7 +19,8 @@ export class AwardsController extends BaseController {
 
   async createAward(req, res, next) {
     try {
-
+      const award = await awardsService.createAward(req.params.id, req.body)
+      res.send(award)
     } catch (error) {
       next(error)
     }
