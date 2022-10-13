@@ -58,9 +58,37 @@ class TourneyService {
     const tourney = await this.getTourneyById(tourneyId)
     const players = tourney.players
 
-    if (!players.length) {
+    if (players.length < 1) {
       throw new Unexpected("Not enough players to generate bracket")
     }
+
+    let set = 1
+    let matchNum = 1
+    let buyRound = false
+    let matches = []
+    let match
+
+    // Fix Player Numbers if needed
+    if (players.length % 2 != 0) {
+      buyRound = true
+    }
+    
+    // Generate Outer Matches
+    for (let i = 0; i < players.length; i += 2) {
+
+      
+      match = {
+        tourneyId: tourneyId, homePlayer: players[i],
+        awayPlayer: players[i + 1],
+        set: set,
+        matchNum: matchNum
+      }
+    }
+
+
+
+
+    // Generate Inner Matches
 
 
   }

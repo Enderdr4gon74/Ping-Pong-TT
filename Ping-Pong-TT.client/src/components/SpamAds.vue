@@ -1,13 +1,17 @@
 <template>
-<GlobalScore />
+
 </template>
+
 
 <script>
 export default {
-  setup() {
-    return {
-
-    }
+  setup(){
+    return {}
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+
+</style>

@@ -20,6 +20,10 @@ class MatchesService {
   async updateMatchesForTournament() {
     // TODO - implement update matches function
   }
+
+  async createMatch() {
+    
+  }
 }
 
 export const matchesService = new MatchesService()
