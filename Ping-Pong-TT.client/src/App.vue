@@ -2,15 +2,22 @@
   <header>
     <Navbar />
   </header>
-  <main class="bg-dark" >
+
+
+  <main class="bg-dark">
     <router-view />
   </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
+
+
+  <footer class="footer1">
+    <div class="bg-dark text-light text-center pb-3">
       Made with 🦍🏓 by King Pong
     </div>
   </footer>
 </template>
+
+
+
 
 <script>
 import { computed } from 'vue'
@@ -26,7 +33,10 @@ export default {
   components: { Navbar }
 }
 </script>
+
+
+
+
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
 </style>
