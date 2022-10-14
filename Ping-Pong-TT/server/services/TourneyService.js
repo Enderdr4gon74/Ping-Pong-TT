@@ -128,7 +128,7 @@ class TourneyService {
 
   }
 
-  async scorePoint(match, scorer)
+
 
 }
 
