@@ -73,8 +73,6 @@
 
 
 
-
-
 <script>
 import GlobalScore from "../components/GlobalScore.vue";
 export default {
@@ -84,8 +82,6 @@ export default {
   components: { GlobalScore }
 }
 </script>
-
-
 
 
 
