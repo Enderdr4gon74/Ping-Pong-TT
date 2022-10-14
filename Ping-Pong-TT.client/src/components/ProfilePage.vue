@@ -3,7 +3,7 @@
     <img class="profile-picture mt-3"
       src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
       alt="Profile-Picture">
-    <h1>Username Here</h1>
+    <h1>{{account.name}}</h1>
   </div>
   <div class="container">
     <div class="m-1 profile-card card">
