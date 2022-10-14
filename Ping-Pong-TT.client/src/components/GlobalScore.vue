@@ -1,11 +1,14 @@
 <template>
-  <div class="col-3 m-2">
+  <div class="col-8 m-2">
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
         <h3 class="text-center text-success">
           GLOBAL LEADERBOARD
         </h3>
       </li>
+
+
+
       <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
         <div class="text-success d-flex gap-2 align-items-center">
           <img

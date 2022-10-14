@@ -9,8 +9,7 @@
 
   <div class="container">
     <div class="mt-5 d-flex justify-content-between">
-      <!-- SECTION: global leader board -->
-      <!-- scoreboard is a placeholder here, it can be replaced with the global one once it's is built, DO NOT delete it completely -->
+      <!-- global leader board -->
       <div class="col-8">
         <GlobalScore />
       </div>
@@ -19,7 +18,7 @@
       <!-- TODO: add current match(es) button somewhere -->
 
 
-      <!-- SECTION: welcome + intro text -->
+      <!-- welcome + intro text -->
       <div class="row background-imag col-4">
         <p class="text-center pink fs-1">Welcome to Ping Pong Tournament Tracker!</p>
         <p class="text-center mt-2 mb-2 fs-2">Join the Future of Ping Pong</p>
