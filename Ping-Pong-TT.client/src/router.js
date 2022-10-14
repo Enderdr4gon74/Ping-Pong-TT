@@ -26,7 +26,22 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
-  }
+  },
+  {
+    path: '/tourneys',
+    name: 'FindTourney',
+    component: loadPage('FindTourneyPage')
+  },
+  {
+    path: '/tourneys/:id',
+    name: 'Tourney',
+    component: loadPage('TourneyPage')
+  },
+  {
+    path: '/matches/:id',
+    name: 'Match',
+    component: loadPage('MatchPage')
+  },
 ]
 
 export const router = createRouter({
