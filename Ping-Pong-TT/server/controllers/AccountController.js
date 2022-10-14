@@ -8,6 +8,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/leaderboard/:amount', this.getAccounts)
       .get('/:name', this.getAccountsByTeam)
   }
 
@@ -29,5 +30,12 @@ export class AccountController extends BaseController {
     }
   }
 
-  
+  async getAccounts(req, res, next) {
+    try {
+      const accounts = await accountService.getAccounts(req.query, req.params.amount)
+      res.send(accounts)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

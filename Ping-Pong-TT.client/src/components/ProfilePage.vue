@@ -56,9 +56,14 @@
 
 
 <script>
+import { computed } from '@vue/reactivity';
+import { AppState } from '../AppState.js';
+
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   }
 }
 </script>

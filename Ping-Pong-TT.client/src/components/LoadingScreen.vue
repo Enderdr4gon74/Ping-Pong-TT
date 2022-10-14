@@ -1,34 +1,42 @@
 <template>
-  <h1>IT'S PING PONG TIME!</h1>
-  <div class="spinner">
-    <svg class="raquet" id="r-1">
-      <ellipse class="front" cx="44" cy="50" rx="35" ry="50" />
-      <ellipse class="middle" cx="42" cy="50" rx="35" ry="50" />
-      <ellipse class="back" cx="40" cy="50" rx="35" ry="50" />
-      <rect class="handle outer" x="40" y="100" width="10" height="42" />
-      <rect class="handle inner" x="38" y="100" width="10" height="41" />
-      <rect class="handle outer" x="35" y="100" width="10" height="40" />
-      <ellipse class="shadow" id="sor-1" cx="40" cy="50" rx="7" ry="10" />
-    </svg>
-    <svg class="raquet" id="r-2">
-      <ellipse class="back" cx="40" cy="50" rx="35" ry="50" />
-      <ellipse class="middle" cx="42" cy="50" rx="35" ry="50" />
-      <ellipse class="front" cx="44" cy="50" rx="35" ry="50" />
-      <rect class="handle outer" x="35" y="100" width="10" height="42" />
-      <rect class="handle inner" x="37" y="100" width="10" height="41" />
-      <rect class="handle outer" x="40" y="100" width="10" height="40" />
-      <ellipse class="shadow" id="sor-2" cx="44" cy="50" rx="7" ry="10" />
-    </svg>
-    <div class="ball-container">
-      <svg class="ball">
-        <circle cx="20" cy="20" r="12" />
+  <div class="mt-4 pt-5 pb-2">
+    <h1>IT'S PING PONG TIME!</h1>
+    <div class="spinner mt-5 pt-5">
+      <svg class="raquet" id="r-1">
+        <ellipse class="front" cx="44" cy="50" rx="35" ry="50" />
+        <ellipse class="middle" cx="42" cy="50" rx="35" ry="50" />
+        <ellipse class="back" cx="40" cy="50" rx="35" ry="50" />
+        <rect class="handle outer" x="40" y="100" width="10" height="42" />
+        <rect class="handle inner" x="38" y="100" width="10" height="41" />
+        <rect class="handle outer" x="35" y="100" width="10" height="40" />
+        <ellipse class="shadow" id="sor-1" cx="40" cy="50" rx="7" ry="10" />
+      </svg>
+
+
+      <svg class="raquet" id="r-2">
+        <ellipse class="back" cx="40" cy="50" rx="35" ry="50" />
+        <ellipse class="middle" cx="42" cy="50" rx="35" ry="50" />
+        <ellipse class="front" cx="44" cy="50" rx="35" ry="50" />
+        <rect class="handle outer" x="35" y="100" width="10" height="42" />
+        <rect class="handle inner" x="37" y="100" width="10" height="41" />
+        <rect class="handle outer" x="40" y="100" width="10" height="40" />
+        <ellipse class="shadow" id="sor-2" cx="44" cy="50" rx="7" ry="10" />
+      </svg>
+
+
+      <div class="ball-container">
+        <svg class="ball">
+          <circle cx="20" cy="20" r="12" />
+        </svg>
+      </div>
+
+
+      <svg class="shadow">
+        <ellipse id="sr-1" cx="70" cy="30" rx="50" ry="15" />
+        <ellipse id="sb" cx="150" cy="30" rx="15" ry="4.5" />
+        <ellipse id="sr-2" cx="230" cy="30" rx="50" ry="15" />
       </svg>
     </div>
-    <svg class="shadow">
-      <ellipse id="sr-1" cx="70" cy="30" rx="50" ry="15" />
-      <ellipse id="sb" cx="150" cy="30" rx="15" ry="4.5" />
-      <ellipse id="sr-2" cx="230" cy="30" rx="50" ry="15" />
-    </svg>
   </div>
 </template>
 
