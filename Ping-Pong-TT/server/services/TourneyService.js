@@ -60,7 +60,7 @@ class TourneyService {
     const tourney = await this.getTourneyById(tourneyId)
     const players = tourney.players
 
-    if (players.length < 1) {
+    if (!players.length) {
       throw new Unexpected("Not enough players to generate bracket")
     }
 
@@ -81,8 +81,8 @@ class TourneyService {
 
       match = {
         tourneyId: tourneyId,
-        homePlayer: players[i].id,
-        awayPlayer: awayPlayer,
+        homePlayerId: players[i].id,
+        awayPlayerId: awayPlayer,
         set: set,
         matchNum: matchNum
       }
@@ -102,11 +102,27 @@ class TourneyService {
 
       for (let i = 0; i < prevSet.length; i += 2) {
         if (i + 1 == prevSet.length) {
-          awayPull = "buy"
+          awayPull = 0
         } else {
           awayPull = prevSet[i + 1].matchNum
         }
+
+        match = {
+          tourneyId: tourneyId,
+          set: set,
+          matchNum: matchNum,
+          homePull: prevSet[i].matchNum,
+          awayPull: awayPull
+        }
+
+        match = await matchesService.createMatch(match)
+        matches = [...matches, match]
+
+        matchNum++
       }
+
+      set++
+      prevSet = matches.filter(m => m.set == set - 1)
     }
 
 

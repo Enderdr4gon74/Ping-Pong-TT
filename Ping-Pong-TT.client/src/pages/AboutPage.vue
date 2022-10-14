@@ -1,9 +1,12 @@
 <template>
   <!-- <GlobalScore /> -->
-  <div class="row justify-content-center">
 
-    <TeamScore />
-  </div>
+
+
+  <TeamScore />
+
+
+
 </template>
 
 <script>

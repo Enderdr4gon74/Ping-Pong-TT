@@ -1,7 +1,12 @@
 <template>
   <div class="d-flex justify-content-end p-5">
+    <router-link :to="{name: 'FindTourney'}">
+      <button class="rounded fs-3 me-3">
+        Find a Tourney
+      </button>
+    </router-link>
     <button class="rounded fs-3">
-      Begin Tourney
+      Create a Tourney
     </button>
   </div>
 
