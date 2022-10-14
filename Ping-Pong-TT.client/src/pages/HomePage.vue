@@ -1,13 +1,13 @@
 <template>
   <div v-if="tourney">
 
-    <div class="d-flex justify-content-end p-5">
+    <div class="d-flex justify-content-end p-5 ">
       <router-link :to="{name: 'FindTourney'}">
-        <button class="rounded fs-3 me-3">
+        <button class="rounded fs-3 me-3 btn btn-success">
           Find a Tourney
         </button>
       </router-link>
-      <button class="rounded fs-3">
+      <button class="rounded fs-3 btn btn-success">
         Create a Tourney
       </button>
     </div>
