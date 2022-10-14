@@ -2,11 +2,13 @@
   <div class="container-fluid">
     <div class="row justify-content-around mt-5">
       <div class="col-4 bg-danger d-flex flex-column align-items-center scoreCard">
-        <p>{{match?.homePlayer.name}}</p>
+        <p v-if="match?.homePlayer">{{match?.homePlayer.name}}</p>
+        <p v-else>Winner of Match: {{match?.set-1}}-{{match?.homePull}}</p>
         <h1>{{match?.homeScore}}</h1>
       </div>
       <div class="col-4 bg-primary d-flex flex-column align-items-center scoreCard">
-        <p>{{match?.awayPlayer.name}}</p>
+        <p v-if="match?.awayPlayer">{{match?.awayPlayer.name}}</p>
+        <p v-else>Winner of Match: {{match?.set-1}}-{{match?.awayPull}}</p>
         <h1>{{match?.awayScore}}</h1>
       </div>
     </div>
@@ -27,7 +29,6 @@ import Pop from '../utils/Pop.js';
 export default {
   setup() {
     const route = useRoute();
-    console.log(route.params.id)
     async function getMatchById() {
       try {
 
@@ -49,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 .scoreCard {
-  width: 10rem;
-  height: 10rem;
+  width: 12rem;
+  height: 12rem;
 }
 </style>

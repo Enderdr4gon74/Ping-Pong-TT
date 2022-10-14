@@ -9,7 +9,7 @@ export const AccountSchema = new Schema(
     picture: { type: String },
     wins: {type: Number, default: 0 },
     losses: {type: Number, default: 0 },
-    team: { type: String, enum: ['red', 'blue'], default: "red" }
+    team: { type: String, enum: ['red', 'blue', 'none'], default: "none" }
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }

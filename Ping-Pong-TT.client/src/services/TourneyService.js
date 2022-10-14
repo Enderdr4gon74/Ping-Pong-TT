@@ -18,6 +18,14 @@ class TourneyService {
     return
   }
 
+  async joinTourney(tourneyId) {
+    console.log(tourneyId)
+    const res = await api.put(`/api/tourneys/${tourneyId}/player`)
+    await this.getTourneyById(tourneyId)
+    await this.getMatchesByTourneyId(tourneyId)
+    return
+  }
+
   async getMatchesByTourneyId(tourneyId) {
     AppState.matches = []
     const res = await api.get(`/api/tourneys/${tourneyId}/matches`)
@@ -28,12 +36,10 @@ class TourneyService {
     // console.log(res.data.length)
     while (count < res.data.length) {
       if (res.data[count].set == setNum) {
-        console.log(count)
         set = [...set, new Match(res.data[count])]
         count++
       } else {
         AppState.matches = [...AppState.matches, set]
-        console.log(set)
         set = []
         setNum++
       }
