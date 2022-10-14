@@ -61,7 +61,7 @@ class TourneyService {
     const players = tourney.players
 
     if (!players.length) {
-      throw new Unexpected("Not enough players to generate bracket")
+      return
     }
 
     let set = 1
@@ -128,6 +128,7 @@ class TourneyService {
 
   }
 
+  async scorePoint(match, scorer)
 
 }
 

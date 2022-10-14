@@ -1,8 +1,9 @@
 <template>
   <div class="col-3 mt-4">
     <router-link :to="{name: 'Tourney', params: {id: tourney.id}}">
-      <div class="card bg-info">
+      <div class="card bg-card">
         <div class="card-body">
+          <img :src="tourney.coverImg" alt="" class="img-fluid">
           <h5>{{tourney.name}}</h5>
         </div>
       </div>

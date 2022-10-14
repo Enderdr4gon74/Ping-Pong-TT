@@ -1,7 +1,7 @@
 <template>
 
   <router-link :to="{name: 'Match', params: {id: match.id}}">
-    <div class="card bg-info">
+    <div class="card bg-card">
       <div class="card-body">
         <div class="d-flex justify-content-center">
           <p class="m-0">Match {{match.set}}-{{match.matchNum}}</p>
