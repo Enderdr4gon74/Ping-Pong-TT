@@ -19,8 +19,14 @@ class TourneyService {
   }
 
   async joinTourney(tourneyId) {
-    console.log(tourneyId)
     const res = await api.put(`/api/tourneys/${tourneyId}/player`)
+    await this.getTourneyById(tourneyId)
+    await this.getMatchesByTourneyId(tourneyId)
+    return
+  }
+
+  async leaveTourney(tourneyId) {
+    const res = await api.delete(`/api/tourneys/${tourneyId}/player`)
     await this.getTourneyById(tourneyId)
     await this.getMatchesByTourneyId(tourneyId)
     return
