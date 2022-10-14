@@ -1,4 +1,6 @@
 <template>
+  <!-- <div v-if=""> -->
+
   <div class="d-flex justify-content-end p-5">
     <router-link :to="{name: 'FindTourney'}">
       <button class="rounded fs-3 me-3">
@@ -9,7 +11,6 @@
       Create a Tourney
     </button>
   </div>
-
 
 
   <div class="container">
@@ -38,13 +39,13 @@
   </div>
 
 
-
   <div class="container mt-5 pt-5 mb-5">
     <p class="fs-4">
       Do you like ping pong? Have you ever played a “Tournament” of ping pong, won, then felt as if it was all for
       nothing since there is nothing to show for your major W. We here at Team King Pong believe that all ping pongers
       deserve a
-      platform to display their pong prowess. Today I'd like to introduce “Ping Pong TT” aka Ping Pong Tourney Tracker.
+      platform to display their pong prowess. Today I'd like to introduce “Ping Pong TT” aka Ping Pong Tourney
+      Tracker.
       This web application will be utilizing a custom api written with love by the King Pong team and what our website
       aims
       to do is create a place where passionate pongers can see who's the best, with an individual leader board as well
@@ -62,6 +63,8 @@
       </button>
     </div>
   </div>
+
+  <!-- </div> -->
 </template>
 
 
