@@ -68,7 +68,8 @@
 
 
   <div v-else>
-    <LoadingScreen />
+    <!-- <LoadingScreen /> -->
+    <PlayersMorphingCube />
   </div>
 </template>
 
@@ -81,11 +82,12 @@
 <script>
 import GlobalScore from "../components/GlobalScore.vue";
 import LoadingScreen from "../components/LoadingScreen.vue";
+import PlayersMorphingCube from "../components/PlayersMorphingCube.vue";
 export default {
   setup() {
     return {};
   },
-  components: { GlobalScore, LoadingScreen }
+  components: { GlobalScore, LoadingScreen, PlayersMorphingCube }
 }
 </script>
 
