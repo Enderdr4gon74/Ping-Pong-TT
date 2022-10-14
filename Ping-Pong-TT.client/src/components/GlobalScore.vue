@@ -16,8 +16,8 @@
             alt="" class="pfp">
           Dugus
         </div>
-        <div>
-          <span class="badge bg-success rounded-pill">500</span>
+        <div class="badge bg-success rounded-pill">
+          <span>500</span> wins
         </div>
       </li>
     </ul>
