@@ -36,30 +36,7 @@
       "source.fixAll": true
     },
     "cSpell.words": [
-      "Dugus",
-      "leaderboard",
-      "pongers"
-    ],
-    "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#991b1b",
-      "activityBar.background": "#991b1b",
-      "activityBar.foreground": "#e7e7e7",
-      "activityBar.inactiveForeground": "#e7e7e799",
-      "activityBarBadge.background": "#051b05",
-      "activityBarBadge.foreground": "#e7e7e7",
-      "commandCenter.border": "#e7e7e799",
-      "panel.border": "#991b1b",
-      "sash.hoverBorder": "#991b1b",
-      "statusBar.background": "#6e1313",
-      "statusBar.foreground": "#e7e7e7",
-      "statusBarItem.hoverBackground": "#991b1b",
-      "statusBarItem.remoteBackground": "#6e1313",
-      "statusBarItem.remoteForeground": "#e7e7e7",
-      "titleBar.activeBackground": "#6e1313",
-      "titleBar.activeForeground": "#e7e7e7",
-      "titleBar.inactiveBackground": "#6e131399",
-      "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.color": "#6e1313"
+      "Qbddas"
+    ]
   }
 }
