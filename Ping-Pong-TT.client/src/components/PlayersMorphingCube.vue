@@ -11,7 +11,7 @@
       <div id="stage">
         <div id="shape" class="cube backfaces">
           <div class="player one">
-            Daga
+            Dagda
           </div>
 
           <div class="player two">
