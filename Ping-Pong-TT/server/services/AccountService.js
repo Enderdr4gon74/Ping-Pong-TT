@@ -1,4 +1,7 @@
+import { Logger } from 'sass'
 import { dbContext } from '../db/DbContext'
+import { NewAccount } from '../models/NewAccount.js'
+import { logger } from '../utils/Logger.js'
 
 // Private Methods
 
@@ -58,6 +61,12 @@ class AccountService {
     account = await createAccountIfNeeded(account, user)
     await mergeSubsIfNeeded(account, user)
     return account
+  }
+
+  async getAccountsByTeam(teamName) {
+    let accounts = await (await dbContext.Account.find({team: teamName})).map(a => new NewAccount(a))
+    logger.log(accounts)
+    return accounts
   }
 
   /**

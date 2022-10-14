@@ -8,12 +8,22 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/:name', this.getAccountsByTeam)
   }
 
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getAccountsByTeam(req, res, next) {
+    try {
+      const accounts = await accountService.getAccountsByTeam(req.params.name)
+      res.send(accounts)
     } catch (error) {
       next(error)
     }
