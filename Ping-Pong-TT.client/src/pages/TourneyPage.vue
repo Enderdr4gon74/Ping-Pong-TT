@@ -4,10 +4,10 @@
 
     <div class="row justify-content-around mt-2">
       <div class="col-2">
-        <button v-if="tourney?.players.find(p => p == account?.id)" class="btn btn-success fs-5 px-4"
-          @click="joinTourney()">Join</button>
+        <p>{{isCompeting}}</p>
+        <button v-if="!isCompeting" class="btn btn-success fs-5 px-4" @click="joinTourney()">Join</button>
 
-        <button class="btn btn-danger fs-5 px-4" @click="joinTourney()">Leave</button>
+        <button v-else class="btn btn-danger fs-5 px-4" @click="leaveTourney()">Leave</button>
       </div>
       <div class="col-2 d-flex flex-column align-items-center bg-grey">
         <p>Status: {{tourney?.status}}</p>
@@ -79,12 +79,22 @@ export default {
 
     return {
       tourney: computed(() => AppState.activeTourney),
+      isCompeting: computed(() => AppState.activeTourney?.players.filter(p => p == AppState.account.id).length == 0 ? false : true),
       matches: computed(() => AppState.matches),
       account: computed(() => AppState.account),
+
 
       async joinTourney() {
         try {
           await tourneyService.joinTourney(route.params.id)
+        } catch (error) {
+          Pop.error(error, '[Joining Tourney]')
+        }
+      },
+
+      async leaveTourney() {
+        try {
+          await tourneyService.leaveTourney(route.params.id)
         } catch (error) {
           Pop.error(error, '[Joining Tourney]')
         }

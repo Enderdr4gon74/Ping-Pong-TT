@@ -69,6 +69,22 @@ class AccountService {
     return accounts
   }
 
+  async getAccounts(query, amount) {
+    let accounts = await (await dbContext.Account.find({
+      ...query
+    })).map(a => new NewAccount(a))
+    accounts.splice(amount, (accounts.length-amount))
+    return accounts
+    /* 
+    const tourneys = await dbContext.Tourneys.find({
+      ...query
+    })
+    */
+    // let accounts = 
+    // logger.log(accounts)
+    // return accounts
+  }
+
   /**
    * Updates account with the request body, will only allow changes to editable fields
    *  @param {any} user Auth0 user object
