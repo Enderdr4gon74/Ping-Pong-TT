@@ -60,7 +60,7 @@ class TourneyService {
     const tourney = await this.getTourneyById(tourneyId)
     const players = tourney.players
 
-    if (players.length < 1) {
+    if (!players.length) {
       throw new Unexpected("Not enough players to generate bracket")
     }
 
@@ -81,8 +81,8 @@ class TourneyService {
 
       match = {
         tourneyId: tourneyId,
-        homePlayer: players[i].id,
-        awayPlayer: awayPlayer,
+        homePlayerId: players[i].id,
+        awayPlayerId: awayPlayer,
         set: set,
         matchNum: matchNum
       }

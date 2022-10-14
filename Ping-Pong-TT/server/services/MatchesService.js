@@ -5,13 +5,13 @@ import { tourneyService } from "./TourneyService.js"
 
 class MatchesService {
   async getMatchesByTourneyId(tourneyId) {
-    await tourneyService.getTourneyById(tourneyId)
-    const matches = await dbContext.Matches.find({tourneyId})
+    // await tourneyService.getTourneyById(tourneyId)
+    const matches = await dbContext.Matches.find({ tourneyId }).populate('homePlayer awayPlayer')
     return matches
   }
 
   async getMatchById(matchId) {
-    const match = await dbContext.Matches.findById(matchId)
+    const match = await dbContext.Matches.findById(matchId).populate('homePlayer awayPlayer')
     if (!match) {
       throw new BadRequest("Invalid or Bad Match id")
     }
@@ -24,7 +24,7 @@ class MatchesService {
 
   async createMatch(matchData) {
     const match = await dbContext.Matches.create(matchData)
-    logger.log('log', match)
+    // @ts-ignore
     return match
   }
 
