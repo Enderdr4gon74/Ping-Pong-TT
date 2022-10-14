@@ -1,12 +1,43 @@
 <template>
 
   <div class="container-fluid">
-    <!-- {{matches[0].length}} -->
+
+    <div class="row justify-content-around mt-2">
+      <div class="col-2">
+        <button v-if="tourney?.players.find(p => p == account?.id)" class="btn btn-success fs-5 px-4"
+          @click="joinTourney()">Join</button>
+
+        <button class="btn btn-danger fs-5 px-4" @click="joinTourney()">Leave</button>
+      </div>
+      <div class="col-2 d-flex flex-column align-items-center bg-grey">
+        <p>Status: {{tourney?.status}}</p>
+        <p>Players: {{tourney?.players.length}}</p>
+        <p>Spots Remaining: {{ tourney?.poolLimit - tourney?.players.length }}</p>
+      </div>
+    </div>
+
     <div class="row">
       <div v-for="m in matches.length+1" class="col-3 d-flex flex-column justify-content-around">
         <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 " />
       </div>
     </div>
+
+
+    <div v-if="tourney?.players.length" class="row justify-content-center">
+      <div class="col-6 bg-grey">
+        <div class="d-flex justify-content-center">
+          <h4>Players</h4>
+        </div>
+
+        <div class="row">
+          <div v-for="p in tourney?.players" class="col-1 my-2">
+            <img :src="p.picture" alt="" class="playerImage" :title="p.name">
+          </div>
+        </div>
+        {{tourney?.players.length}}
+      </div>
+    </div>
+
   </div>
 
 </template>
@@ -49,6 +80,15 @@ export default {
     return {
       tourney: computed(() => AppState.activeTourney),
       matches: computed(() => AppState.matches),
+      account: computed(() => AppState.account),
+
+      async joinTourney() {
+        try {
+          await tourneyService.joinTourney(route.params.id)
+        } catch (error) {
+          Pop.error(error, '[Joining Tourney]')
+        }
+      }
     };
   },
   components: { MatchCard }
@@ -57,5 +97,9 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.playerImage {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
 </style>
