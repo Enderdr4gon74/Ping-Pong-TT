@@ -1,6 +1,7 @@
 import { Logger } from 'sass'
 import { dbContext } from '../db/DbContext'
 import { NewAccount } from '../models/NewAccount.js'
+import { BadRequest } from '../utils/Errors.js'
 import { logger } from '../utils/Logger.js'
 
 // Private Methods
@@ -46,6 +47,21 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async setTeam(teamName, accountId, userId) {
+    const account = await dbContext.Account.findById(accountId)
+    logger.log(teamName)
+    // if (teamName != 'red' || teamName != 'blue') {
+    //   throw new BadRequest("not a valid team")
+    // } 
+    if (!account) {
+      throw new BadRequest("invalid or bad account id")
+    } if (accountId != userId) {
+      throw new BadRequest("not yo account")
+    }
+    account.team = teamName
+    account.save()
+    return account
+  }
   /**
    * Returns a user account from the Auth0 user object
    *

@@ -6,15 +6,25 @@ export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
-      .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getUserAccount)
       .get('/leaderboard/:amount', this.getAccounts)
       .get('/:name', this.getAccountsByTeam)
+      .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('', this.getUserAccount)
+      .put('/:id/team/:name', this.setTeam)
   }
 
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
+      res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async setTeam(req,res,next) {
+    try {
+      const account = await accountService.setTeam(req.params.name, req.params.id, req.userInfo.id)
       res.send(account)
     } catch (error) {
       next(error)
