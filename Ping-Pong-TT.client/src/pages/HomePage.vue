@@ -68,6 +68,7 @@
 
 
   <!-- <div v-else>
+    <LoadingScreen />
     <PlayersMorphingCube />
   </div> -->
 </template>
@@ -82,11 +83,12 @@
 import GlobalScore from "../components/GlobalScore.vue";
 import LoadingScreen from "../components/LoadingScreen.vue";
 import PlayersMorphingCube from "../components/PlayersMorphingCube.vue";
+import CreateTourney from "../components/CreateTourney.vue";
 export default {
   setup() {
     return {};
   },
-  components: { GlobalScore, LoadingScreen, PlayersMorphingCube }
+  components: { GlobalScore, LoadingScreen, PlayersMorphingCube, CreateTourney }
 }
 </script>
 

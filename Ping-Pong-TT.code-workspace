@@ -60,8 +60,7 @@
       "titleBar.activeBackground": "#857da8",
       "titleBar.activeForeground": "#15202b",
       "titleBar.inactiveBackground": "#857da899",
-      "titleBar.inactiveForeground": "#15202b99",
-      "panel.border": "#a29cbc"
+      "titleBar.inactiveForeground": "#15202b99"
     },
     "peacock.color": "#857da8",
     "liveServer.settings.multiRootWorkspaceName": "client",
@@ -69,6 +68,9 @@
     "liveshare.diagnosticLogging": true,
     "liveshare.increasedGuestLimit": false,
     "liveshare.languages.allowGuestCommandControl": true,
-    "liveshare.shareExternalFiles": false
+    "liveshare.shareExternalFiles": false,
+    "liveshare.autoShareTerminals": false,
+    "liveshare.autoShareServers": false,
+    "liveshare.openSharedServers": false
   }
 }
