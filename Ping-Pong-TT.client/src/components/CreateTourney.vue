@@ -13,7 +13,7 @@
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Tournament Creation Form</h1>
+          <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Tournament Creation Form</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -23,23 +23,23 @@
 
           <form>
             <div class="mb-3">
-              <label for="TourneyName" class="form-label">Name</label>
+              <label for="TourneyName" class="form-label text-success">Name</label>
               <input type="word" class="form-control" id="TourneyName" aria-describedby="Tournament Name" required>
             </div>
             <div class="mb-3">
-              <label for="TourneyDescription" class="form-label">Description</label>
+              <label for="TourneyDescription" class="form-label text-success">Description</label>
               <input type="word" class="form-control" id="TourneyDescription" minlength="10" maxlength="150" required>
             </div>
             <div class="mb-3">
-              <label for="TourneyImage" class="form-label">Image</label>
+              <label for="TourneyImage" class="form-label text-success">Image</label>
               <input type="url" class="form-control" id="TourneyImage" aria-describedby="emailHelp" required>
             </div>
             <div class="mb-3">
-              <label for="TourneyCap" class="form-label">Max Player Capacity</label>
+              <label for="TourneyCap" class="form-label text-success">Max Player Capacity</label>
               <input type="Number" class="form-control" id="TourneyCap" aria-describedby="emailHelp" required min="2">
             </div>
             <div>
-              <label class="mb-1">Tournament Type</label>
+              <label class="mb-1 text-success">Tournament Type</label>
               <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
                 <option value="1">Solo</option>
                 <option value="2">Duo</option>
