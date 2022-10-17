@@ -71,6 +71,7 @@
     "liveshare.languages.allowGuestCommandControl": true,
     "liveshare.shareExternalFiles": false,
     "liveshare.autoShareTerminals": false,
-    "liveshare.autoShareServers": false
+    "liveshare.autoShareServers": false,
+    "liveshare.openSharedServers": false
   }
 }
