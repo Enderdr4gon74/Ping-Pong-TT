@@ -70,7 +70,7 @@
     "liveshare.increasedGuestLimit": false,
     "liveshare.languages.allowGuestCommandControl": true,
     "liveshare.shareExternalFiles": false,
-    "liveshare.autoShareTerminals": true,
+    "liveshare.autoShareTerminals": false,
     "liveshare.autoShareServers": true
   }
 }
