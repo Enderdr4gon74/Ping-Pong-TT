@@ -36,6 +36,22 @@ class MatchesService {
       await m.remove()
     })
   }
+
+  async editPoints(matchId, side, points = 0) {
+    const match = await this.getMatchById(matchId)
+
+    if (side == 'home') {
+      // @ts-ignore
+      match.homeScore += parseInt(points);
+    } else if (side == 'away') {
+      // @ts-ignore
+      match.awayScore += parseInt(points);
+    }
+
+    await match.save()
+    return match
+  }
+
 }
 
 export const matchesService = new MatchesService()
