@@ -128,7 +128,26 @@ class TourneyService {
 
   }
 
+  async updateMatches(matchSet, matchNum, completeMatch, tourneyId) {
+    const tourney = await this.getTourneyById(tourneyId)
+    const matches = await matchesService.getMatchesByTourneyId(tourneyId)
+    const matchesToUpdate = matches.filter(m =>
+      m.set == matchSet + 1 &&
+      m.homePull == matchNum ||
+      m.set == matchSet + 1 &&
+      m.awayPull == matchNum
+    )
 
+    matchesToUpdate.forEach(m => {
+      if (m.homePull == matchNum) {
+        m.homePlayerId = completeMatch.winnerId
+      } else if (m.awayPull == matchNum) {
+        m.awayPlayerId = completeMatch.winnerId
+      }
+
+      m.save()
+    })
+  }
 
 }
 
