@@ -147,6 +147,8 @@ class TourneyService {
 
       m.save()
     })
+
+    return
   }
 
 }

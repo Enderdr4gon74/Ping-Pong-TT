@@ -14,5 +14,7 @@ export class Match {
     this.matchNum = data.matchNum;
     this.homePull = data.homePull;
     this.awayPull = data.awayPull;
+    this.winnerId = data.winnerId;
+    this.winner = data.winner
   }
 }

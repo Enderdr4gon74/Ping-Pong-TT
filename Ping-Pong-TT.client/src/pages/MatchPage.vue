@@ -14,7 +14,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-          <button class="btn btn-secondary fs-3 w-100 mt-2" @click="">Declare Winner</button>
+          <button class="btn btn-secondary fs-3 w-100 mt-2" @click="declareWinner('home')">Declare Winner</button>
         </div>
       </div>
 
@@ -31,10 +31,16 @@
         </div>
 
         <div class="d-flex justify-content-center">
-          <button class="btn btn-secondary fs-3 w-100 mt-2" @click="">Declare Winner</button>
+          <button class="btn btn-secondary fs-3 w-100 mt-2" @click="declareWinner('away')">Declare Winner</button>
         </div>
       </div>
 
+    </div>
+
+    <div v-if="match?.winner" class="row mt-5">
+      <div class="col-12 d-flex justify-content-center mt-5">
+        <h1>Winner is: {{match?.winner.name}}</h1>
+      </div>
     </div>
 
   </div>
@@ -72,6 +78,15 @@ export default {
           await matchService.changeScore(route.params.id, team, score)
         } catch (error) {
           Pop.error(error, '[Changing Score]')
+        }
+      },
+
+      async declareWinner(team) {
+        try {
+          console.log(team)
+          await matchService.declareWinner(route.params.id, team)
+        } catch (error) {
+          Pop.error(error, '[Declaring Winner]')
         }
       }
     }
