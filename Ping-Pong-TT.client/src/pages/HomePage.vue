@@ -7,9 +7,7 @@
         Find a Tourney
       </button>
     </router-link>
-    <button class="rounded fs-3 btn btn-success">
-      Create a Tourney
-    </button>
+    <CreateTourney />
   </div>
 
 
