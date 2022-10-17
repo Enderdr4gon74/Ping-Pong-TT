@@ -6,7 +6,7 @@ class PlayersService {
   async removePlayerUsingTourneyId(tourneyId, user) {
     const tourney = await tourneyService.getTourneyById(tourneyId)
     if (!tourney.players.find(p => p.id == user.id)) {
-      throw new BadRequest("You're not even on that tourney bro! - (pepto bismol)")
+      throw new BadRequest("You're not even on that tourney bro! - (King Pong)")
     }
     tourney.players.splice(tourney.players.findIndex(p => p.id == user.id), 1)
     tourney.save()
@@ -20,7 +20,7 @@ class PlayersService {
   async addPlayerUsingTourneyId(tourneyId, user) {
     const tourney = await tourneyService.getTourneyById(tourneyId)
     if (tourney.players.find(p => p.id == user.id)) {
-      throw new BadRequest("You're already on that tourney bro! - (pepto bismol)")
+      throw new BadRequest("You're already on that tourney bro! - (King Pong)")
     }
     user = { name: user.name, picture: user.picture, id: user.id }
     tourney.players = [...tourney.players, user]

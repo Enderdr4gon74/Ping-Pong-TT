@@ -20,8 +20,7 @@ export class TourneysController extends BaseController {
       .delete('/:id/player', this.removePlayerUsingTourneyId)
   }
 
-  // 
-  
+
   async removePlayerUsingTourneyId(req, res, next) {
     try {
       const player = await playersService.removePlayerUsingTourneyId(req.params.id, req.userInfo)
@@ -49,7 +48,7 @@ export class TourneysController extends BaseController {
     }
   }
 
-  async getAllTourneys(req,res,next) {
+  async getAllTourneys(req, res, next) {
     try {
       const tourneys = await tourneyService.getAllTourneys(req.query)
       res.send(tourneys)
@@ -58,7 +57,7 @@ export class TourneysController extends BaseController {
     }
   }
 
-  async getTourneyById(req,res,next) {
+  async getTourneyById(req, res, next) {
     try {
       const tourney = await tourneyService.getTourneyById(req.params.id)
       res.send(tourney)
