@@ -4,14 +4,15 @@ import { logger } from "../utils/Logger.js"
 import { tourneyService } from "./TourneyService.js"
 
 class MatchesService {
+
   async getMatchesByTourneyId(tourneyId) {
     // await tourneyService.getTourneyById(tourneyId)
-    const matches = await dbContext.Matches.find({ tourneyId }).populate('homePlayer awayPlayer')
+    const matches = await dbContext.Matches.find({ tourneyId }).populate('homePlayer awayPlayer winner')
     return matches
   }
 
   async getMatchById(matchId) {
-    const match = await dbContext.Matches.findById(matchId).populate('homePlayer awayPlayer')
+    const match = await dbContext.Matches.findById(matchId).populate('homePlayer awayPlayer winner')
     if (!match) {
       throw new BadRequest("Invalid or Bad Match id")
     }
@@ -51,6 +52,23 @@ class MatchesService {
     await match.save()
     return match
   }
+
+  async declareWinner(matchId, team) {
+    const match = await this.getMatchById(matchId)
+
+    if (team == 'home') {
+      match.winnerId = match.homePlayerId
+    } else if (team == 'away') {
+      match.winnerId = match.awayPlayerId
+    }
+    await match.save()
+    await tourneyService.updateMatches(match.set, match.matchNum, match, match.tourneyId)
+
+
+    return match
+  }
+
+  async
 
 }
 
