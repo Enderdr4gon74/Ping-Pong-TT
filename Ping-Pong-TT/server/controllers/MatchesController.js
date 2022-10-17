@@ -7,7 +7,10 @@ export class MatchesController extends BaseController {
     this.router
       .get('/:id', this.getMatchById)
   }
-
+  
+  /* 
+    gets the match by the match id
+  */
   async getMatchById(req, res, next) {
     try {
       const match = await matchesService.getMatchById(req.params.id)

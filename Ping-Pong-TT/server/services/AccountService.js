@@ -47,6 +47,15 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  
+  /* 
+    finds the account the team is gonna be added to
+    checks to see if the account is valid
+    checks to see if the account targeted is the same as the current user and that they own the account
+    sets the team name as the team name provided
+    saves the account back to the data base
+    returns the data back
+  */
   async setTeam(teamName, accountId, userId) {
     const account = await dbContext.Account.findById(accountId)
     logger.log(teamName)
@@ -78,13 +87,21 @@ class AccountService {
     await mergeSubsIfNeeded(account, user)
     return account
   }
-
+  
+  /* 
+    gets the list of accounts based on a filter of the team name and restricts the data sent
+    sends the data back
+  */
   async getAccountsByTeam(teamName) {
     let accounts = await (await dbContext.Account.find({team: teamName})).map(a => new NewAccount(a))
     logger.log(accounts)
     return accounts
   }
-
+  
+  /* 
+    gets multiple accounts, possibly based on a query parameter and restricts the data sent
+    culls the amount of accounts provided to the specified amount
+  */
   async getAccounts(query, amount) {
     let accounts = await (await dbContext.Account.find({
       ...query
