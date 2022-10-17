@@ -128,7 +128,20 @@ class TourneyService {
 
   }
 
+  async scorePoint(matchId, side) {
+    const match = await matchesService.getMatchById(matchId)
 
+    if (side == 'home') {
+      // @ts-ignore
+      match.homeScore++;
+    } else {
+      // @ts-ignore
+      match.awayScore++;
+    }
+
+    match.save()
+    return
+  }
 
 }
 
