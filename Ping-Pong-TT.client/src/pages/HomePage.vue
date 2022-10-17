@@ -7,7 +7,9 @@
         Find a Tourney
       </button>
     </router-link>
-    <CreateTourney />
+    <button class="rounded fs-3 btn btn-success">
+      Create a Tourney
+    </button>
   </div>
 
 
@@ -67,7 +69,6 @@
 
   <!-- <div v-else>
     <LoadingScreen />
-    <PlayersMorphingCube />
   </div> -->
 </template>
 

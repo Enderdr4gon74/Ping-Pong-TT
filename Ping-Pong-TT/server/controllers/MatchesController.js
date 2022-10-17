@@ -7,7 +7,8 @@ export class MatchesController extends BaseController {
     super('/api/matches')
     this.router
       .get('/:id', this.getMatchById)
-      .put('/:id/:team/:points', this.editPoints)
+      .put('/:id/:team/:points/score', this.editPoints)
+      .put('/:id/:team/winner', this.declareWinner)
   }
 
   async getMatchById(req, res, next) {
@@ -22,6 +23,16 @@ export class MatchesController extends BaseController {
   async editPoints(req, res, next) {
     try {
       const match = await matchesService.editPoints(req.params.id, req.params.team, req.params.points)
+      res.send(match)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async declareWinner(req, res, next) {
+    try {
+      const match = await matchesService.declareWinner(req.params.id, req.params.team)
+      // logger.log('yay', match.winnerId)
       res.send(match)
     } catch (error) {
       next(error)

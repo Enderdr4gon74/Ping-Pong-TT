@@ -44,6 +44,7 @@
           </div>
         </div>
       </div>
+      <h1 v-if="tourney?.winner" class="d-flex justify-content-center">{{tourney?.winner.name}} Won</h1>
     </div>
 
   </div>

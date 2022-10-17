@@ -13,7 +13,8 @@ export const MatchSchema = new Schema({
   set: { type: Number, default: 1 },
   matchNum: { type: Number, default: 1 },
   homePull: { type: Number },
-  awayPull: { type: Number }
+  awayPull: { type: Number },
+  winnerId: { type: ObjectId, ref: 'Account' }
 }, SCHEMA_OPTIONS)
 
 MatchSchema.virtual('tourney', {
@@ -32,6 +33,12 @@ MatchSchema.virtual('homePlayer', {
 
 MatchSchema.virtual('awayPlayer', {
   localField: 'awayPlayerId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
+})
+MatchSchema.virtual('winner', {
+  localField: 'winnerId',
   foreignField: '_id',
   justOne: true,
   ref: 'Account'
