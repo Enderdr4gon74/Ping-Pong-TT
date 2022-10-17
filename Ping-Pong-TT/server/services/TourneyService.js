@@ -31,17 +31,17 @@ class TourneyService {
       throw new BadRequest("You already canceled this tourney...")
     }
     tourney.status = 'canceled'
-    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator', 'name picture')
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator winner', 'name picture')
     return newTourney
   }
   async getAllTourneys(query) {
     const tourneys = await dbContext.Tourneys.find({
       ...query
-    }).populate('creator', 'name picture')
+    }).populate('creator winner', 'name picture')
     return tourneys
   }
   async getTourneyById(id) {
-    const tourney = await dbContext.Tourneys.findById(id).populate('creator', 'name picture')
+    const tourney = await dbContext.Tourneys.findById(id).populate('creator winner', 'name picture')
     if (!tourney) {
       throw new BadRequest("Invalid or Bad Tourney id")
     }
@@ -49,7 +49,7 @@ class TourneyService {
   }
   async createTourney(tourneyData) {
     const tourney = await dbContext.Tourneys.create(tourneyData)
-    await tourney.populate('creator', 'name picture')
+    await tourney.populate('creator winner', 'name picture')
     logger.log('log', tourney)
     return tourney
   }
@@ -138,6 +138,10 @@ class TourneyService {
       m.awayPull == matchNum
     )
 
+    if (!matchesToUpdate.length) {
+      await this.winTourney(tourneyId, completeMatch.winnerId)
+    }
+
     matchesToUpdate.forEach(m => {
       if (m.homePull == matchNum) {
         m.homePlayerId = completeMatch.winnerId
@@ -149,6 +153,14 @@ class TourneyService {
     })
 
     return
+  }
+
+  async winTourney(tourneyId, winnerId) {
+    const tourney = await this.getTourneyById(tourneyId)
+
+    tourney.winnerId = winnerId
+
+    await tourney.save()
   }
 
 }

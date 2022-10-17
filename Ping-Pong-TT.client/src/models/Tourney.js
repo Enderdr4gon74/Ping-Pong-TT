@@ -13,5 +13,7 @@ export class Tourney {
     this.poolLimit = data.poolLimit;
     this.status = data.status;
     this.players = data.players;
+    this.winnerId = data.winnerId;
+    this.winner = data.winner;
   }
 }
