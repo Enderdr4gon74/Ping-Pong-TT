@@ -10,7 +10,6 @@ class MatchService {
     AppState.activeMatch = new Match(res.data)
     return
   }
-
 }
 
 export const matchService = new MatchService();
