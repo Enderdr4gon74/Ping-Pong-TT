@@ -37,19 +37,19 @@ class TourneyService {
       throw new BadRequest("You already canceled this tourney...")
     }
     tourney.status = 'canceled'
-    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator', 'name picture')
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator winner', 'name picture')
     return newTourney
   }
   async getAllTourneys(query) {
     const tourneys = await dbContext.Tourneys.find({
       ...query
-    }).populate('creator', 'name picture')
+    }).populate('creator winner', 'name picture')
     return tourneys
   }
   async getTourneyById(id) {
     const tourney = await dbContext.Tourneys.findById(id)
     // @ts-ignore
-    await tourney.populate('creator', 'name picture')
+    await tourney.populate('creator winner', 'name picture')
     if (!tourney) {
       throw new BadRequest("Invalid or Bad Tourney id")
     }
@@ -57,7 +57,7 @@ class TourneyService {
   }
   async createTourney(tourneyData) {
     const tourney = await dbContext.Tourneys.create(tourneyData)
-    await tourney.populate('creator', 'name picture')
+    await tourney.populate('creator winner', 'name picture')
     logger.log('log', tourney)
     return tourney
   }
@@ -136,19 +136,39 @@ class TourneyService {
 
   }
 
-  async scorePoint(matchId, side) {
-    const match = await matchesService.getMatchById(matchId)
+  async updateMatches(matchSet, matchNum, completeMatch, tourneyId) {
+    const tourney = await this.getTourneyById(tourneyId)
+    const matches = await matchesService.getMatchesByTourneyId(tourneyId)
+    const matchesToUpdate = matches.filter(m =>
+      m.set == matchSet + 1 &&
+      m.homePull == matchNum ||
+      m.set == matchSet + 1 &&
+      m.awayPull == matchNum
+    )
 
-    if (side == 'home') {
-      // @ts-ignore
-      match.homeScore++;
-    } else {
-      // @ts-ignore
-      match.awayScore++;
+    if (!matchesToUpdate.length) {
+      await this.winTourney(tourneyId, completeMatch.winnerId)
     }
 
-    match.save()
+    matchesToUpdate.forEach(m => {
+      if (m.homePull == matchNum) {
+        m.homePlayerId = completeMatch.winnerId
+      } else if (m.awayPull == matchNum) {
+        m.awayPlayerId = completeMatch.winnerId
+      }
+
+      m.save()
+    })
+
     return
+  }
+
+  async winTourney(tourneyId, winnerId) {
+    const tourney = await this.getTourneyById(tourneyId)
+
+    tourney.winnerId = winnerId
+
+    await tourney.save()
   }
 
 }

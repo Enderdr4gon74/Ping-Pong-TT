@@ -10,6 +10,19 @@ class MatchService {
     AppState.activeMatch = new Match(res.data)
     return
   }
+
+  async changeScore(matchId, team, score) {
+    const res = await api.put(`api/matches/${matchId}/${team}/${score}/score`)
+    AppState.activeMatch = new Match(res.data)
+    return
+  }
+
+  async declareWinner(matchId, team) {
+    const res = await api.put(`api/matches/${matchId}/${team}/winner`)
+    console.log(res.data)
+    AppState.activeMatch = new Match(res.data)
+    return
+  }
 }
 
 export const matchService = new MatchService();
