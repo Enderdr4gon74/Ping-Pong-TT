@@ -63,6 +63,11 @@
       "titleBar.inactiveForeground": "#15202b99"
     },
     "peacock.color": "#857da8",
-    "liveServer.settings.multiRootWorkspaceName": "client"
+    "liveServer.settings.multiRootWorkspaceName": "client",
+    "liveshare.allowGuestDebugControl": true,
+    "liveshare.diagnosticLogging": true,
+    "liveshare.increasedGuestLimit": false,
+    "liveshare.languages.allowGuestCommandControl": true,
+    "liveshare.shareExternalFiles": false
   }
 }
