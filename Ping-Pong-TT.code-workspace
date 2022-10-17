@@ -68,6 +68,8 @@
     "liveshare.diagnosticLogging": true,
     "liveshare.increasedGuestLimit": false,
     "liveshare.languages.allowGuestCommandControl": true,
-    "liveshare.shareExternalFiles": false
+    "liveshare.shareExternalFiles": false,
+    "liveshare.autoShareTerminals": true,
+    "liveshare.autoShareServers": true
   }
 }
