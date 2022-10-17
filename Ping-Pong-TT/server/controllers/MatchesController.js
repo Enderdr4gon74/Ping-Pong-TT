@@ -8,7 +8,7 @@ export class MatchesController extends BaseController {
       .get('/:id', this.getMatchById)
   }
 
-  async getMatchById(req,res,next) {
+  async getMatchById(req, res, next) {
     try {
       const match = await matchesService.getMatchById(req.params.id)
       res.send(match)
