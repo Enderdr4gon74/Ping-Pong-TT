@@ -69,7 +69,6 @@
 
   <!-- <div v-else>
     <LoadingScreen />
-    <PlayersMorphingCube />
   </div> -->
 </template>
 
