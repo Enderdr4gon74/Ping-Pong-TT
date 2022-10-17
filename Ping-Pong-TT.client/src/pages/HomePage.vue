@@ -24,7 +24,7 @@
 
       <!-- welcome + intro text -->
       <div class="row background-imag col-4">
-        <p class="text-center pink fs-1">Welcome to Ping Pong Tournament Tracker!</p>
+        <p class="text-center pepto-bismol fs-1">Welcome to Ping Pong Tournament Tracker!</p>
         <p class="text-center mt-2 mb-2 fs-2">Join the Future of Ping Pong</p>
 
         <p class="fs-4">
@@ -103,8 +103,8 @@ export default {
   background-size: cover;
 }
 
-.pink {
-  color: pink;
+.pepto-bismol {
+  color: #fd8bd8;
   font-weight: bold;
 }
 </style>
