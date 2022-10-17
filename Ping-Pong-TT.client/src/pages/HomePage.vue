@@ -7,9 +7,7 @@
         Find a Tourney
       </button>
     </router-link>
-    <button class="rounded fs-3 btn btn-success">
-      Create a Tourney
-    </button>
+    <CreateTourney />
   </div>
 
 
@@ -83,11 +81,12 @@
 import GlobalScore from "../components/GlobalScore.vue";
 import LoadingScreen from "../components/LoadingScreen.vue";
 import PlayersMorphingCube from "../components/PlayersMorphingCube.vue";
+import CreateTourney from "../components/CreateTourney.vue";
 export default {
   setup() {
     return {};
   },
-  components: { GlobalScore, LoadingScreen, PlayersMorphingCube }
+  components: { GlobalScore, LoadingScreen, PlayersMorphingCube, CreateTourney }
 }
 </script>
 
