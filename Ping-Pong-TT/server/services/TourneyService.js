@@ -6,31 +6,38 @@ import { matchesService } from "./MatchesService.js"
 class TourneyService {
 
   /* 
-    finds the tourney bit its id
-    checks if the user is the creator of the tourney
-    checks if the tourney is already canceled
-    finds the new tourney and sets the applicable fields as the new pieces
-    populates the creator
-    returns the new tourney
-  */
-  async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
-    const tourney = await this.getTourneyById(tourneyId)
-    if (tourney.creatorId != userId) {
-      throw new Forbidden("You can't edit what isn't yours")
+  gets the tourney by its id
+  populates the creator and the winner
+  checks if the tourney id provided is valid
+  returns the tourney
+*/
+  async getTourneyById(id) {
+    const tourney = await dbContext.Tourneys.findById(id)
+    // @ts-ignore
+    await tourney.populate('creator winner', 'name picture')
+    if (!tourney) {
+      throw new BadRequest("Invalid or Bad Tourney id")
     }
-    if (tourney.status == 'canceled') {
-      throw new BadRequest("That tourney has already been canceled, can't edit it now...")
-    }
-    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, {
-      $set: {
-        name: tourneyData.name,
-        description: tourneyData.description,
-        coverImg: tourneyData.coverImg,
-      }
-    }, { new: true }).populate('creator', 'name picture')
-    logger.log('log', newTourney)
-    return newTourney
+    return tourney
   }
+
+
+  /* 
+  gets the tourneys based on the possibly query params and populates the creator and winner
+  returns the tourneys
+*/
+  async getAllTourneys(query) {
+    const tourneys = await dbContext.Tourneys.find({
+      ...query
+    }).populate('creator', 'name picture').populate('winner', 'name picture')
+    return tourneys
+  }
+
+
+
+
+
+
 
   /* 
     gets the tourney
@@ -53,46 +60,69 @@ class TourneyService {
     return newTourney
   }
 
-  /* 
-    gets the tourneys based on the possibly query params and populates the creator and winner
-    returns the tourneys
-  */
-  async getAllTourneys(query) {
-    const tourneys = await dbContext.Tourneys.find({
-      ...query
-    }).populate('creator', 'name picture').populate('winner', 'name picture')
-    return tourneys
-  }
 
   /* 
-    gets the tourney by its id
-    populates the creator and the winner
-    checks if the tourney id provided is valid
-    returns the tourney
-  */
-  async getTourneyById(id) {
-    const tourney = await dbContext.Tourneys.findById(id)
-    // @ts-ignore
-    await tourney.populate('creator', 'name picture').populate('winner', 'name picture')
-    if (!tourney) {
-      throw new BadRequest("Invalid or Bad Tourney id")
-    }
-    return tourney
-  }
-
-  /* 
-    creates and saves into a variable the tourney using the data provided
-    populates the creator on the tourney
-    populates the winner on the tourney
-    returns the tourney
-  */
+  creates and saves into a variable the tourney using the data provided
+  populates the creator on the tourney
+  populates the winner on the tourney
+  returns the tourney
+*/
   async createTourney(tourneyData) {
+    const tourneys = await this.getAllTourneys()
+
+    if (tourneys.filter(t => t.name == tourneyData.name).length) {
+      throw new BadRequest("This Name Is TakEn")
+    }
+
+    if (!tourneyData.coverImg) {
+      tourneyData.coverImg = "https://thiscatdoesnotexist.com"
+    } else if (tourneys.filter(t => t.coverImg == tourneyData.coverImg).length) {
+      throw new BadRequest("tHIs ImGae IS tAkEn")
+    }
+
     const tourney = await dbContext.Tourneys.create(tourneyData)
     await tourney.populate('creator', 'name picture')
     await tourney.populate('winner', 'name picture')
-    logger.log('log', tourney)
     return tourney
   }
+
+
+
+
+
+
+  /* 
+  finds the tourney bit its id
+  checks if the user is the creator of the tourney
+  checks if the tourney is already canceled
+  finds the new tourney and sets the applicable fields as the new pieces
+  populates the creator
+  returns the new tourney
+*/
+  async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
+    const tourney = await this.getTourneyById(tourneyId)
+    if (tourney.creatorId != userId) {
+      throw new Forbidden("You can't edit what isn't yours")
+    }
+    if (tourney.status == 'canceled') {
+      throw new BadRequest("That tourney has already been canceled, can't edit it now...")
+    }
+    const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, {
+      $set: {
+        name: tourneyData.name,
+        description: tourneyData.description,
+        coverImg: tourneyData.coverImg,
+      }
+    }, { new: true }).populate('creator', 'name picture')
+    logger.log('log', newTourney)
+    return newTourney
+  }
+
+
+
+
+
+
 
   /* 
     deletes the current matches that exist
@@ -173,9 +203,8 @@ class TourneyService {
       set++
       prevSet = matches.filter(m => m.set == set - 1)
     }
-
-
   }
+
 
   async updateMatches(matchSet, matchNum, completeMatch, tourneyId) {
     const tourney = await this.getTourneyById(tourneyId)
@@ -203,6 +232,14 @@ class TourneyService {
 
     return
   }
+
+
+
+
+
+
+
+
 
   async winTourney(tourneyId, winnerId) {
     const tourney = await this.getTourneyById(tourneyId)

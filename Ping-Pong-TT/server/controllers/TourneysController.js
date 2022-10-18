@@ -20,31 +20,6 @@ export class TourneysController extends BaseController {
       .delete('/:id/player', this.removePlayerUsingTourneyId)
   }
 
-  
-  /* 
-    remove players from a tourney using the tourney id and the user's id
-  */
-  async removePlayerUsingTourneyId(req, res, next) {
-    try {
-      const player = await playersService.removePlayerUsingTourneyId(req.params.id, req.userInfo)
-      res.send(player)
-    } catch (error) {
-      next(error)
-    }
-  }
-  
-  /* 
-    adds a player to a tourney using the tourney's id and their players id
-  */
-  async addPlayerUsingTourneyId(req, res, next) {
-    try {
-      const player = await playersService.addPlayerUsingTourneyId(req.params.id, req.userInfo)
-      res.send(player)
-    } catch (error) {
-      next(error)
-    }
-  }
-  
   /* 
     gets the matches by their parent tournament's id    
   */
@@ -56,10 +31,11 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
-  
+
   /* 
     gets all of the tourneys with possible query parameters
   */
+
   async getAllTourneys(req, res, next) {
     try {
       const tourneys = await tourneyService.getAllTourneys(req.query)
@@ -68,10 +44,11 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
-  
-  /* 
+
+  /*
     gets a single tourney be its id
   */
+
   async getTourneyById(req, res, next) {
     try {
       const tourney = await tourneyService.getTourneyById(req.params.id)
@@ -80,14 +57,55 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
-  
+
+
+
+
+
+
+
   /* 
-    creates a tourney using the data provided with some left out.
+    remove players from a tourney using the tourney id and the user's id
   */
+  async removePlayerUsingTourneyId(req, res, next) {
+    try {
+      const player = await playersService.removePlayerUsingTourneyId(req.params.id, req.userInfo)
+      res.send(player)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /* 
+    adds a player to a tourney using the tourney's id and their players id
+  */
+  async addPlayerUsingTourneyId(req, res, next) {
+    try {
+      const player = await playersService.addPlayerUsingTourneyId(req.params.id, req.userInfo)
+      res.send(player)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+
+
+
+  /*
+  creates a tourney using the data provided with some left out.
+*/
   async createTourney(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      const tourneyData = req.body
+      const tourneyData = {
+        creatorId: req.userInfo.id,
+        name: req.body.name,
+        description: req.body.description,
+        coverImg: req.body.coverImg,
+        startDate: req.body.startDate,
+        Type: req.body.Type,
+        poolLimit: req.body.poolLimit
+      }
       const tourney = await tourneyService.createTourney(tourneyData)
       logger.log(tourney)
       res.send(tourney)
@@ -95,7 +113,26 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
-  
+
+
+  /* 
+  deletes a tourney using the id of the tourney
+*/
+  async deleteTourney(req, res, next) {
+    try {
+      const tourney = await tourneyService.deleteTourney(req.params.id, req.userInfo.id)
+      res.send(tourney)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+
+
+
+
+
+
   /* 
     allows you to edit data on the tourneys
   */
@@ -107,18 +144,4 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
-  
-  /* 
-    deletes a tourney using the id of the tourney
-  */
-  async deleteTourney(req, res, next) {
-    try {
-      const tourney = await tourneyService.deleteTourney(req.params.id, req.userInfo.id)
-      res.send(tourney)
-    } catch (error) {
-      next(error)
-    }
-  }
 }
-
-
