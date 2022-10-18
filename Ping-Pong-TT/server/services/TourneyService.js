@@ -4,7 +4,7 @@ import { logger } from "../utils/Logger.js"
 import { matchesService } from "./MatchesService.js"
 
 class TourneyService {
-  
+
   /* 
     finds the tourney bit its id
     checks if the user is the creator of the tourney
@@ -27,9 +27,7 @@ class TourneyService {
         description: tourneyData.description,
         coverImg: tourneyData.coverImg,
       }
-    }, { new: true })
-    // @ts-ignore
-    await newTourney.populate('creator', 'name picture')
+    }, { new: true }).populate('creator', 'name picture')
     logger.log('log', newTourney)
     return newTourney
   }
@@ -54,7 +52,7 @@ class TourneyService {
     const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator winner', 'name picture')
     return newTourney
   }
-  
+
   /* 
     gets the tourneys based on the possibly query params and populates the creator and winner
     returns the tourneys
@@ -65,7 +63,7 @@ class TourneyService {
     }).populate('creator', 'name picture').populate('winner', 'name picture')
     return tourneys
   }
-  
+
   /* 
     gets the tourney by its id
     populates the creator and the winner
@@ -81,7 +79,7 @@ class TourneyService {
     }
     return tourney
   }
-  
+
   /* 
     creates and saves into a variable the tourney using the data provided
     populates the creator on the tourney
