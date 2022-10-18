@@ -33,6 +33,7 @@
               <input type="word" class="form-control" aria-describedby="Tournament Description" id="TourneyDescription"
                 minlength="10" maxlength="150" required v-model="editable.description" name="description">
             </div>
+
             <div class="mb-3">
               <label for="TourneyImage" class="form-label text-success">Image</label>
               <input type="url" class="form-control" id="TourneyImage" aria-describedby="Tournament Image" required
