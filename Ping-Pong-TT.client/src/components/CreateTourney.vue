@@ -27,6 +27,7 @@
               <input type="word" class="form-control" id="TourneyName" aria-describedby="Tournament Name"
                 v-model="editable.name" name="name" required>
             </div>
+
             <div class="mb-3">
               <label for="TourneyDescription" class="form-label text-success">Description</label>
               <input type="word" class="form-control" aria-describedby="Tournament Description" id="TourneyDescription"
