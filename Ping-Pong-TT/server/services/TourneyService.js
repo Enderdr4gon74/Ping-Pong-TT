@@ -4,10 +4,6 @@ import { logger } from "../utils/Logger.js"
 import { matchesService } from "./MatchesService.js"
 
 class TourneyService {
-  
-  /* 
-
-  */
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
     const tourney = await this.getTourneyById(tourneyId)
     if (tourney.creatorId != userId) {
@@ -22,9 +18,7 @@ class TourneyService {
         description: tourneyData.description,
         coverImg: tourneyData.coverImg,
       }
-    }, { new: true })
-    // @ts-ignore
-    await newTourney.populate('creator', 'name picture')
+    }, { new: true }).populate('creator', 'name picture')
     logger.log('log', newTourney)
     return newTourney
   }
@@ -47,9 +41,7 @@ class TourneyService {
     return tourneys
   }
   async getTourneyById(id) {
-    const tourney = await dbContext.Tourneys.findById(id)
-    // @ts-ignore
-    await tourney.populate('creator winner', 'name picture')
+    const tourney = await dbContext.Tourneys.findById(id).populate('creator winner', 'name picture')
     if (!tourney) {
       throw new BadRequest("Invalid or Bad Tourney id")
     }
