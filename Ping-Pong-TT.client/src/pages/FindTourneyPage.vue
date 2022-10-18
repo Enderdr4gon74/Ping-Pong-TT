@@ -11,6 +11,7 @@
 </template>
 
 
+
 <script>
 import Pop from '../utils/Pop.js';
 import { tourneyService } from '../services/TourneyService.js'
@@ -37,6 +38,8 @@ export default {
   components: { TourneyCard }
 }
 </script>
+
+
 
 
 <style lang="scss" scoped>
