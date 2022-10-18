@@ -9,11 +9,11 @@
   </main>
 
 
-  <footer class="footer1">
-    <div class="bg-dark text-light text-center pb-3">
+  <!-- <footer class="footer1">
+    <div class="bg-dark text-light text-center pb-3 pt-2">
       Made with 🦍🏓 by King Pong
     </div>
-  </footer>
+  </footer> -->
 </template>
 
 

@@ -36,10 +36,36 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">{{account.name}}'s Statistics</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <h3 class="text-success">Rank: <span>1</span></h3>
-          <h3 class="text-success">Team Rank: <span>1</span></h3>
-          <h3 class="text-success">W/L Ratio: <span>75%</span></h3>
+        <div class="modal-body px-2">
+          <div v-if="account">
+            <!-- <div class="d-flex justify-content-between">
+              <h3 class="text-success">Rank: </h3>
+              <h3>1</h3>
+            </div>
+            <div>
+              <h3 class="text-success">Team Rank: </h3>
+              <span>1</span>
+            </div> -->
+            <div class="d-flex justify-content-between">
+              <h3 class="text-success">Wins: </h3>
+              <h3>{{account.wins}} <i class="mdi mdi-trophy"></i></h3>
+            </div>
+            <div>
+              <h3 class="text-success">Losses: </h3>
+              <h3>{{account.losses}} <i class="mdi mdi-trophy-broken"></i></h3>
+            </div>
+            <div>
+              <h3 class="text-success">W/L Ratio: </h3>
+              <div v-if="accounts.wins > 0">
+                <h3 v-if="accounts.losses > 0">{{account.wins/account.losses}} %</h3> <!-- wins > 0 & losses > 0 -->
+                <h3 v-else>{{account.wins/1}} %</h3> <!-- wins > 0 & losses <= 0 -->
+              </div>
+              <div v-else>
+                <h3 v-if="accounts.losses > 0">{{account.wins/account.losses}} %</h3> <!-- wins <= 0 & losses > 0 -->
+                <h3 v-else>0 %</h3> <!-- wins <= 0 & losses <= 0 -->
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer text-center">
           <div class="justify-content-center d-flex">
@@ -59,6 +85,7 @@ import { AppState } from '../AppState.js';
 
 export default {
   setup() {
+    // get account and its win loss data
     return {
       account: computed(() => AppState.account)
     }

@@ -17,6 +17,11 @@
           </router-link>
         </li>
         <li>
+          <router-link :to="{ name: 'Teams' }" class="btn text-success lighten-30 selectable text-uppercase ms-3">
+            Teams
+          </router-link>
+        </li>
+        <li>
           <router-link :to="{ name: 'Profile'}" class="btn text-success lighten-30 selectable text-uppercase ms-3">
             Profile
           </router-link>

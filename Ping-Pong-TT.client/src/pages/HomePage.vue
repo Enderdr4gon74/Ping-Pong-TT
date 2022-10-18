@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tourney">
+  <div v-if="players">
 
     <div class="d-flex justify-content-end p-5 ">
       <router-link :to="{name: 'FindTourney'}">
@@ -29,7 +29,7 @@
 
           <p class="fs-4">
             Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping pong
-            prowess? well then this is the place for you, we here at KING PONG™️ believe in fair treatment of all ping
+            prowess? well then this is the place for you, we here at KING PONG<i class="mdi mdi-trademark"></i> believe in fair treatment of all ping
             pongers.
           </p>
         </div>
@@ -37,30 +37,7 @@
     </div>
 
 
-    <div class="container mt-5 pt-5 mb-5">
-      <p class="fs-4">
-        Do you like ping pong? Have you ever played a “Tournament” of ping pong, won, then felt as if it was all for
-        nothing since there is nothing to show for your major W. We here at Team King Pong believe that all ping pongers
-        deserve a
-        platform to display their pong prowess. Today I'd like to introduce “Ping Pong TT” aka Ping Pong Tourney
-        Tracker.
-        This web application will be utilizing a custom api written with love by the King Pong team and what our website
-        aims
-        to do is create a place where passionate pongers can see who's the best, with an individual leader board as well
-        as a
-        team leaderboard.
-      </p>
-
-      <div class="fs-4 d-flex justify-content-around mt-4 pt-3">
-        <button class="rounded">
-          Alt Rules
-        </button>
-
-        <button class="rounded">
-          Current Matches
-        </button>
-      </div>
-    </div>
+    
   </div>
 
 

@@ -12,9 +12,17 @@ export const AppState = reactive({
 
   matches: [],
 
+  aboutMessage: 0,
+
   activeMatch: null,
 
   /** @type {import('./models/NewAccount.js').NewAccount[] | null} */
   allPlayers: null,
   maxAP: 30,
+  
+  /** @type {import('./models/NewAccount.js').NewAccount[] | null} */
+  redPlayers: null,
+
+  /** @type {import('./models/NewAccount.js').NewAccount[] | null} */
+  bluePlayers: null,
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center me-0">
 
-    <div class="col-3 m-2">
+    <div class="col-4 m-2">
 
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
@@ -11,17 +11,7 @@
         </li>
 
 
-        <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
-          <div class="text-success d-flex gap-2 align-items-center">
-            <img
-              src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
-              alt="" class="pfp">
-            Dugus
-          </div>
-          <div>
-            <span class="badge bg-success rounded-pill">500</span>
-          </div>
-        </li>
+        <LeaderboardPlayer v-for="p in redPlayers" :player="p" />
 
 
 
@@ -31,33 +21,29 @@
 
 
 
-    <div class="col-3 m-2">
+    <div class="col-4 m-2">
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
           <h3 class="text-center text-primary">
             Blue Team
           </h3>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
-          <div class="text-success d-flex gap-2 align-items-center">
-            <img
-              src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
-              alt="" class="pfp">
-            Dugus
-          </div>
-          <div>
-            <span class="badge bg-success rounded-pill">500</span>
-          </div>
-        </li>
+        
+        <LeaderboardPlayer v-for="p in bluePlayers" :player="p" />
       </ul>
-
     </div>
   </div>
 </template>
 
 
 <script>
+import { NewAccount } from '../models/NewAccount.js';
+
 export default {
+  props: {
+    redPlayers: { type: [NewAccount], required: true },
+    bluePlayers: { type: [NewAccount], required: true },
+  },
   setup() {
     return {}
   }
