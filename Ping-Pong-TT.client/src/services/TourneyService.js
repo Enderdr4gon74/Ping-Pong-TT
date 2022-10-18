@@ -16,6 +16,7 @@ class TourneyService {
   async getTourneys() {
     const res = await api.get('/api/tourneys')
     AppState.tourneys = res.data.map(t => new Tourney(t))
+    console.log(AppState.tourneys)
     return
   }
 
