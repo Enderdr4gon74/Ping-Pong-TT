@@ -152,12 +152,14 @@ class TourneyService {
     // Generate Outer Matches
     for (let i = 0; i < players.length; i += 2) {
 
+      // Add a Buy if Needed
       if (i != players.length - 1) {
         awayPlayer = players[i + 1].id
       } else {
         awayPlayer = undefined;
       }
 
+      // Make the match Object
       match = {
         tourneyId: tourneyId,
         homePlayerId: players[i].id,
@@ -166,6 +168,7 @@ class TourneyService {
         matchNum: matchNum
       }
 
+      // Make the match a match and add it to the list
       match = await matchesService.createMatch(match)
       matches = [...matches, match]
 
@@ -176,21 +179,31 @@ class TourneyService {
     set++
     let prevSet = matches
     let awayPull
+    let homePull
     while (prevSet.length != 1) {
       matchNum = 1
 
       for (let i = 0; i < prevSet.length; i += 2) {
-        if (i + 1 == prevSet.length) {
-          awayPull = 0
+        // If this match is the buy match
+        if (i == (set - 2) * 2) {
+          if (prevSet.length % 2 != 0) {
+            awayPull = 0
+            homePull = prevSet[i].matchNum
+            i--
+          } else {
+            awayPull = prevSet[i + 1].matchNum
+            homePull = prevSet[i].matchNum
+          }
         } else {
           awayPull = prevSet[i + 1].matchNum
+          homePull = prevSet[i].matchNum
         }
 
         match = {
           tourneyId: tourneyId,
           set: set,
           matchNum: matchNum,
-          homePull: prevSet[i].matchNum,
+          homePull: homePull,
           awayPull: awayPull
         }
 

@@ -2,7 +2,6 @@ import { AppState } from "../AppState.js"
 import { Match } from "../models/Match.js"
 import { Tourney } from "../models/Tourney.js"
 import { api } from "./AxiosService.js"
-import { Tourney } from "../models/Tourney.js"
 import { router } from "../router.js"
 
 

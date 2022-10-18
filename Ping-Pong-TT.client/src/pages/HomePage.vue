@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tourney">
+  <div v-if="players">
 
     <div class="d-flex justify-content-end p-5 ">
       <router-link :to="{name: 'FindTourney'}">
