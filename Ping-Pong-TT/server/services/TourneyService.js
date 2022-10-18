@@ -6,7 +6,12 @@ import { matchesService } from "./MatchesService.js"
 class TourneyService {
   
   /* 
-
+    finds the tourney bit its id
+    checks if the user is the creator of the tourney
+    checks if the tourney is already canceled
+    finds the new tourney and sets the applicable fields as the new pieces
+    populates the creator
+    returns the new tourney
   */
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
     const tourney = await this.getTourneyById(tourneyId)
@@ -28,6 +33,15 @@ class TourneyService {
     logger.log('log', newTourney)
     return newTourney
   }
+
+  /* 
+    gets the tourney
+    checks to see if the user is the creator
+    checks to see if the tourney is canceled already
+    sets the status as canceled
+    updates the tourney and puts it in the variable
+    returns the updated tourney
+  */
   async deleteTourney(tourneyId, userId) {
     const tourney = await this.getTourneyById(tourneyId)
     if (tourney.creatorId != userId) {
@@ -40,29 +54,58 @@ class TourneyService {
     const newTourney = await dbContext.Tourneys.findByIdAndUpdate(tourneyId, tourney, { new: true }).populate('creator winner', 'name picture')
     return newTourney
   }
+  
+  /* 
+    gets the tourneys based on the possibly query params and populates the creator and winner
+    returns the tourneys
+  */
   async getAllTourneys(query) {
     const tourneys = await dbContext.Tourneys.find({
       ...query
-    }).populate('creator winner', 'name picture')
+    }).populate('creator', 'name picture').populate('winner', 'name picture')
     return tourneys
   }
+  
+  /* 
+    gets the tourney by its id
+    populates the creator and the winner
+    checks if the tourney id provided is valid
+    returns the tourney
+  */
   async getTourneyById(id) {
     const tourney = await dbContext.Tourneys.findById(id)
     // @ts-ignore
-    await tourney.populate('creator winner', 'name picture')
+    await tourney.populate('creator', 'name picture').populate('winner', 'name picture')
     if (!tourney) {
       throw new BadRequest("Invalid or Bad Tourney id")
     }
     return tourney
   }
+  
+  /* 
+    creates and saves into a variable the tourney using the data provided
+    populates the creator on the tourney
+    populates the winner on the tourney
+    returns the tourney
+  */
   async createTourney(tourneyData) {
     const tourney = await dbContext.Tourneys.create(tourneyData)
-    await tourney.populate('creator winner', 'name picture')
+    await tourney.populate('creator', 'name picture')
+    await tourney.populate('winner', 'name picture')
     logger.log('log', tourney)
     return tourney
   }
 
-
+  /* 
+    deletes the current matches that exist
+    gets the tourney by its id
+    makes the players its own variable
+    checks if there are any players at that moment
+    creates the set, matchNum, matches, match, and the awayPlayer
+    starts the for loop that iterates over the players
+      if the index is not 1 less than the amount of players
+      else it 
+  */
   async generateMatches(tourneyId) {
     await matchesService.deleteMatchesByTournamentId(tourneyId)
     const tourney = await this.getTourneyById(tourneyId)

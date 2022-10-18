@@ -30,6 +30,10 @@ class PlayersService {
   /* 
     gets the tourney using the id
     checks if the player isn't already on the tourney
+    restricts the data sent to the user's data
+    saves the tourney
+    generates the matches with the updated player list
+    returns the new user
   */
   async addPlayerUsingTourneyId(tourneyId, user) {
     const tourney = await tourneyService.getTourneyById(tourneyId)
