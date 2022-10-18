@@ -39,6 +39,7 @@
               <input type="url" class="form-control" id="TourneyImage" aria-describedby="Tournament Image" required
                 v-model="editable.coverImg" name="coverImg">
             </div>
+
             <div class="mb-3">
               <label for="TourneyCap" class="form-label text-success">Max Player Capacity</label>
               <input type="Number" class="form-control" id="TourneyCap" aria-describedby="Player Capacity" required
