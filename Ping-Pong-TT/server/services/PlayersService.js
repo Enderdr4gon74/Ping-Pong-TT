@@ -1,9 +1,9 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { tourneyService } from "./TourneyService.js"
 
 class PlayersService {
-      
+
   /* 
     gets the tourney by the tourney id
     checks to see if the account is on the tourney
@@ -16,7 +16,7 @@ class PlayersService {
   async removePlayerUsingTourneyId(tourneyId, user) {
     const tourney = await tourneyService.getTourneyById(tourneyId)
     if (!tourney.players.find(p => p.id == user.id)) {
-      throw new BadRequest("You're not even on that tourney bro! - (Pepto Glizmol)")
+      throw new BadRequest("You're not even on that tourney bro!")
     }
     tourney.players.splice(tourney.players.findIndex(p => p.id == user.id), 1)
     tourney.save()
@@ -26,7 +26,13 @@ class PlayersService {
     user = { name: user.name, picture: user.picture, id: user.id }
     return user
   }
-  
+
+
+
+
+
+
+
   /* 
     gets the tourney using the id
     checks if the player isn't already on the tourney
@@ -37,8 +43,22 @@ class PlayersService {
   */
   async addPlayerUsingTourneyId(tourneyId, user) {
     const tourney = await tourneyService.getTourneyById(tourneyId)
+
+    // @ts-ignore
+    if (tourney.players.length >= tourney.poolLimit) {
+      throw new BadRequest("Tourney Is Full. Heck Off")
+    }
+
+    if (tourney.creatorId == user.id) {
+      throw new Forbidden("Thou Shalt not Join")
+    }
+
+    if (tourney.status != "pending") {
+      throw new BadRequest("YOu CaN NoT jOiN!")
+    }
+
     if (tourney.players.find(p => p.id == user.id)) {
-      throw new BadRequest("You're already on that tourney bro! - (Pepto Glizmol)")
+      throw new BadRequest("You're already on that tourney.")
     }
     user = { name: user.name, picture: user.picture, id: user.id }
     tourney.players = [...tourney.players, user]
