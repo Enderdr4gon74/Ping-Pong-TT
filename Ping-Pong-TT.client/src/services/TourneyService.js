@@ -4,6 +4,7 @@ import { Tourney } from "../models/Tourney.js"
 import { api } from "./AxiosService.js"
 
 
+
 class TourneyService {
 
   async getTourneys() {

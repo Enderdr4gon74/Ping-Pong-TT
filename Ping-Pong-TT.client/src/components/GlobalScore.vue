@@ -16,6 +16,7 @@
             alt="" class="pfp">
           Dugus
         </div>
+
         <div class="badge bg-success rounded-pill">
           <span>500</span> wins
         </div>

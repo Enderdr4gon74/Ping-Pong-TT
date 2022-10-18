@@ -27,21 +27,25 @@
               <input type="word" class="form-control" id="TourneyName" aria-describedby="Tournament Name"
                 v-model="editable.name" name="name" required>
             </div>
+
             <div class="mb-3">
               <label for="TourneyDescription" class="form-label text-success">Description</label>
               <input type="word" class="form-control" aria-describedby="Tournament Description" id="TourneyDescription"
                 minlength="10" maxlength="150" required v-model="editable.description" name="description">
             </div>
+
             <div class="mb-3">
               <label for="TourneyImage" class="form-label text-success">Image</label>
               <input type="url" class="form-control" id="TourneyImage" aria-describedby="Tournament Image" required
                 v-model="editable.coverImg" name="coverImg">
             </div>
+
             <div class="mb-3">
               <label for="TourneyCap" class="form-label text-success">Max Player Capacity</label>
               <input type="Number" class="form-control" id="TourneyCap" aria-describedby="Player Capacity" required
                 min="2" v-model="editable.poolLimit" name="poolLimit">
             </div>
+
             <div>
               <label class="mb-1 text-success">Tournament Type</label>
               <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
