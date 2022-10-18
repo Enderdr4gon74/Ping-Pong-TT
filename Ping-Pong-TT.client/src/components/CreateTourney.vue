@@ -45,6 +45,7 @@
               <input type="Number" class="form-control" id="TourneyCap" aria-describedby="Player Capacity" required
                 min="2" v-model="editable.poolLimit" name="poolLimit">
             </div>
+
             <div>
               <label class="mb-1 text-success">Tournament Type</label>
               <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
