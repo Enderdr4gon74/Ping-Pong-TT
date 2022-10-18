@@ -13,4 +13,8 @@ export const AppState = reactive({
   matches: [],
 
   activeMatch: null,
+
+  /** @type {import('./models/NewAccount.js').NewAccount[] | null} */
+  allPlayers: null,
+  maxAP: 30,
 })

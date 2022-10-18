@@ -82,9 +82,9 @@ export default {
       editable,
       async handleSubmit() {
         try {
-
           console.log(editable.value);
           // await tourneyService.editAccount(editable.value);
+          await tourneyService.createTourney(editable.value)
         } catch (error) {
           Pop.error(error, "[Handling Submit]")
         }

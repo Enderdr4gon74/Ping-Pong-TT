@@ -9,28 +9,24 @@
 
 
 
-      <li class="list-group-item d-flex justify-content-between align-items-center global-board text-light">
-        <div class="text-success d-flex gap-2 align-items-center">
-          <img
-            src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
-            alt="" class="pfp">
-          Dugus
-        </div>
-
-        <div class="badge bg-success rounded-pill">
-          <span>500</span> wins
-        </div>
-      </li>
+      <LeaderboardPlayer v-for="p in players" :player="p" />
     </ul>
   </div>
 </template>
 
 
 <script>
+import { NewAccount } from '../models/NewAccount.js';
+import LeaderboardPlayer from './LeaderboardPlayer.vue';
+
 export default {
-  setup() {
-    return {}
-  }
+    props: {
+        players: { type: [NewAccount], required: true }
+    },
+    setup() {
+        return {};
+    },
+    components: { LeaderboardPlayer }
 }
 </script>
 

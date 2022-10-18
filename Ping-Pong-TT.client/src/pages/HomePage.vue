@@ -15,7 +15,7 @@
       <div class="mt-5 d-flex justify-content-between">
         <!-- global leader board -->
         <div class="col-8">
-          <GlobalScore />
+          <GlobalScore :players="players" />
         </div>
 
 
@@ -81,9 +81,27 @@ import GlobalScore from "../components/GlobalScore.vue";
 import LoadingScreen from "../components/LoadingScreen.vue";
 import PlayersMorphingCube from "../components/PlayersMorphingCube.vue";
 import CreateTourney from "../components/CreateTourney.vue";
+import Pop from "../utils/Pop.js";
+import { leaderboardService } from '../services/LeaderboardService.js'
+import { onMounted } from "vue";
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
+
 export default {
   setup() {
-    return {};
+    async function getPlayers() {
+      try {
+        await leaderboardService.getPlayers()
+      } catch (error) {
+        Pop.error(error, "[Getting Players]")
+      }
+    }
+    onMounted(() => {
+      getPlayers()
+    })
+    return {
+      players: computed(() => AppState.allPlayers)
+    };
   },
   components: { GlobalScore, LoadingScreen, PlayersMorphingCube, CreateTourney }
 }
