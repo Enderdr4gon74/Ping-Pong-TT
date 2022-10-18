@@ -10,7 +10,10 @@ export class MatchesController extends BaseController {
       .put('/:id/:team/:points/score', this.editPoints)
       .put('/:id/:team/winner', this.declareWinner)
   }
-
+  
+  /* 
+    gets the match by the match id
+  */
   async getMatchById(req, res, next) {
     try {
       const match = await matchesService.getMatchById(req.params.id)

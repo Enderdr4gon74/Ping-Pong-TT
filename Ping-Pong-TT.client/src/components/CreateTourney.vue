@@ -68,6 +68,7 @@
 
 <script>
 import { ref } from 'vue'
+import { tourneyService } from '../services/TourneyService.js'
 import Pop from '../utils/Pop.js'
 
 export default {
@@ -78,6 +79,8 @@ export default {
       async handleSubmit() {
         try {
 
+          console.log(editable.value);
+          // await tourneyService.editAccount(editable.value);
         } catch (error) {
           Pop.error(error, "[Handling Submit]")
         }

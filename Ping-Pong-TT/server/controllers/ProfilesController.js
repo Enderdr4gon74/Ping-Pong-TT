@@ -8,7 +8,10 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
   }
-
+  
+  /* 
+    pre built template stuff
+  */
   async getProfiles(req, res, next) {
     try {
       const profiles = await profileService.findProfiles(req.query.name, req.query.offset)
@@ -17,7 +20,10 @@ export class ProfilesController extends BaseController {
       next(error)
     }
   }
-
+  
+  /* 
+    pre built template stuff    
+  */
   async getProfile(req, res, next) {
     try {
       const profile = await profileService.getProfileById(req.params.id)

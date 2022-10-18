@@ -13,6 +13,9 @@ export class AccountController extends BaseController {
       .put('/:id/team/:name', this.setTeam)
   }
 
+  /* 
+    Gets the user Account by their user id.
+  */
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
@@ -22,6 +25,9 @@ export class AccountController extends BaseController {
     }
   }
 
+  /* 
+    sets a specific accounts team
+  */
   async setTeam(req,res,next) {
     try {
       const account = await accountService.setTeam(req.params.name, req.params.id, req.userInfo.id)
@@ -30,7 +36,10 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-
+  
+  /* 
+    gets the account by what the team they're on
+  */
   async getAccountsByTeam(req, res, next) {
     try {
       const accounts = await accountService.getAccountsByTeam(req.params.name)
@@ -39,7 +48,10 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-
+  
+  /* 
+    gets multiple accounts with an amount set and possibly query parameters
+  */
   async getAccounts(req, res, next) {
     try {
       const accounts = await accountService.getAccounts(req.query, req.params.amount)
