@@ -27,12 +27,6 @@ class PlayersService {
     return user
   }
 
-
-
-
-
-
-
   /* 
     gets the tourney using the id
     checks if the player isn't already on the tourney

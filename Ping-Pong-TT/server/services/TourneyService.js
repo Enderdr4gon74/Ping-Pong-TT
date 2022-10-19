@@ -149,14 +149,17 @@ class TourneyService {
     let match
 
     let awayPlayer;
+    let isABuy;
     // Generate Outer Matches
     for (let i = 0; i < players.length; i += 2) {
+      isABuy = false;
 
       // Add a Buy if Needed
       if (i != players.length - 1) {
         awayPlayer = players[i + 1].id
       } else {
         awayPlayer = undefined;
+        isABuy = true;
       }
 
       // Make the match Object
@@ -165,7 +168,8 @@ class TourneyService {
         homePlayerId: players[i].id,
         awayPlayerId: awayPlayer,
         set: set,
-        matchNum: matchNum
+        matchNum: matchNum,
+        isABuy: isABuy
       }
 
       // Make the match a match and add it to the list
@@ -184,12 +188,14 @@ class TourneyService {
       matchNum = 1
 
       for (let i = 0; i < prevSet.length; i += 2) {
+        isABuy = false
         // If this match is the buy match
         if (i == (set - 2) * 2) {
           if (prevSet.length % 2 != 0) {
             awayPull = 0
             homePull = prevSet[i].matchNum
             i--
+            isABuy = true
           } else {
             awayPull = prevSet[i + 1].matchNum
             homePull = prevSet[i].matchNum
@@ -204,7 +210,8 @@ class TourneyService {
           set: set,
           matchNum: matchNum,
           homePull: homePull,
-          awayPull: awayPull
+          awayPull: awayPull,
+          isABuy: isABuy,
         }
 
         match = await matchesService.createMatch(match)
@@ -216,11 +223,25 @@ class TourneyService {
       set++
       prevSet = matches.filter(m => m.set == set - 1)
     }
+
+    const matchesToWin = await this.autoUpdateBuys(matches)
+
+    logger.log("complete")
   }
 
+  async autoUpdateBuys(matches) {
+    const matchesToWin = matches.filter(m => m.isABuy && m.homePlayerId)
+
+    logger.log("Matches to Win: ", matchesToWin.length)
+
+    for (let m in matchesToWin) {
+      await matchesService.declareWinner(matchesToWin[m]._id, 'home')
+    }
+
+    return matchesToWin
+  }
 
   async updateMatches(matchSet, matchNum, completeMatch, tourneyId) {
-    const tourney = await this.getTourneyById(tourneyId)
     const matches = await matchesService.getMatchesByTourneyId(tourneyId)
     const matchesToUpdate = matches.filter(m =>
       m.set == matchSet + 1 &&
@@ -233,6 +254,7 @@ class TourneyService {
       await this.winTourney(tourneyId, completeMatch.winnerId)
     }
 
+    let buyWarning = false;
     matchesToUpdate.forEach(m => {
       if (m.homePull == matchNum) {
         m.homePlayerId = completeMatch.winnerId
@@ -241,7 +263,15 @@ class TourneyService {
       }
 
       m.save()
+
+      if (m.isABuy) {
+        buyWarning = true;
+      }
     })
+
+    if (buyWarning) {
+      await this.autoUpdateBuys(matches)
+    }
 
     return
   }
