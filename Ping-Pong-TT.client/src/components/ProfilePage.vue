@@ -36,7 +36,7 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">{{account.name}}'s Statistics</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body px-2">
+        <div class="modal-body px-3">
           <div v-if="account">
             <!-- <div class="d-flex justify-content-between">
               <h3 class="text-success">Rank: </h3>
@@ -50,20 +50,13 @@
               <h3 class="text-success">Wins: </h3>
               <h3>{{account.wins}} <i class="mdi mdi-trophy"></i></h3>
             </div>
-            <div>
+            <div class="d-flex justify-content-between">
               <h3 class="text-success">Losses: </h3>
               <h3>{{account.losses}} <i class="mdi mdi-trophy-broken"></i></h3>
             </div>
-            <div>
+            <div v-if="account.losses > 0" class="d-flex justify-content-between">
               <h3 class="text-success">W/L Ratio: </h3>
-              <div v-if="accounts.wins > 0">
-                <h3 v-if="accounts.losses > 0">{{account.wins/account.losses}} %</h3> <!-- wins > 0 & losses > 0 -->
-                <h3 v-else>{{account.wins/1}} %</h3> <!-- wins > 0 & losses <= 0 -->
-              </div>
-              <div v-else>
-                <h3 v-if="accounts.losses > 0">{{account.wins/account.losses}} %</h3> <!-- wins <= 0 & losses > 0 -->
-                <h3 v-else>0 %</h3> <!-- wins <= 0 & losses <= 0 -->
-              </div>
+              <h3>{{ Math.round(( account.wins /  (account.wins + account.losses) ) * 100 ) }} <i class="mdi mdi-percent"></i></h3>
             </div>
           </div>
         </div>
@@ -82,12 +75,16 @@
 <script>
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
+import { Account } from '../models/Account.js';
 
 export default {
+  props: {
+    account: { type: Account, required: true }
+  },
   setup() {
     // get account and its win loss data
     return {
-      account: computed(() => AppState.account)
+      // account: computed(() => AppState.activeAccount)
     }
   }
 }

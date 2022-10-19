@@ -21,11 +21,11 @@
             Teams
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link :to="{ name: 'Profile'}" class="btn text-success lighten-30 selectable text-uppercase ms-3">
             Profile
           </router-link>
-        </li>
+        </li> -->
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
