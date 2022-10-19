@@ -46,9 +46,15 @@ export default {
         Pop.error(error, '[Getting Players]')
       }
     }
+
+
+
     onMounted(() => {
       getPlayers()
     })
+
+
+
     return {
       redPlayers: computed(() => AppState.redPlayers),
       bluePlayers: computed(() => AppState.bluePlayers),
