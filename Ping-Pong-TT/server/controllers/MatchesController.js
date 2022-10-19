@@ -8,10 +8,19 @@ export class MatchesController extends BaseController {
     super('/api/matches')
     this.router
       .get('/:id', this.getMatchById)
-
+      .get('', this.getMatches)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .put('/:id/:team/:points/score', this.editPoints)
       .put('/:id/:team/winner', this.declareWinner)
+  }
+
+  async getMatches(req, res, next) {
+    try {
+      const matches = await matchesService.getMatches()
+      res.send(matches)
+    } catch (error) {
+      next(error)
+    }
   }
 
   /* 

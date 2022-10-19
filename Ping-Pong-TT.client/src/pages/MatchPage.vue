@@ -2,36 +2,36 @@
   <div class="container-fluid">
     <div class="row justify-content-around mt-5">
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
-        <div class="bg-danger rounded-2 box-shadow d-flex flex-column align-items-center">
+        <div class="bg-danger rounded-4 box-shadow d-flex flex-column align-items-center">
           <p v-if="match?.homePlayer">{{match?.homePlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.homePull}}</p>
           <h1>{{match?.homeScore}}</h1>
         </div>
 
-        <div v-if="!match?.winner" class="d-flex justify-content-around pt-2 gap-2">
-          <button class="btn box-shadow btn-success fs-1 w-50" @click="changeScore('home', 1)">+1</button>
-          <button class="btn box-shadow btn-danger fs-1 w-50" @click="changeScore('home', -1)">-1</button>
+        <div v-if="!(match?.winner  )" class="d-flex justify-content-around pt-2 gap-2">
+          <button class="btn box-shadow rounded-pill btn-success fs-1 w-50" @click="changeScore('home', 1)">+1</button>
+          <button class="btn box-shadow rounded-pill btn-danger fs-1 w-50" @click="changeScore('home', -1)">-1</button>
         </div>
 
         <div v-if="!match?.winner" class="d-flex justify-content-center">
-          <button class="btn box-shadow btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare Winner</button>
+          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare Winner</button>
         </div>
       </div>
 
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
-        <div class="bg-primary rounded-2 box-shadow d-flex flex-column align-items-center">
+        <div class="bg-primary rounded-4 box-shadow d-flex flex-column align-items-center">
           <p v-if="match?.awayPlayer">{{match?.awayPlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.awayPull}}</p>
           <h1>{{match?.awayScore}}</h1>
         </div>
 
         <div v-if="!match?.winner" class="d-flex justify-content-around pt-2 gap-2">
-          <button class="btn box-shadow btn-success fs-1 w-50" @click="changeScore('away', 1)">+1</button>
-          <button class="btn box-shadow btn-danger fs-1 w-50" @click="changeScore('away', -1)">-1</button>
+          <button class="btn box-shadow rounded-pill btn-success fs-1 w-50" @click="changeScore('away', 1)">+1</button>
+          <button class="btn box-shadow rounded-pill btn-danger fs-1 w-50" @click="changeScore('away', -1)">-1</button>
         </div>
 
         <div v-if="!match?.winner" class="d-flex justify-content-center">
-          <button class="btn box-shadow btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare Winner</button>
+          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare Winner</button>
         </div>
       </div>
 
@@ -68,7 +68,18 @@ export default {
       }
     }
 
-    onMounted(() => { getMatchById(); })
+    async function getTourneyBelongingToMatch() {
+      try {
+        await matchService.getTourneyBelongingToMatch()
+      } catch (error) {
+        Pop.error(error, '[Getting Tourney Belonging To Match]')
+      }
+    }
+
+    onMounted(() => { 
+      getMatchById();
+      getTourneyBelongingToMatch()
+    })
 
     return {
       match: computed(() => AppState.activeMatch),
@@ -103,5 +114,9 @@ export default {
 
 .box-shadow {
   box-shadow: 0rem 0rem 10px #5e7196;
+}
+
+.bg-danger {
+  background-color: #a70909 !important;
 }
 </style>
