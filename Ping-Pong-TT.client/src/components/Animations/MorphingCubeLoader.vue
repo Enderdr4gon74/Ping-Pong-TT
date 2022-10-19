@@ -46,10 +46,6 @@
             Tom
           </div>
 
-          <div class="player ten">
-            Pepto Bismol
-          </div>
-
           <div class="player eleven">
             Timothy
           </div>
