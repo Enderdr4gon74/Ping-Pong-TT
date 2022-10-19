@@ -39,11 +39,11 @@
           </div>
 
           <div class="player eight">
-            Ben
+            Ky
           </div>
 
           <div class="player nine">
-            Tom
+            Hates
           </div>
 
           <div class="player ten">
