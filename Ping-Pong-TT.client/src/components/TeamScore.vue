@@ -32,6 +32,11 @@
 </template>
 
 
+
+
+
+
+
 <script>
 import { NewAccount } from '../models/NewAccount.js';
 
@@ -45,6 +50,11 @@ export default {
   }
 }
 </script>
+
+
+
+
+
 
 
 <style lang="scss" scoped>
