@@ -53,7 +53,7 @@ export class MatchesController extends BaseController {
 
   async declareWinner(req, res, next) {
     try {
-      const match = await matchesService.declareWinner(req.params.id, req.params.team)
+      const match = await matchesService.declareWinner(req.params.id, req.params.team, req.userInfo.id)
       // logger.log('congrats', match.winnerId)
       res.send(match)
     } catch (error) {
