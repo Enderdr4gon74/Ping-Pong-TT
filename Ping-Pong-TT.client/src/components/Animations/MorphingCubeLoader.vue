@@ -47,7 +47,7 @@
           </div>
 
           <div class="player ten">
-            Bob
+            Pepto Bismol
           </div>
 
           <div class="player eleven">
