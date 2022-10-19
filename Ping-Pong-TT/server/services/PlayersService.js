@@ -49,9 +49,9 @@ class PlayersService {
       throw new BadRequest("Tourney Is Full. Heck Off")
     }
 
-    if (tourney.creatorId == user.id) {
-      throw new Forbidden("Thou Shalt not Join")
-    }
+    // if (tourney.creatorId == user.id) {
+    //   throw new Forbidden("Thou Shalt not Join")
+    // }
 
     if (tourney.status != "pending") {
       throw new BadRequest("YOu CaN NoT jOiN!")
