@@ -13,12 +13,8 @@
 
         <LeaderboardPlayer v-for="p in redPlayers" :player="p" />
 
-
-
-
       </ul>
     </div>
-
 
 
     <div class="col-4 m-2">
