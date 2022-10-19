@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { Match } from "../models/Match.js";
+import { Tourney } from "../models/Tourney.js";
 import { api } from "./AxiosService.js";
 import { tourneyService } from "./TourneyService.js";
 
@@ -26,11 +27,12 @@ class MatchService {
     return
   }
 
-  async getTourneyBelongingToMatch(){
+  async getTourneyByMatchId(matchId) {
+    await this.getMatchById(matchId)
     const match = AppState.activeMatch
-    console.log(match)
-    const tourney = await api.get(`/api/tourneys/${match.tourneyId}`)
-    console.log(tourney)
+    const res = await api.get(`/api/tourneys/${match.tourneyId}`)
+    AppState.activeTourney = new Tourney(res.data)
+    return
   }
 }
 

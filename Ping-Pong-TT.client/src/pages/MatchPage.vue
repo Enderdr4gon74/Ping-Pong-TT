@@ -14,7 +14,8 @@
         </div>
 
         <div v-if="!match?.winner" class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare Winner</button>
+          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
+            Winner</button>
         </div>
       </div>
 
@@ -31,7 +32,8 @@
         </div>
 
         <div v-if="!match?.winner" class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare Winner</button>
+          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
+            Winner</button>
         </div>
       </div>
 
@@ -68,21 +70,21 @@ export default {
       }
     }
 
-    async function getTourneyBelongingToMatch() {
+    async function getTourneyByMatchId() {
       try {
-        await matchService.getTourneyBelongingToMatch()
+        await matchService.getTourneyByMatchId(route.params.id)
       } catch (error) {
         Pop.error(error, '[Getting Tourney Belonging To Match]')
       }
     }
 
-    onMounted(() => { 
-      getMatchById();
-      getTourneyBelongingToMatch()
+    onMounted(() => {
+      getTourneyByMatchId();
     })
 
     return {
       match: computed(() => AppState.activeMatch),
+      tourney: computed(() => AppState.activeTourney),
 
       async changeScore(team, score) {
         try {
