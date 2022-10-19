@@ -23,7 +23,7 @@
 
           <form @submit.prevent="handleSubmit()">
             <div class="mb-3">
-              <label for="TourneyName" class="form-label text-success">Name</label>
+              <label for="TourneyName" class="form-label text-success">Tourney Name</label>
               <input type="word" class="form-control" id="TourneyName" aria-describedby="Tournament Name"
                 v-model="editable.name" name="name" required>
             </div>
@@ -50,8 +50,8 @@
               <label class="mb-1 text-success">Tournament Type</label>
               <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
                 v-model="editable.type" name="type">
-                <option value="single">Solo</option>
-                <option value="double">Duo</option>
+                <option value="single">Single Elimination</option>
+                <option value="double">Double Elimination</option>
               </select>
             </div>
 

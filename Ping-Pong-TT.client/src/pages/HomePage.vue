@@ -1,7 +1,7 @@
 <template>
   <div v-if="players">
 
-    <div class="d-flex justify-content-end p-5 ">
+    <div class="d-flex justify-content-end p-5">
       <router-link :to="{name: 'FindTourney'}">
         <button class="rounded fs-3 me-3 btn btn-success">
           Find a Tourney
@@ -11,10 +11,10 @@
     </div>
 
 
-    <div class="container">
-      <div class="mt-5 d-flex justify-content-between">
+    <div class="container-fluid mb-5 pb-5">
+      <div class="mt-5 d-flex">
         <!-- global leader board -->
-        <div class="col-8">
+        <div class="col-7 d-flex justify-content-center">
           <GlobalScore :players="players" />
         </div>
 
@@ -23,10 +23,12 @@
 
 
         <!-- welcome + intro text -->
-        <div class="row background-imag col-4">
+        <div class="background-imag col-5">
           <p class="text-center pink fs-1">Welcome to Ping Pong Tournament Tracker!</p>
+          <br>
           <p class="text-center mt-2 mb-2 fs-2">Join the Future of Ping Pong</p>
 
+          <br>
           <p class="fs-4">
             Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping pong
             prowess? well then this is the place for you, we here at KING PONG<i class="mdi mdi-trademark"></i> believe
@@ -56,8 +58,6 @@
 
 <script>
 import GlobalScore from "../components/GlobalScore.vue";
-import LoadingScreen from "../components/LoadingScreen.vue";
-import PlayersMorphingCube from "../components/PlayersMorphingCube.vue";
 import CreateTourney from "../components/CreateTourney.vue";
 import Pop from "../utils/Pop.js";
 import { leaderboardService } from '../services/LeaderboardService.js'
@@ -81,7 +81,7 @@ export default {
       players: computed(() => AppState.allPlayers)
     };
   },
-  components: { GlobalScore, LoadingScreen, PlayersMorphingCube, CreateTourney }
+  components: { GlobalScore, CreateTourney }
 }
 </script>
 
