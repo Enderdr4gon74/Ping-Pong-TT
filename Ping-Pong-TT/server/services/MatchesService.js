@@ -5,6 +5,11 @@ import { tourneyService } from "./TourneyService.js"
 
 class MatchesService {
 
+  async getMatches() {
+    const matches = await dbContext.Matches.find().populate('homePlayer awayPlayer winner')
+    return matches
+  }
+
   /* 
     gets the match(es) by the parent tourney and populates the home player and the away player
     eventually - makes sure to restrict the data on the accounts
