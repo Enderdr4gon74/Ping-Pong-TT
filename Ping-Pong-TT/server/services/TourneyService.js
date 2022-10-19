@@ -219,7 +219,7 @@ class TourneyService {
   }
 
 
-  async updateMatches(matchSet, matchNum, completeMatch, tourneyId) {
+  async updateMatches(matchSet, matchNum, completeMatch, tourneyId, userId) {
     const tourney = await this.getTourneyById(tourneyId)
     const matches = await matchesService.getMatchesByTourneyId(tourneyId)
     const matchesToUpdate = matches.filter(m =>
@@ -230,7 +230,7 @@ class TourneyService {
     )
 
     if (!matchesToUpdate.length) {
-      await this.winTourney(tourneyId, completeMatch.winnerId)
+      await this.winTourney(tourneyId, completeMatch.winnerId, userId)
     }
 
     matchesToUpdate.forEach(m => {
@@ -254,10 +254,12 @@ class TourneyService {
 
 
 
-  async winTourney(tourneyId, winnerId) {
+  async winTourney(tourneyId, winnerId, userId) {
     const tourney = await this.getTourneyById(tourneyId)
 
     tourney.winnerId = winnerId
+
+    await this.editTourney({status: 'complete'}, tourneyId, userId)
 
     await tourney.save()
   }

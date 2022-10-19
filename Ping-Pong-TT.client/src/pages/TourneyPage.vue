@@ -25,14 +25,18 @@
 
 
 
-    <div class="row">
+    <div v-if="tourney?.status != 'pending'" class="row">
       <div v-for="m in matches.length+1" class="col-3 d-flex flex-column justify-content-around px-5">
         <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 " />
       </div>
     </div>
 
+    <div v-else>
+       
+    </div>
 
-    <div v-if="tourney?.players.length" class="row justify-content-center">
+
+    <div v-if="tourney?.players.length" class="row justify-content-center pt-3">
       <div class="col-6 bg-grey">
         <div class="d-flex justify-content-center">
           <h4>Players</h4>
@@ -60,6 +64,7 @@ import { AppState } from '../AppState.js';
 import { tourneyService } from '../services/TourneyService.js';
 import Pop from '../utils/Pop.js';
 import MatchCard from '../components/MatchCard.vue';
+import PIngPongLoader from '../components/Animations/PIngPongLoader.vue';
 
 export default {
   setup() {
@@ -115,7 +120,7 @@ export default {
       }
     };
   },
-  components: { MatchCard }
+  components: { MatchCard, PIngPongLoader }
 }
 </script>
 

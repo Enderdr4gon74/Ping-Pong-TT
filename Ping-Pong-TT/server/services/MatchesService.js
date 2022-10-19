@@ -108,7 +108,7 @@ class MatchesService {
 
 
 
-  async declareWinner(matchId, team) {
+  async declareWinner(matchId, team, userId) {
     const match = await this.getMatchById(matchId)
 
     if (team == 'home') {
@@ -117,8 +117,7 @@ class MatchesService {
       match.winnerId = match.awayPlayerId
     }
     await match.save()
-    await tourneyService.updateMatches(match.set, match.matchNum, match, match.tourneyId)
-
+    await tourneyService.updateMatches(match.set, match.matchNum, match, match.tourneyId, userId)
 
     return match
   }
