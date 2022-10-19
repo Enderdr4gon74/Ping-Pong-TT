@@ -24,12 +24,13 @@
 
         <!-- welcome + intro text -->
         <div class="row background-imag col-4">
-          <p class="text-center pepto-bismol fs-1">Welcome to Ping Pong Tournament Tracker!</p>
+          <p class="text-center pink fs-1">Welcome to Ping Pong Tournament Tracker!</p>
           <p class="text-center mt-2 mb-2 fs-2">Join the Future of Ping Pong</p>
 
           <p class="fs-4">
             Welcome to the future of ping pong, do you love ping ponging, do you need a place to display your ping pong
-            prowess? well then this is the place for you, we here at KING PONG<i class="mdi mdi-trademark"></i> believe in fair treatment of all ping
+            prowess? well then this is the place for you, we here at KING PONG<i class="mdi mdi-trademark"></i> believe
+            in fair treatment of all ping
             pongers.
           </p>
         </div>
@@ -37,7 +38,7 @@
     </div>
 
 
-    
+
   </div>
 
 
@@ -97,7 +98,7 @@ export default {
   background-size: cover;
 }
 
-.pepto-bismol {
+.pink {
   color: #fd8bd8;
   font-weight: bold;
 }
