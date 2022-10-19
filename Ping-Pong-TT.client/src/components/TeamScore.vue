@@ -4,7 +4,7 @@
     <div class="col-4 m-2">
 
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
+        <li class="list-group-item d-flex justify-content-center align-items-center global-board-head">
           <h3 class="text-center text-danger">
             Red Team
           </h3>
@@ -13,27 +13,28 @@
 
         <LeaderboardPlayer v-for="p in redPlayers" :player="p" />
 
-
-
-
       </ul>
     </div>
 
 
-
     <div class="col-4 m-2">
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center global-board-head">
+        <li class="list-group-item d-flex justify-content-center align-items-center global-board-head">
           <h3 class="text-center text-primary">
             Blue Team
           </h3>
         </li>
-        
+
         <LeaderboardPlayer v-for="p in bluePlayers" :player="p" />
       </ul>
     </div>
   </div>
 </template>
+
+
+
+
+
 
 
 <script>
@@ -49,6 +50,11 @@ export default {
   }
 }
 </script>
+
+
+
+
+
 
 
 <style lang="scss" scoped>
