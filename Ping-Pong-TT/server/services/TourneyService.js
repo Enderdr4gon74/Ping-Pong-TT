@@ -120,7 +120,12 @@ class TourneyService {
 
 
 
-
+  async editStatus(status, tourneyId, userId) {
+    const tourney = await this.getTourneyById(tourneyId)
+    tourney.status = status.status;
+    await tourney.save()
+    return tourney
+  }
 
 
 

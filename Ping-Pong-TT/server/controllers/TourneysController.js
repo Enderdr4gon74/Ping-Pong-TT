@@ -15,6 +15,7 @@ export class TourneysController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createTourney)
       .put('/:id', this.editTourney)
+      .put('/:id/status', this.editStatus)
       .put('/:id/player', this.addPlayerUsingTourneyId)
       .delete("/:id", this.deleteTourney)
       .delete('/:id/player', this.removePlayerUsingTourneyId)
@@ -144,4 +145,15 @@ export class TourneysController extends BaseController {
       next(error)
     }
   }
+
+  // allows user to edit status
+  async editStatus(req, res, next) {
+    try {
+      const tourney = await tourneyService.editStatus(req.body, req.params.id, req.userInfo.id)
+      res.send(tourney)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
