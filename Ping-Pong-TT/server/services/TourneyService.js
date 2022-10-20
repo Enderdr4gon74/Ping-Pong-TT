@@ -197,14 +197,14 @@ class TourneyService {
       for (let i = 0; i < prevSet.length; i += 2) {
         isABuy = false
         // If this is the last match and a buy is needed and theres no buy
-        if (i + 1 == prevSet.length && prevSet.length % 2 != 0 && isABuy == false) {
+        if (i + 1 >= prevSet.length && prevSet.length % 2 != 0 && isABuy == false) {
           awayPull = 0
           homePull = prevSet[i].matchNum
           i--
           isABuy = true
         }
         // If this match is the buy match
-        if (i == (set - 2) * 2) {
+        else if (i == (set - 2) * 2) {
           if (prevSet.length % 2 != 0) {
             awayPull = 0
             homePull = prevSet[i].matchNum

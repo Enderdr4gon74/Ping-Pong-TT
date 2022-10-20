@@ -1,6 +1,6 @@
 <template>
 
-  <MorphingCubeLoader v-if="tourney?.status == 'pending'" />
+  <!-- <MorphingCubeLoader v-if="tourney?.status == 'pending'" /> -->
 
   <div class="container-fluid">
 
@@ -9,12 +9,12 @@
       <div class="col-3 justify-content-center">
       </div>
 
-      <div class="col-3 d-flex flex-column align-items-center bg-grey stats-card" v-if="tourney?.status == 'pending'">
+      <div class="col-3 d-flex flex-column align-items-center bg-dark stats-card">
         <p>Created By: {{tourney?.creator.name}}</p>
         <p>Status: {{tourney?.status}}</p>
         <p>Players: {{tourney?.players.length}}</p>
         <p>Spots Remaining: {{ tourney?.poolLimit - tourney?.players.length }}</p>
-        <div class="mb-3 d-flex justify-content-around w-100" v-if="tourney?.status == 'pending'">
+        <div class="mb-3 d-flex justify-content-around w-100">
           <button v-if="!isCompeting" class="btn btn-success fs-5 px-4" @click="joinTourney()"
             id="joinButton">Join</button>
 
@@ -35,9 +35,9 @@
 
 
     <!-- v-if="tourney?.status != 'pending'" -->
-    <div v-if="tourney?.status != 'pending'" class="bg-grey d-flex">
+    <div class="bg-grey d-flex">
       <div v-for="m in matches.length+1" class="d-flex flex-column justify-content-evenly align-items-center set m-0">
-        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 mx-5 matchCard" />
+        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-4 mx-5 matchCard" />
       </div>
     </div>
 
