@@ -1,6 +1,8 @@
+import { connect } from 'socket.io-client'
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
+import Pop from '../utils/Pop.js'
 import { api } from './AxiosService'
 
 class AccountService {
@@ -18,6 +20,16 @@ class AccountService {
     AppState.activeAccount = new Account(profile.data)
     console.log(new Account(profile.data))
     console.log(AppState.activeAccount)
+  }
+
+  async editAccount(accountData) {
+    const newAccountData = {name: accountData.name, picture: accountData.picture}
+    console.log(newAccountData)
+    const account = await api.put('/account', newAccountData)
+    const newAccount = new Account(account.data)
+    console.log(newAccount)
+    AppState.account = newAccount
+    AppState.user = newAccount
   }
 }
 

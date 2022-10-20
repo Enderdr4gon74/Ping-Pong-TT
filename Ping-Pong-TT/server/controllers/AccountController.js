@@ -10,7 +10,17 @@ export class AccountController extends BaseController {
       .get('/:name', this.getAccountsByTeam)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .put('', this.editAccount)
       .put('/:id/team/:name', this.setTeam)
+  }
+
+  async editAccount(req, res, next) {
+    try {
+      const account = await accountService.editAccount(req.userInfo.id, req.body)
+      res.send(account)
+    } catch (error) {
+      next(error)
+    }
   }
 
   /* 

@@ -1,6 +1,9 @@
 <template>
-  <div v-if="user || account">
-    <ProfilePage :account="account" />
+  <div v-if="account?.id && awards">
+    <ProfileComp :account="account" :awards="awards" />
+  </div>
+  <div v-else-if="user?.id && awards">
+    <ProfileComp :account="user" :awards="awards" />
   </div>
 
   <!-- <div class="about text-center">
@@ -64,21 +67,34 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
-import { accountService } from '../services/AccountService.js'
 import Pop from '../utils/Pop.js'
-import ProfilePage from './ProfilePage.vue'
+import ProfileComp from '../components/ProfileComp.vue'
+import { awardsService } from '../services/AwardsService.js'
+import { accountService } from '../services/AccountService.js'
 export default {
     setup() {
         const editable = ref({});
+        async function getAwardsByPlayerId() {
+          try {
+            await awardsService.getAwardsByUserId()
+          } catch (error) {
+            Pop.error(error, '[Getting Awards By Player Id]')
+          }
+        }
+        onMounted(()=>{
+          editable.value = {...AppState.user}
+          getAwardsByPlayerId()
+        })
         return {
             editable,
             async handleSubmit() {
                 try {
-                    console.log(editable.value);
-                    Pop.error("[Not Implemented]");
+                    // console.log(editable.value);
+                    // Pop.error("[Not Implemented]");
+                    await accountService.editAccount(editable.value)
                     // await accountService.getAccount(editable.value);
                     // await tourneyService.createTourney(editable.value)
                 }
@@ -87,10 +103,11 @@ export default {
                 }
             },
             account: new Account(computed(() => AppState.account)),
-            user: computed(() => AppState.user)
+            user: computed(() => AppState.user),
+            awards: computed(()=> AppState.ActiveAwards)
         };
     },
-    components: { ProfilePage }
+    components: { ProfileComp }
 }
 </script>
 
