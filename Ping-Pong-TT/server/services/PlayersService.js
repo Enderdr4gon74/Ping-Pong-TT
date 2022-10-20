@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { logger } from "../utils/Logger.js"
 import { tourneyService } from "./TourneyService.js"
 
 class PlayersService {
@@ -36,6 +37,7 @@ class PlayersService {
     returns the new user
   */
   async addPlayerUsingTourneyId(tourneyId, user) {
+    logger.log('Adding Player')
     const tourney = await tourneyService.getTourneyById(tourneyId)
 
     // @ts-ignore

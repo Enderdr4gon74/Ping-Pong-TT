@@ -1,20 +1,29 @@
 <template>
 
+  <MorphingCubeLoader v-if="tourney?.status == 'pending'" />
+
   <div class="container-fluid">
+
 
     <div class="row justify-content-around mt-2">
       <div class="col-3 justify-content-center">
-        <button v-if="!isCompeting" class="btn btn-success fs-5 px-4" @click="joinTourney()"
-          id="joinButton">Join</button>
-
-        <button v-else class="btn btn-danger fs-5 px-4" @click="leaveTourney()" id="leaveButton">Leave</button>
       </div>
 
-      <div class="col-3 d-flex flex-column align-items-center bg-grey">
-        <p>Created By: {{tourney.creator.name}}</p>
+      <div class="col-3 d-flex flex-column align-items-center bg-grey stats-card" v-if="tourney?.status == 'pending'">
+        <p>Created By: {{tourney?.creator.name}}</p>
         <p>Status: {{tourney?.status}}</p>
         <p>Players: {{tourney?.players.length}}</p>
         <p>Spots Remaining: {{ tourney?.poolLimit - tourney?.players.length }}</p>
+        <div class="mb-3 d-flex justify-content-around w-100" v-if="tourney?.status == 'pending'">
+          <button v-if="!isCompeting" class="btn btn-success fs-5 px-4" @click="joinTourney()"
+            id="joinButton">Join</button>
+
+          <button v-else class="btn btn-danger fs-5 px-4" @click="leaveTourney()" id="leaveButton">Leave</button>
+
+          <button class="btn btn-success" v-if="isCreator" @click="beginTourney()">Start</button>
+        </div>
+
+        <!-- <div></div> -->
       </div>
 
       <!-- <div class="col-3 justify-content-center">
@@ -26,18 +35,14 @@
 
 
     <!-- v-if="tourney?.status != 'pending'" -->
-    <div class="row">
+    <div v-if="tourney?.status != 'pending'" class="row bg-grey">
       <div v-for="m in matches.length+1" class="col-3 d-flex flex-column justify-content-around px-5">
-        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 " />
+        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2" />
       </div>
     </div>
-    <!-- 
-    <div v-else>
-
-    </div> -->
 
 
-    <div v-if="tourney?.players.length" class="row justify-content-center pt-3">
+    <div v-if="tourney?.status != 'pending'" class="row justify-content-center pt-3">
       <div class="col-6 bg-grey">
         <div class="d-flex justify-content-center">
           <h4>Players</h4>
@@ -66,6 +71,7 @@ import { tourneyService } from '../services/TourneyService.js';
 import Pop from '../utils/Pop.js';
 import MatchCard from '../components/MatchCard.vue';
 import PIngPongLoader from '../components/Animations/PIngPongLoader.vue';
+import MorphingCubeLoader from '../components/Animations/MorphingCubeLoader.vue';
 
 export default {
   setup() {
@@ -95,6 +101,7 @@ export default {
     return {
       tourney: computed(() => AppState.activeTourney),
       isCompeting: computed(() => AppState.activeTourney?.players.filter(p => p.id == AppState.account.id).length == 0 ? false : true),
+      isCreator: computed(() => AppState.activeTourney?.creatorId == AppState.account?.id ? true : false),
       matches: computed(() => AppState.matches),
       account: computed(() => AppState.account),
 
@@ -118,10 +125,18 @@ export default {
         } catch (error) {
           Pop.error(error, '[Leaving Tourney]')
         }
+      },
+
+      async beginTourney() {
+        try {
+          await tourneyService.beginTourney(route.params.id, 'active')
+        } catch (error) {
+          Pop.error(error, '[Beginning Tourney]')
+        }
       }
     };
   },
-  components: { MatchCard, PIngPongLoader }
+  components: { MatchCard, PIngPongLoader, MorphingCubeLoader }
 }
 </script>
 
@@ -131,5 +146,11 @@ export default {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
+}
+
+.stats-card {
+  position: absolute;
+  top: 8rem;
+  right: 2rem;
 }
 </style>

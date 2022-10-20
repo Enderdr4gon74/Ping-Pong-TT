@@ -100,6 +100,7 @@ class TourneyService {
   returns the new tourney
 */
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
+    logger.log("editing Tourney")
     const tourney = await this.getTourneyById(tourneyId)
     if (tourney.creatorId != userId) {
       throw new Forbidden("You can't edit what isn't yours")
@@ -120,7 +121,12 @@ class TourneyService {
 
 
 
-
+  async editStatus(status, tourneyId, userId) {
+    const tourney = await this.getTourneyById(tourneyId)
+    tourney.status = status.status;
+    await tourney.save()
+    return tourney
+  }
 
 
 
@@ -224,7 +230,7 @@ class TourneyService {
       prevSet = matches.filter(m => m.set == set - 1)
     }
 
-    const matchesToWin = await this.autoUpdateBuys(matches)
+    await this.autoUpdateBuys(matches)
 
     logger.log("complete")
   }
@@ -290,7 +296,7 @@ class TourneyService {
 
     tourney.winnerId = winnerId
 
-    await this.editTourney({ status: 'complete' }, tourneyId, userId)
+    await this.editStatus('complete', tourneyId, userId)
 
     await tourney.save()
   }
