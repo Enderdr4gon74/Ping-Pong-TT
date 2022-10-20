@@ -14,7 +14,8 @@ export const MatchSchema = new Schema({
   matchNum: { type: Number, default: 1 },
   homePull: { type: Number },
   awayPull: { type: Number },
-  winnerId: { type: ObjectId, ref: 'Account' }
+  winnerId: { type: ObjectId, ref: 'Account' },
+  isABuy: { type: Boolean, default: false }
 }, SCHEMA_OPTIONS)
 
 MatchSchema.virtual('tourney', {

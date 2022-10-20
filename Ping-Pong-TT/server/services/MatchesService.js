@@ -116,13 +116,12 @@ class MatchesService {
     } else if (team == 'away') {
       match.winnerId = match.awayPlayerId
     }
+
     await match.save()
     await tourneyService.updateMatches(match.set, match.matchNum, match, match.tourneyId, userId)
 
     return match
   }
-
-  async
 
 }
 
