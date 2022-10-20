@@ -1,8 +1,8 @@
 <template>
 
   <router-link :to="{name: 'Match', params: {id: match.id}}">
-    <div class="card bg-card h-100">
-      <div class="card-body py-1">
+    <div class="card bg-card h-100 w-100">
+      <div class="card-body">
         <div class="d-flex justify-content-center align-items-around">
           <p class="m-0">Match {{match.set}}-{{match.matchNum}}</p>
         </div>
@@ -55,7 +55,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.blank {
-  width: 10vw
-}
+
 </style>
