@@ -1,10 +1,12 @@
 <template>
   <div v-if="account?.id && awards">
     <ProfileComp :account="account" :awards="awards" />
+    <!-- <h1>account</h1> -->
   </div>
-  <div v-else-if="user?.id && awards">
+  <!-- <div v-if="user?.id && awards">
     <ProfileComp :account="user" :awards="awards" />
-  </div>
+    <h1>user</h1>
+  </div> -->
 
   <!-- <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
@@ -84,8 +86,15 @@ export default {
             Pop.error(error, '[Getting Awards By Player Id]')
           }
         }
+        // async function getAccount() {
+        //   try {
+        //     await accountService.getAccount
+        //   } catch (error) {
+        //     Pop.error(error, '[Getting Account]')
+        //   }
+        // }
         onMounted(()=>{
-          editable.value = {...AppState.user}
+          editable.value = {...AppState.account}
           getAwardsByPlayerId()
         })
         return {
@@ -102,7 +111,7 @@ export default {
                     Pop.error(error, "[Invalid Account Details]");
                 }
             },
-            account: new Account(computed(() => AppState.account)),
+            account: computed(() => AppState.account),
             user: computed(() => AppState.user),
             awards: computed(()=> AppState.ActiveAwards)
         };

@@ -1,6 +1,21 @@
 <template>
-  <div class="container h-100 mt-5 pt-5 mb-5 d-flex flex-column justify-content-between">
-    <div class="">
+  <div class="container h-100 pt-5 mb-5 d-flex flex-column justify-content-between">
+    <div class=" d-flex justify-content-around mb-5 pt-3">
+      <button @click="setMessage(2)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
+        Rules
+      </button>
+
+      <button @click="setMessage(1)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
+        Alternative Rules
+      </button>
+
+      <button @click="setMessage(0)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
+        About Us
+      </button>
+    </div>
+    
+    
+    <div class="text-special">
       <div v-if="aboutMessage == 0">
         <p class="fs-4">
           Do you like ping pong? Have you ever played a “Tournament” of ping pong, won, then felt as if it was all for
@@ -14,31 +29,62 @@
           as a
           team leaderboard.
         </p>
+        <div class="row justify-content-center gap-2 peopleCard"> <!-- add card bg and rounded -->
+          <div class="col-8 text-light">
+            <h1 class="special-text text-shadow">The Devs</h1>
+          </div>
+          <div class="col-5 personCard">
+            <div class="row">
+              <div class="col-4 d-flex align-items-center p-0">
+                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+              </div>
+              <div class="col-8">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 personCard">
+            <div class="row">
+              <div class="col-4 d-flex align-items-center p-0">
+                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+              </div>
+              <div class="col-8">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 personCard">
+            <div class="row">
+              <div class="col-4 d-flex align-items-center p-0">
+                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+              </div>
+              <div class="col-8">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div v-if="aboutMessage == 1">
         <p class="fs-4">
           alternate rules
+          <!-- add dynamic rules here -->
         </p>
       </div>
       <div v-if="aboutMessage == 2">
-        <p class="fs-4">
-          regular rules
-        </p>
+        <ol class="">
+          <li class="ps-1" v-for="rule in rules">
+            <h4>{{rule.title}}</h4>
+            <p class="ps-2">{{rule.body}}</p>
+          </li>
+        </ol>
+        <h4>
+          Rules Supported by: 
+          <a target="_blank" href="https://www.pongfit.org/official-rules-of-table-tennis">
+            https://www.pongfit.org/official-rules-of-table-tennis
+          </a>
+        </h4>
       </div>
-    </div>
-
-    <div class=" d-flex justify-content-around mt-4 pt-3">
-      <button @click="setMessage(2)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
-        Rules
-      </button>
-
-      <button @click="setMessage(1)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
-        Alternative Rules
-      </button>
-
-      <button @click="setMessage(0)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
-        About Us
-      </button>
     </div>
   </div>
 </template>
@@ -54,6 +100,7 @@ export default {
   setup(){
     return {
       aboutMessage: computed(()=> AppState.aboutMessage),
+      rules: computed(()=> AppState.rules),
       async setMessage(num) {
         try {
           aboutService.setMessage(num)
@@ -68,5 +115,31 @@ export default {
 
 
 <style lang="scss" scoped>
+.text-special {
+  color: #a9b8d2;
+}
 
+.peopleCard {
+  background-color: rgb(63, 61, 61);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.personCard {
+  background-color: rgb(87, 84, 84);
+  padding: 1rem;
+  padding-left: 1.25rem;
+  border-radius: 1rem;
+  img {
+    border-radius: 0.875rem;
+  }
+}
+
+.text-shadow {
+  text-shadow: 0.175rem 0.175rem 0.1125rem #2a2929;
+}
+
+.special-text {
+  font-family: 'Permanent Marker', cursive;
+}
 </style>

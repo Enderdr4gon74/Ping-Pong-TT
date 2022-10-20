@@ -89,10 +89,10 @@ import AwardComp from './AwardComp.vue';
 
 export default {
     props: {
-        account: { type: Account, required: true },
+        account: { type: Object, required: true },
         awards: { type: Array[Award], required: true }
     },
-    setup() {
+    setup(props) {
         // get account and its win loss data
         return {
             profile: computed(() => AppState.account),

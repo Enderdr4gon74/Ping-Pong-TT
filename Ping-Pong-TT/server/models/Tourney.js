@@ -4,7 +4,7 @@ import { SCHEMA_OPTIONS, ObjectId } from "../db/DbUtils.js";
 export const TourneySchema = new Schema({
 
   creatorId: { type: ObjectId, required: true, ref: 'Account' },
-  name: { type: String, minlength: 1, maxlength: 25, required: true },
+  name: { type: String, minlength: 1, required: true },
   description: { type: String },
   coverImg: { type: String },
   startDate: { type: Date },
