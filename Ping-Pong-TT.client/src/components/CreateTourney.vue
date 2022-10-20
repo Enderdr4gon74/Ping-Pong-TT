@@ -36,7 +36,7 @@
 
             <div class="mb-3">
               <label for="TourneyImage" class="form-label text-success">Image</label>
-              <input type="url" class="form-control" id="TourneyImage" aria-describedby="Tournament Image" required
+              <input type="url" class="form-control" id="TourneyImage" aria-describedby="Tournament Image"
                 v-model="editable.coverImg" name="coverImg">
             </div>
 

@@ -35,9 +35,9 @@
 
 
     <!-- v-if="tourney?.status != 'pending'" -->
-    <div v-if="tourney?.status != 'pending'" class="row bg-grey">
-      <div v-for="m in matches.length+1" class="col-3 d-flex flex-column justify-content-around px-5">
-        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2" />
+    <div v-if="tourney?.status != 'pending'" class="bg-grey d-flex">
+      <div v-for="m in matches.length+1" class="d-flex flex-column justify-content-center set m-0">
+        <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 mx-5 matchCard" />
       </div>
     </div>
 
@@ -152,5 +152,14 @@ export default {
   position: absolute;
   top: 8rem;
   right: 2rem;
+}
+
+.matchCard {
+  width: 15rem;
+  height: 7rem;
+}
+
+.set {
+  width: 15rem;
 }
 </style>

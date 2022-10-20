@@ -1,15 +1,16 @@
 <template>
 
   <router-link :to="{name: 'Match', params: {id: match.id}}">
-    <div class="card bg-card">
-      <div class="card-body">
-        <div class="d-flex justify-content-center">
+    <div class="card bg-card h-100">
+      <div class="card-body py-1">
+        <div class="d-flex justify-content-center align-items-around">
           <p class="m-0">Match {{match.set}}-{{match.matchNum}}</p>
         </div>
-        <div class="d-flex flex-column justify-content-between bg-secondary px-2">
+        <div class="d-flex flex-column justify-content-between bg-secondary px-2 h-75">
           <div class="d-flex justify-content-between">
-            <p class="m-0" v-if="match.homePlayer != null">{{match.homePlayer.name}} <span class="m-0"
-                v-if="match.isABuy">Has a Buy</span></p>
+            <p class="m-0" v-if="match.homePlayer != null">{{match.homePlayer.name}}
+            <p class="m-0" v-if="match.isABuy">Has a Buy</p>
+            </p>
             <p class="m-0" v-else-if="match.homePull">Winner of Match: {{match.set-1}}-{{match.homePull }} <span
                 class="m-0" v-if="match.isABuy">Has a Buy</span></p>
             <p class="m-0" v-if="!match.isABuy">{{match.homeScore}}</p>
