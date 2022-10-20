@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center me-0">
 
-    <div class="col-4 m-2">
+    <div class="col-5 m-2">
 
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-center align-items-center global-board-head">
@@ -17,7 +17,7 @@
     </div>
 
 
-    <div class="col-4 m-2">
+    <div class="col-5 m-2">
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-center align-items-center global-board-head">
           <h3 class="text-center text-primary">

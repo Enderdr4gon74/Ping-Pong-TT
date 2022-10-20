@@ -46,7 +46,7 @@
 
 
   <div v-else>
-    <PlayersMorphingCube />
+    <MorphingCubeLoader />
   </div>
 </template>
 
@@ -64,6 +64,7 @@ import { leaderboardService } from '../services/LeaderboardService.js'
 import { onMounted } from "vue";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import MorphingCubeLoader from "../components/Animations/MorphingCubeLoader.vue";
 
 export default {
   setup() {
@@ -81,7 +82,7 @@ export default {
       players: computed(() => AppState.allPlayers)
     };
   },
-  components: { GlobalScore, CreateTourney }
+  components: { GlobalScore, CreateTourney, MorphingCubeLoader }
 }
 </script>
 

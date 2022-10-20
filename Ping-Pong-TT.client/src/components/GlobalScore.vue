@@ -8,8 +8,8 @@
       </li>
 
 
-
       <LeaderboardPlayer v-for="p in players" :player="p" />
+      <!-- <LeaderboardPlayer v-for="p in players" :player="p" /> -->
     </ul>
   </div>
 </template>
@@ -21,7 +21,7 @@ import LeaderboardPlayer from './LeaderboardPlayer.vue';
 
 export default {
     props: {
-        players: { type: [NewAccount], required: true }
+        players: { type: Array [NewAccount], required: true }
     },
     setup() {
         return {};
