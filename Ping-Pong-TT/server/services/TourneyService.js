@@ -1,6 +1,7 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden, Unexpected } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
+import { awardsService } from "./AwardsService.js"
 import { matchesService } from "./MatchesService.js"
 
 class TourneyService {
@@ -297,6 +298,7 @@ class TourneyService {
     tourney.winnerId = winnerId
 
     await this.editStatus('complete', tourneyId, userId)
+    await awardsService.createAward(winnerId, {name: tourney.name, img: tourney.coverImg})
 
     await tourney.save()
   }
