@@ -1,9 +1,13 @@
 <template>
-  <div class="about text-center">
-    <!-- <h1>Welcome {{ account.name }}</h1> -->
+  <div v-if="user || account">
+    <ProfilePage :account="account" />
+  </div>
+
+  <!-- <div class="about text-center">
+    <h1>Welcome {{ account.name }}</h1>
     <img class="rounded mt-3" :src="account.picture" alt="" />
     <p>{{ account.name }}</p>
-  </div>
+  </div> -->
   <!-- Button trigger modal -->
   <div class="container">
 
@@ -62,26 +66,31 @@
 <script>
 import { computed, ref } from 'vue'
 import { AppState } from '../AppState'
+import { Account } from '../models/Account.js'
 import { accountService } from '../services/AccountService.js'
 import Pop from '../utils/Pop.js'
+import ProfilePage from './ProfilePage.vue'
 export default {
-  setup() {
-    const editable = ref({})
-    return {
-      editable,
-      async handleSubmit() {
-        try {
-          console.log(editable.value);
-          Pop.error('[Not Implemented]')
-          // await accountService.getAccount(editable.value);
-          // await tourneyService.createTourney(editable.value)
-        } catch (error) {
-          Pop.error(error, "[Invalid Account Details]")
-        }
-      },
-      account: computed(() => AppState.account)
-    }
-  }
+    setup() {
+        const editable = ref({});
+        return {
+            editable,
+            async handleSubmit() {
+                try {
+                    console.log(editable.value);
+                    Pop.error("[Not Implemented]");
+                    // await accountService.getAccount(editable.value);
+                    // await tourneyService.createTourney(editable.value)
+                }
+                catch (error) {
+                    Pop.error(error, "[Invalid Account Details]");
+                }
+            },
+            account: new Account(computed(() => AppState.account)),
+            user: computed(() => AppState.user)
+        };
+    },
+    components: { ProfilePage }
 }
 </script>
 

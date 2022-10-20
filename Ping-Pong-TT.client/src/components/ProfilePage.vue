@@ -1,24 +1,28 @@
 <template>
-  <div class="text-center m-1">
-    <img class="profile-picture mt-3" :src="account.picture" alt="Profile-Picture">
-    <h1>{{account.name}}</h1>
-  </div>
-  <div class="container">
-    <div class="m-1 profile-card card">
-      <div class="justify-content-center d-flex">
-      </div>
-      <h3 class="text-success m-2">Email: <span class="text-primary">{{account.email}}</span></h3>
-      <!-- <h3 class="text-success m-2">Steam: <span class="text-primary">fartsauce</span></h3> -->
-      <!-- <h3 class="text-success m-2">Instagram: <span class="text-primary">dopdopdoppy</span></h3> -->
-      <!-- <h3 class="text-success m-2">Taco Bell: <span class="text-primary">Bean Burrito, Grilled with Creamy Jalapeno
-          Sauce</span></h3> -->
-      <!-- <h3 class="text-success m-2">Github: <span class="text-primary">samwgit</span></h3> -->
-      <!-- <h3 class="text-success m-2">Discord: <span class="text-primary">Dagda#5000</span></h3> -->
-      <div class="text-center">
-        <button type="button" class="btn btn-success m-2 w-25 text-center" data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop">
-          Statistics
-        </button>
+  <div class="container-fluid py-4">
+    <div class="row justify-content-center">
+      <div class="col-9">
+        <div class="profile-card row p-2">
+          <div class="col-3 text-center">
+            <img class="profile-picture mt-3" :src="account.picture" alt="Profile-Picture">
+          </div>
+          <div class="col-9">
+            <h1>{{account.name}}</h1>
+            <h3 class="text-success m-2">Email: <span class="text-primary">{{account.email}}</span></h3>
+            <!-- <h3 class="text-success m-2">Steam: <span class="text-primary">fartsauce</span></h3> -->
+            <!-- <h3 class="text-success m-2">Instagram: <span class="text-primary">dopdopdoppy</span></h3> -->
+            <!-- <h3 class="text-success m-2">Taco Bell: <span class="text-primary">Bean Burrito, Grilled with Creamy Jalapeno
+                Sauce</span></h3> -->
+            <!-- <h3 class="text-success m-2">Github: <span class="text-primary">samwgit</span></h3> -->
+            <!-- <h3 class="text-success m-2">Discord: <span class="text-primary">Dagda#5000</span></h3> -->
+            <div class="text-center">
+              <button type="button" class="btn btn-success m-2 w-25 text-center" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                Statistics
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -84,7 +88,8 @@ export default {
   setup() {
     // get account and its win loss data
     return {
-      // account: computed(() => AppState.activeAccount)
+      profile: computed(() => AppState.account),
+      user: computed(() => AppState.user)
     }
   }
 }
