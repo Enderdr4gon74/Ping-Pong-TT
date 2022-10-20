@@ -11,6 +11,7 @@
       </div>
 
       <div class="col-3 d-flex flex-column align-items-center bg-grey">
+        <p>Created By: {{tourney.creator.name}}</p>
         <p>Status: {{tourney?.status}}</p>
         <p>Players: {{tourney?.players.length}}</p>
         <p>Spots Remaining: {{ tourney?.poolLimit - tourney?.players.length }}</p>
@@ -24,16 +25,16 @@
     </div>
 
 
-
-    <div v-if="tourney?.status != 'pending'" class="row">
+    <!-- v-if="tourney?.status != 'pending'" -->
+    <div class="row">
       <div v-for="m in matches.length+1" class="col-3 d-flex flex-column justify-content-around px-5">
         <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-2 " />
       </div>
     </div>
-
+    <!-- 
     <div v-else>
-       
-    </div>
+
+    </div> -->
 
 
     <div v-if="tourney?.players.length" class="row justify-content-center pt-3">
