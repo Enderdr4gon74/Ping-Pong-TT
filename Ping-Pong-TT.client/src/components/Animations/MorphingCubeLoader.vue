@@ -89,7 +89,7 @@ body {
 
 #container {
   width: 100%;
-  height: 700px;
+  height: 750px;
   -webkit-perspective: 800;
   /* For compatibility with iPhone 3.0, we leave off the units here */
   -webkit-perspective-origin: 50% 225px;
@@ -104,7 +104,7 @@ body {
 
 #shape {
   position: relative;
-  top: 160px;
+  top: 250px;
   margin: 0 auto;
   height: 200px;
   width: 200px;

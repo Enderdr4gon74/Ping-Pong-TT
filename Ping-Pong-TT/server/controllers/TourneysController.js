@@ -14,9 +14,9 @@ export class TourneysController extends BaseController {
       .get('/:id/matches', this.getMatchesByTourneyId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createTourney)
-      .put('/:id', this.editTourney)
       .put('/:id/status', this.editStatus)
       .put('/:id/player', this.addPlayerUsingTourneyId)
+      // .put('/:id/edit', this.editTourney)
       .delete("/:id", this.deleteTourney)
       .delete('/:id/player', this.removePlayerUsingTourneyId)
   }

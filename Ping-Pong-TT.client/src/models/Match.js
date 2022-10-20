@@ -17,5 +17,6 @@ export class Match {
     this.winnerId = data.winnerId;
     this.winner = data.winner;
     this.tourneyId = data.tourneyId
+    this.isABuy = data.isABuy
   }
 }

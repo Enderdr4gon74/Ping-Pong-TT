@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row justify-content-around mt-5">
+    <div v-if="!match?.isABuy" class="row justify-content-around mt-5">
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-danger rounded-4 box-shadow d-flex flex-column align-items-center">
           <p v-if="match?.homePlayer">{{match?.homePlayer.name}}</p>
@@ -9,14 +9,14 @@
         </div>
 
         <div
-          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id) || true"
+          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-around pt-2 gap-2">
           <button class="btn box-shadow rounded-pill btn-success fs-1 w-50" @click="changeScore('home', 1)">+1</button>
           <button class="btn box-shadow rounded-pill btn-danger fs-1 w-50" @click="changeScore('home', -1)">-1</button>
         </div>
 
         <div
-          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id) || true"
+          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
           <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
             Winner</button>
@@ -31,14 +31,14 @@
         </div>
 
         <div
-          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id) || true"
+          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-around pt-2 gap-2">
           <button class="btn box-shadow rounded-pill btn-success fs-1 w-50" @click="changeScore('away', 1)">+1</button>
           <button class="btn box-shadow rounded-pill btn-danger fs-1 w-50" @click="changeScore('away', -1)">-1</button>
         </div>
 
         <div
-          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id) || true"
+          v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
           <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
             Winner</button>
@@ -47,9 +47,15 @@
 
     </div>
 
-    <div v-if="match?.winner" class="row mt-5">
+    <div v-else>
+
+    </div>
+
+    <div v-if="match?.winner || match?.isABuy" class="row mt-5">
       <div class="col-12 d-flex justify-content-center mt-5">
-        <h1>Winner is: {{match?.winner.name}}</h1>
+        <h1 v-if="!match?.isABuy">Winner is: {{match?.winner.name}}</h1>
+        <h1 v-else-if="match?.isABuy && match?.winner">{{match?.winner.name}} Has A Buy</h1>
+        <h1 v-else>This is a Buy Round for the winner of match {{match.set - 1}}/{{match.homePull}}</h1>
       </div>
     </div>
 
