@@ -196,8 +196,15 @@ class TourneyService {
 
       for (let i = 0; i < prevSet.length; i += 2) {
         isABuy = false
+        // If this is the last match and a buy is needed and theres no buy
+        if (i + 1 >= prevSet.length && prevSet.length % 2 != 0 && isABuy == false) {
+          awayPull = 0
+          homePull = prevSet[i].matchNum
+          i--
+          isABuy = true
+        }
         // If this match is the buy match
-        if (i == (set - 2) * 2) {
+        else if (i == (set - 2) * 2) {
           if (prevSet.length % 2 != 0) {
             awayPull = 0
             homePull = prevSet[i].matchNum
@@ -258,7 +265,7 @@ class TourneyService {
       m.awayPull == matchNum
     )
 
-    if (!matchesToUpdate.length) {
+    if (!matchesToUpdate.length && tourney.players.length >= 2) {
       await this.winTourney(tourneyId, completeMatch.winnerId, userId)
     }
 
@@ -298,7 +305,7 @@ class TourneyService {
     tourney.winnerId = winnerId
 
     await this.editStatus('complete', tourneyId, userId)
-    await awardsService.createAward(winnerId, {name: tourney.name, img: tourney.coverImg})
+    await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
 
     await tourney.save()
   }
