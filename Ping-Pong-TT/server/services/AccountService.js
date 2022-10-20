@@ -47,6 +47,15 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async editAccount(accountId, accountData) {
+    const account = await dbContext.Account.findByIdAndUpdate(accountId, {
+      $set: {
+        name: accountData.name,
+        picture: accountData.picture
+      }
+    }, {new: true})
+    return account
+  }
   
   /* 
     finds the account the team is gonna be added to

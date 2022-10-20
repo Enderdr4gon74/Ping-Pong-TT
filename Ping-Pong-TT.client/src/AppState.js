@@ -9,6 +9,9 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   activeAccount: {},
 
+  /** @type {import('./models/Award.js').Award | null} */
+  ActiveAwards: null,
+
   tourneys: [],
 
   activeTourney: null,

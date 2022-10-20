@@ -2,25 +2,29 @@
   <div class="container-fluid py-4">
     <div class="row justify-content-center">
       <div class="col-9">
-        <div class="profile-card row p-2">
+        <div class="profile-card row p-3">
           <div class="col-3 text-center">
-            <img class="profile-picture mt-3" :src="account.picture" alt="Profile-Picture">
+            <img class="img-fluid w-100 rounded-4 px-1" :src="account.picture" :alt="account.name" :title="account.name" >
           </div>
-          <div class="col-9">
+          <div class="col-9 d-flex flex-column justify-content-between">
             <h1>{{account.name}}</h1>
-            <h3 class="text-success m-2">Email: <span class="text-primary">{{account.email}}</span></h3>
-            <!-- <h3 class="text-success m-2">Steam: <span class="text-primary">fartsauce</span></h3> -->
-            <!-- <h3 class="text-success m-2">Instagram: <span class="text-primary">dopdopdoppy</span></h3> -->
-            <!-- <h3 class="text-success m-2">Taco Bell: <span class="text-primary">Bean Burrito, Grilled with Creamy Jalapeno
-                Sauce</span></h3> -->
-            <!-- <h3 class="text-success m-2">Github: <span class="text-primary">samwgit</span></h3> -->
-            <!-- <h3 class="text-success m-2">Discord: <span class="text-primary">Dagda#5000</span></h3> -->
+            
+            <div v-if="account.id">
+              <h3 v-if="account.id == profile.id || account.id == user.id" class="text-success">Email: <span class="text-primary">{{account.email}}</span></h3>
+            </div>
+            <div v-else-if="account._id">
+              <h3 v-if="account._id == profile._id || account._id == user._id" class="text-success">Email: <span class="text-primary">{{account.email}}</span></h3>
+            </div>
             <div class="text-center">
               <button type="button" class="btn btn-success m-2 w-25 text-center" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
                 Statistics
               </button>
             </div>
+
+              <div v-if="awards?.length > 0" class="light-grey-card row">
+                <AwardComp v-for="a in awards" :award="a" />
+              </div>
           </div>
         </div>
       </div>
@@ -80,18 +84,22 @@
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { Account } from '../models/Account.js';
+import { Award } from '../models/Award.js';
+import AwardComp from './AwardComp.vue';
 
 export default {
-  props: {
-    account: { type: Account, required: true }
-  },
-  setup() {
-    // get account and its win loss data
-    return {
-      profile: computed(() => AppState.account),
-      user: computed(() => AppState.user)
-    }
-  }
+    props: {
+        account: { type: Account, required: true },
+        awards: { type: Array[Award], required: true }
+    },
+    setup() {
+        // get account and its win loss data
+        return {
+            profile: computed(() => AppState.account),
+            user: computed(() => AppState.user)
+        };
+    },
+    components: { AwardComp }
 }
 </script>
 
@@ -104,5 +112,11 @@ export default {
 
 .profile-card {
   background-color: rgb(40, 38, 38);
+}
+
+.light-grey-card {
+  background-color: rgb(63, 61, 61);
+  padding: 1rem;
+  border-radius: 1rem;
 }
 </style>
