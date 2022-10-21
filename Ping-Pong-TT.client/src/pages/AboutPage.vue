@@ -39,6 +39,7 @@
                 <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
+                <h4>Sam Wilkins</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
               </div>
             </div>
