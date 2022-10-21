@@ -31,7 +31,7 @@
         <div class="row justify-content-center gap-2 peopleCard">
           <!-- add card bg and rounded -->
           <div class="col-8 text-light text-center">
-            <h1 class="special-text text-shadow">The Devs</h1>
+            <h1 class="special-text text-shadow">The King Pong Devs</h1>
           </div>
           <div class="col-5 personCard">
             <div class="row h-100">
