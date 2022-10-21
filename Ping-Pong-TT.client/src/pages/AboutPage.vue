@@ -46,7 +46,7 @@
               <div class="col-8 d-flex flex-column justify-content-between">
                 <div>
                   <h4>Sam Wilkins</h4>
-                  <p>Hello, I was the Scrum Master and mostly assisted with front end on this project.</p>
+                  <p>Hello, I was the Scrum Master for this project, I assisted with the front end on this project. </p>
                 </div>
                 <div class="row">
                   <div class="col-2">
@@ -66,7 +66,9 @@
           <div class="col-5 personCard">
             <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
-                <img src="https://media.discordapp.net/attachments/1029089848574877750/1033047394142650439/tcoxjpg.jpg?width=497&height=662" alt="profile pic" class="img-fluid w-100">
+                <img
+                  src="https://media.discordapp.net/attachments/1029089848574877750/1033047394142650439/tcoxjpg.jpg?width=497&height=662"
+                  alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8 d-flex flex-column justify-content-between">
                 <div>
