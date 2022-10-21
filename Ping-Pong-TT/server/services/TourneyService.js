@@ -1,8 +1,10 @@
 import { dbContext } from "../db/DbContext.js"
+import { AccountSchema } from "../models/Account.js"
 import { BadRequest, Forbidden, Unexpected } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 import { awardsService } from "./AwardsService.js"
 import { matchesService } from "./MatchesService.js"
+
 
 class TourneyService {
 
@@ -308,6 +310,13 @@ class TourneyService {
     await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
 
     // TODO Add win to winner & add losses to everybody else
+    const winner = await dbContext.Account.findById(winnerId)
+    // @ts-ignore
+    winner.wins++
+    winner?.save()
+
+
+
 
     logger.log("tourney Won", tourney.status)
     await tourney.save()
