@@ -101,7 +101,7 @@ class TourneyService {
   returns the new tourney
 */
   async editTourney(tourneyData, tourneyId, userId) { // NOTE - 
-    logger.log("editing Tourney")
+    // logger.log("editing Tourney")
     const tourney = await this.getTourneyById(tourneyId)
     if (tourney.creatorId != userId) {
       throw new Forbidden("You can't edit what isn't yours")
@@ -116,7 +116,7 @@ class TourneyService {
         coverImg: tourneyData.coverImg,
       }
     }, { new: true }).populate('creator', 'name picture')
-    logger.log('log', newTourney)
+    // logger.log('log', newTourney)
     return newTourney
   }
 
@@ -240,13 +240,13 @@ class TourneyService {
 
     await this.autoUpdateBuys(matches)
 
-    logger.log("complete")
+    // logger.log("complete")
   }
 
   async autoUpdateBuys(matches) {
     const matchesToWin = matches.filter(m => m.isABuy && m.homePlayerId)
 
-    logger.log("Matches to Win: ", matchesToWin.length)
+    // logger.log("Matches to Win: ", matchesToWin.length)
 
     for (let m in matchesToWin) {
       await matchesService.declareWinner(matchesToWin[m]._id, 'home')
@@ -303,10 +303,10 @@ class TourneyService {
     const tourney = await this.getTourneyById(tourneyId)
 
     tourney.winnerId = winnerId
-
-    await this.editStatus('complete', tourneyId, userId)
+    tourney.status = 'complete'
+    // await this.editStatus('complete', tourneyId, userId)
     await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
-
+    logger.log("tourney WOn", tourney.status)
     await tourney.save()
   }
 
