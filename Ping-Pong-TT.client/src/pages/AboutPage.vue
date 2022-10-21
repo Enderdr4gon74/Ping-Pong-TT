@@ -59,6 +59,11 @@
                       <h3><i class="mdi mdi-github"></i></h3>
                     </a>
                   </div>
+                  <div class="col-2">
+                    <a target="_blank" href="https://www.linkedin.com/in/samuel-wilkins-aa366a254/" title="LinkedIn">
+                      <h3><i class="mdi mdi-linkedin"></i></h3>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,7 +79,7 @@
                 <div>
                   <h4>Tristan Cox</h4>
                   <p>
-                    I am the product owner and main logic designer, i made the 
+                    I am the product owner and main logic designer, i made the
                   </p>
                 </div>
                 <div class="row">
