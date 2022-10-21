@@ -60,6 +60,7 @@
           <div v-for="p in tourney?.players" class="col-1 my-2">
             <img :src="p.picture" alt="" class="playerImage" :title="p.name">
           </div>
+          {{tourney?.players}}
         </div>
       </div>
     </div>

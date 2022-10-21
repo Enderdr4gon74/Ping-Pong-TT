@@ -11,7 +11,7 @@
     <div v-if="!match?.isABuy" class="row justify-content-around mt-5">
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-danger rounded-4 box-shadow d-flex flex-column align-items-center">
-          <p v-if="match?.homePlayer">{{match?.homePlayer.name}}</p>
+          <p v-if="match?.homePlayer" class="fs-2">{{match?.homePlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.homePull}}</p>
           <h1>{{match?.homeScore}}</h1>
         </div>
@@ -26,14 +26,15 @@
         <div
           v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
+          <button v-if="match?.homeScore > match?.awayScore"
+            class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
             Winner</button>
         </div>
       </div>
 
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-primary rounded-4 box-shadow d-flex flex-column align-items-center">
-          <p v-if="match?.awayPlayer">{{match?.awayPlayer.name}}</p>
+          <p v-if="match?.awayPlayer" class="fs-2">{{match?.awayPlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.awayPull}}</p>
           <h1>{{match?.awayScore}}</h1>
         </div>
@@ -48,7 +49,8 @@
         <div
           v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
+          <button v-if="match?.awayScore > match?.homeScore"
+            class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
             Winner</button>
         </div>
       </div>
