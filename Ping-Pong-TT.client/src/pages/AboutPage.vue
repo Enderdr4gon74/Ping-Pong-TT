@@ -38,42 +38,60 @@
             <h1 class="special-text text-shadow">The Devs</h1>
           </div>
           <div class="col-5 personCard">
-            <div class="row">
+            <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
                 <img src="https://cdn.discordapp.com/attachments/1029089848574877750/1033045998752235690/IMG_1004.jpg"
                   alt="profile pic" class="img-fluid w-100">
               </div>
-              <div class="col-8">
-                <h4>Sam Wilkins</h4>
-                <p>Hello, I was the Scrum Master and mostly assisted with front end on this project.</p>
-                <ul>
-                  <a href="https://samwilkins.com">
-                    <li>https://samwilkins.com</li>
-                  </a>
-                  <a href="https://github.com/samwgit">
-                    <li>https://github.com/samwgit</li>
-                  </a>
-                </ul>
+              <div class="col-8 d-flex flex-column justify-content-between">
+                <div>
+                  <h4>Sam Wilkins</h4>
+                  <p>Hello, I was the Scrum Master and mostly assisted with front end on this project.</p>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <a target="_blank" href="https://samwilkins.com" title="Personal Website">
+                      <h3><i class="mdi mdi-web"></i></h3>
+                    </a>
+                  </div>
+                  <div class="col-2">
+                    <a target="_blank" href="https://github.com/samwgit" title="Github">
+                      <h3><i class="mdi mdi-github"></i></h3>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-5 personCard">
-            <div class="row">
+            <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
                 <img src="https://media.discordapp.net/attachments/1029089848574877750/1033047394142650439/tcoxjpg.jpg?width=497&height=662" alt="profile pic" class="img-fluid w-100">
               </div>
-              <div class="col-8">
-                <h4>Tristan Cox</h4>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
-                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
-                  voluptatibus nostrum.
-                </p>
+              <div class="col-8 d-flex flex-column justify-content-between">
+                <div>
+                  <h4>Tristan Cox</h4>
+                  <p>
+                    I am the product owner and main logic designer, i made the 
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <a target="_blank" href="https://github.com/Enderdr4gon74" title="Github">
+                      <h3><i class="mdi mdi-github"></i></h3>
+                    </a>
+                  </div>
+                  <div class="col-2">
+                    <a target="_blank" href="https://www.linkedin.com/in/tristan-cox-10a6571b9/" title="LinkedIn">
+                      <h3><i class="mdi mdi-linkedin"></i></h3>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-5 personCard">
-            <div class="row">
+            <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
                 <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
               </div>
