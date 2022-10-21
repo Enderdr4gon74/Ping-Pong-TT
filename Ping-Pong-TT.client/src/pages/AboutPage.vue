@@ -13,23 +13,27 @@
         About Us
       </button>
     </div>
-    
-    
+
+
     <div class="text-special">
       <div v-if="aboutMessage == 0">
         <p class="fs-4">
           Do you like ping pong? Have you ever played a “Tournament” of ping pong, won, then felt as if it was all for
-          nothing since there is nothing to show for your major W. We here at Team King Pong believe that all ping pongers
+          nothing since there is nothing to show for your major W. We here at Team King Pong believe that all ping
+          pongers
           deserve a
           platform to display their pong prowess. Today I'd like to introduce “Ping Pong TT” aka Ping Pong Tourney
           Tracker.
-          This web application will be utilizing a custom api written with love by the King Pong team and what our website
+          This web application will be utilizing a custom api written with love by the King Pong team and what our
+          website
           aims
-          to do is create a place where passionate pongers can see who's the best, with an individual leader board as well
+          to do is create a place where passionate pongers can see who's the best, with an individual leader board as
+          well
           as a
           team leaderboard.
         </p>
-        <div class="row justify-content-center gap-2 peopleCard"> <!-- add card bg and rounded -->
+        <div class="row justify-content-center gap-2 peopleCard">
+          <!-- add card bg and rounded -->
           <div class="col-8 text-light">
             <h1 class="special-text text-shadow">The Devs</h1>
           </div>
@@ -40,7 +44,9 @@
               </div>
               <div class="col-8">
                 <h4>Sam Wilkins</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
+                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
+                  voluptatibus nostrum.</p>
               </div>
             </div>
           </div>
@@ -50,7 +56,9 @@
                 <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
+                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
+                  voluptatibus nostrum.</p>
               </div>
             </div>
           </div>
@@ -60,7 +68,9 @@
                 <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus voluptatibus nostrum.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
+                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
+                  voluptatibus nostrum.</p>
               </div>
             </div>
           </div>
@@ -80,14 +90,19 @@
           </li>
         </ol>
         <h4>
-          Rules Supported by: 
+          Rules Supported by:
           <a target="_blank" href="https://www.pongfit.org/official-rules-of-table-tennis">
             https://www.pongfit.org/official-rules-of-table-tennis
           </a>
         </h4>
       </div>
+      <div class="position-relative bg-dark">
+        <PIngPongLoader />
+      </div>
     </div>
   </div>
+
+
 </template>
 
 
@@ -96,21 +111,24 @@ import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { aboutService } from '../services/AboutService.js';
 import Pop from '../utils/Pop.js';
+import PIngPongLoader from '../components/Animations/PIngPongLoader.vue';
 
 export default {
-  setup(){
+  setup() {
     return {
-      aboutMessage: computed(()=> AppState.aboutMessage),
-      rules: computed(()=> AppState.rules),
+      aboutMessage: computed(() => AppState.aboutMessage),
+      rules: computed(() => AppState.rules),
       async setMessage(num) {
         try {
-          aboutService.setMessage(num)
-        } catch (error) {
-          Pop.error
+          aboutService.setMessage(num);
+        }
+        catch (error) {
+          Pop.error;
         }
       }
-    }
-  }
+    };
+  },
+  components: { PIngPongLoader }
 }
 </script>
 
@@ -131,6 +149,7 @@ export default {
   padding: 1rem;
   padding-left: 1.25rem;
   border-radius: 1rem;
+
   img {
     border-radius: 0.875rem;
   }
