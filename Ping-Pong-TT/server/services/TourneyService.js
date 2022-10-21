@@ -309,7 +309,7 @@ class TourneyService {
 
     // TODO Add win to winner & add losses to everybody else
 
-    logger.log("tourney WOn", tourney.status)
+    logger.log("tourney Won", tourney.status)
     await tourney.save()
   }
 
