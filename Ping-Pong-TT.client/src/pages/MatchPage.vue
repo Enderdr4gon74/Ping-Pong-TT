@@ -61,7 +61,7 @@
       <div class="col-12 d-flex justify-content-center mt-5">
         <h1 v-if="!match?.isABuy">Winner is: {{match?.winner.name}}</h1>
         <h1 v-else-if="match?.isABuy && match?.winner">{{match?.winner.name}} Has A Buy</h1>
-        <h1 v-else>This is a Buy Round for the winner of match {{match.set - 1}}/{{match.homePull}}</h1>
+        <h1 v-else>This is a Bye Round for the winner of match {{match.set - 1}}/{{match.homePull}}</h1>
       </div>
     </div>
 
