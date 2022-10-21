@@ -8,6 +8,11 @@
 
 
     <div class="row justify-content-around mt-2">
+
+      <div class="col-12" v-if="tourney?.winner">
+        <h1 class="d-flex justify-content-center">{{tourney?.winner.name}} Won</h1>
+      </div>
+
       <div class="col-3 justify-content-center">
       </div>
 
@@ -22,7 +27,8 @@
 
           <button v-else class="btn btn-danger fs-5 px-4" @click="leaveTourney()" id="leaveButton">Leave</button>
 
-          <button class="btn btn-success" v-if="isCreator" @click="beginTourney()">Start</button>
+          <button class="btn btn-success" v-if="isCreator" @click="beginTourney()"
+            :disabled="tourney?.players.length >= 2 ? false : true">Start</button>
         </div>
 
         <!-- <div></div> -->
@@ -37,14 +43,14 @@
 
 
     <!-- v-if="tourney?.status != 'pending'" -->
-    <div class="bg-grey d-flex" v-if="tourney?.status != 'pending'">
+    <div class=" d-flex mb-5" v-if="tourney?.status != 'pending'">
       <div v-for="m in matches.length+1" class="d-flex flex-column justify-content-evenly align-items-center set m-0">
         <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-4 mx-5 matchCard" />
       </div>
     </div>
 
 
-    <div class="row justify-content-center pt-3 playerCard">
+    <div class="row justify-content-center pt-3" :class="tourney?.status == 'pending' ? 'playerCard' : ''">
       <div class="col-6 bg-grey">
         <div class="d-flex justify-content-center">
           <h4>Players</h4>
@@ -56,7 +62,6 @@
           </div>
         </div>
       </div>
-      <h1 v-if="tourney?.winner" class="d-flex justify-content-center">{{tourney?.winner.name}} Won</h1>
     </div>
 
   </div>
@@ -168,6 +173,7 @@ export default {
 .playerCard {
   position: absolute;
   bottom: 1rem;
+  right: 1rem;
   width: 100vw;
 }
 </style>
