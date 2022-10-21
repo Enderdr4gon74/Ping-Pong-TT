@@ -5,10 +5,6 @@
         Rules
       </button>
 
-      <button @click="setMessage(1)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
-        Alternative Rules
-      </button>
-
       <button @click="setMessage(0)" class="rounded btn btn-outline-light px-4 py-2 fw-bold fs-5">
         About Us
       </button>
@@ -123,23 +119,6 @@
           </div>
         </div>
       </div>
-      <div v-if="aboutMessage == 1">
-        <p class="fs-4">
-          alternate rules
-          <!-- add dynamic rules here -->
-          <ol class="">
-            <li class="ps-1 row" v-for="rule in rules">
-              <div class="col-1">
-                <input type="checkbox" @change="toggleRule(rule.title)">
-              </div>
-              <div class="col-11">
-                <h4>{{rule.title}}</h4>
-                <p class="ps-2">{{rule.body}}</p>
-              </div>
-            </li>
-          </ol>
-        </p>
-      </div>
       <div v-if="aboutMessage == 2">
         <ol class="">
           <li class="ps-1" v-for="rule in rules">
@@ -170,26 +149,19 @@ import { AppState } from '../AppState.js';
 import { aboutService } from '../services/AboutService.js';
 import Pop from '../utils/Pop.js';
 import PIngPongLoader from '../components/Animations/PIngPongLoader.vue';
+import { onMounted } from 'vue';
 
 export default {
   setup() {
     return {
       aboutMessage: computed(() => AppState.aboutMessage),
       rules: computed(() => AppState.rules),
-      altRules: computed(() => AppState.altRules),
       async setMessage(num) {
         try {
           aboutService.setMessage(num);
         }
         catch (error) {
           Pop.error;
-        }
-      },
-      toggleRule(title) {
-        try {
-          console.log(title)
-        } catch (error) {
-          Pop.error(error, '[toggling rule]')
         }
       }
     };
