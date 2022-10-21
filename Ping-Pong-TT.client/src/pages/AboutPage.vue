@@ -101,7 +101,7 @@
               <div class="col-4 d-flex align-items-center p-0">
                 <img src="../assets/img/RyanImage.jpg" alt="profile pic" class="img-fluid w-100">
               </div>
-              <div class="col-8">
+              <div class="col-8 d-flex flex-column justify-content-between">
                 <div>
                   <h4>Ryan Thrall</h4>
                   <p>I am one of the Backend Developers and created the tournament generation system.</p>
