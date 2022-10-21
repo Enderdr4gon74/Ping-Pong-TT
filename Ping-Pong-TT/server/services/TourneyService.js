@@ -310,7 +310,10 @@ class TourneyService {
     await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
 
     // TODO Add win to winner & add losses to everybody else
-
+    const winner = await dbContext.Account.findById(winnerId)
+    // @ts-ignore
+    winner.wins++
+    winner?.save()
 
 
 
