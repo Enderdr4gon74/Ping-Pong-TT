@@ -112,8 +112,12 @@ export default {
 
       async declareWinner(team) {
         try {
+          if (!await Pop.confirm('Are you sure this dude won?')) {
+            return
+          }
           console.log(team)
           await matchService.declareWinner(route.params.id, team)
+
         } catch (error) {
           Pop.error(error, '[Declaring Winner]')
         }
