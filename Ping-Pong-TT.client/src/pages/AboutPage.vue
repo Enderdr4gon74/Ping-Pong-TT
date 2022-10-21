@@ -48,18 +48,18 @@
                   <h4>Sam Wilkins</h4>
                   <p>Hello, I was the Scrum Master for this project, I assisted with the front end on this project. </p>
                 </div>
-                <div class="row">
-                  <div class="col-2">
+                <div class="row ps-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
                     <a target="_blank" href="https://samwilkins.com" title="Personal Website">
                       <h3><i class="mdi mdi-web"></i></h3>
                     </a>
                   </div>
-                  <div class="col-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
                     <a target="_blank" href="https://github.com/samwgit" title="Github">
                       <h3><i class="mdi mdi-github"></i></h3>
                     </a>
                   </div>
-                  <div class="col-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
                     <a target="_blank" href="https://www.linkedin.com/in/samuel-wilkins-aa366a254/" title="LinkedIn">
                       <h3><i class="mdi mdi-linkedin"></i></h3>
                     </a>
@@ -82,13 +82,13 @@
                     I am the product owner and main logic designer, i made the
                   </p>
                 </div>
-                <div class="row">
-                  <div class="col-2">
+                <div class="row ps-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
                     <a target="_blank" href="https://github.com/Enderdr4gon74" title="Github">
                       <h3><i class="mdi mdi-github"></i></h3>
                     </a>
                   </div>
-                  <div class="col-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
                     <a target="_blank" href="https://www.linkedin.com/in/tristan-cox-10a6571b9/" title="LinkedIn">
                       <h3><i class="mdi mdi-linkedin"></i></h3>
                     </a>
