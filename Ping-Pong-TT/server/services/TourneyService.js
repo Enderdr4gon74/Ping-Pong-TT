@@ -79,8 +79,6 @@ class TourneyService {
 
     if (!tourneyData.coverImg) {
       tourneyData.coverImg = "https://thiscatdoesnotexist.com"
-    } else if (tourneys.filter(t => t.coverImg == tourneyData.coverImg).length) {
-      throw new BadRequest("tHIs ImGae IS tAkEn")
     }
 
     const tourney = await dbContext.Tourneys.create(tourneyData)
