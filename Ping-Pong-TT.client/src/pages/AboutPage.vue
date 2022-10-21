@@ -34,7 +34,7 @@
         </p>
         <div class="row justify-content-center gap-2 peopleCard">
           <!-- add card bg and rounded -->
-          <div class="col-8 text-light">
+          <div class="col-8 text-light text-center">
             <h1 class="special-text text-shadow">The Devs</h1>
           </div>
           <div class="col-5 personCard">
@@ -127,6 +127,17 @@
         <p class="fs-4">
           alternate rules
           <!-- add dynamic rules here -->
+          <ol class="">
+            <li class="ps-1 row" v-for="rule in rules">
+              <div class="col-1">
+                <input type="check" @change="toggleRule(rule.title)">
+              </div>
+              <div class="col-11">
+                <h4>{{rule.title}}</h4>
+                <p class="ps-2">{{rule.body}}</p>
+              </div>
+            </li>
+          </ol>
         </p>
       </div>
       <div v-if="aboutMessage == 2">
@@ -165,12 +176,20 @@ export default {
     return {
       aboutMessage: computed(() => AppState.aboutMessage),
       rules: computed(() => AppState.rules),
+      altRules: computed(() => AppState.altRules),
       async setMessage(num) {
         try {
           aboutService.setMessage(num);
         }
         catch (error) {
           Pop.error;
+        }
+      },
+      toggleRule(title) {
+        try {
+          console.log(title)
+        } catch (error) {
+          Pop.error(error, '[toggling rule]')
         }
       }
     };

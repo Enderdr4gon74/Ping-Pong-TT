@@ -306,6 +306,10 @@ class TourneyService {
     tourney.status = 'complete'
     // await this.editStatus('complete', tourneyId, userId)
     await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
+
+    // TODO Add win to winner & add losses to everybody else
+
+    logger.log("tourney WOn", tourney.status)
     await tourney.save()
   }
 
