@@ -40,13 +40,20 @@
           <div class="col-5 personCard">
             <div class="row">
               <div class="col-4 d-flex align-items-center p-0">
-                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+                <img src="https://cdn.discordapp.com/attachments/1029089848574877750/1033045998752235690/IMG_1004.jpg"
+                  alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
                 <h4>Sam Wilkins</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
-                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
-                  voluptatibus nostrum.</p>
+                <p>Hello, I was the Scrum Master and mostly assisted with front end on this project.</p>
+                <ul>
+                  <a href="https://samwilkins.com">
+                    <li>https://samwilkins.com</li>
+                  </a>
+                  <a href="https://github.com/samwgit">
+                    <li>https://github.com/samwgit</li>
+                  </a>
+                </ul>
               </div>
             </div>
           </div>
@@ -99,9 +106,9 @@
           </a>
         </h4>
       </div>
-      <div class="position-relative bg-dark">
+      <!-- <div class="position-relative bg-dark">
         <PIngPongLoader />
-      </div>
+      </div> -->
     </div>
   </div>
 
