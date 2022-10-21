@@ -60,12 +60,15 @@
           <div class="col-5 personCard">
             <div class="row">
               <div class="col-4 d-flex align-items-center p-0">
-                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+                <img src="https://media.discordapp.net/attachments/1029089848574877750/1033047394142650439/tcoxjpg.jpg?width=497&height=662" alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
+                <h4>Tristan Cox</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
                   officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
-                  voluptatibus nostrum.</p>
+                  voluptatibus nostrum.
+                </p>
               </div>
             </div>
           </div>
