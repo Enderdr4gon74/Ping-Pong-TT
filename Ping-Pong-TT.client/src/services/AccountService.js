@@ -4,6 +4,7 @@ import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop.js'
 import { api } from './AxiosService'
+import { leaderboardService } from './LeaderboardService.js'
 
 class AccountService {
   async getAccount() {
@@ -30,6 +31,16 @@ class AccountService {
     console.log(newAccount)
     AppState.account = newAccount
     AppState.user = newAccount
+  }
+  
+  async joinTeam(teamName, playerId) {
+    const account = await api.put(`/account/${playerId}/team/${teamName}`)
+    console.log(account)
+    const newAccount = new Account(account.data)
+    console.log(newAccount)
+    AppState.account = newAccount
+    AppState.user = newAccount
+    await leaderboardService.getTeamPlayers()
   }
 }
 
