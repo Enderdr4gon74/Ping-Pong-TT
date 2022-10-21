@@ -71,8 +71,7 @@
           <div class="col-5 personCard">
             <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
-                <img
-                  src="https://cdn.discordapp.com/attachments/1029089848574877750/1033055277878104186/tcoxjpg.jpg"
+                <img src="https://cdn.discordapp.com/attachments/1029089848574877750/1033055277878104186/tcoxjpg.jpg"
                   alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8 d-flex flex-column justify-content-between">
@@ -100,12 +99,25 @@
           <div class="col-5 personCard">
             <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
-                <img src="https://thiscatdoesnotexist.com" alt="profile pic" class="img-fluid w-100">
+                <img src="../assets/img/RyanImage.jpg" alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus fuga accusantium repellendus
-                  officia dignissimos deleniti cupiditate adipisci necessitatibus iste. Dignissimos temporibus
-                  voluptatibus nostrum.</p>
+                <div>
+                  <h4>Ryan Thrall</h4>
+                  <p>I am one of the Backend Developers and created the tournament generation system.</p>
+                </div>
+                <div class="row ps-2">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
+                    <a target="_blank" href="https://github.com/Ryan-Thrall" title="Github">
+                      <h3><i class="mdi mdi-github"></i></h3>
+                    </a>
+                  </div>
+                  <div class="col-2 d-flex justify-content-center align-items-center">
+                    <a target="_blank" href="https://www.linkedin.com/in/ryan-thrall-a20aa7203/" title="LinkedIn">
+                      <h3><i class="mdi mdi-linkedin"></i></h3>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
