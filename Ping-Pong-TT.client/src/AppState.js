@@ -85,5 +85,7 @@ export const AppState = reactive({
       title: 'HONOR SYSTEM APPLIES TO DISAGREEMENTS',
       body: 'If no referee is present during a match and the players disagree on a certain call, the “honor system” applies and the players should find a way to agree, or play the point over. Ping pong carries a tradition of fierce but fair play. Help us keep it that way!'
     },
-  ]
+  ],
+
+  altRules: window.localStorage.getItem('altRules')
 })
