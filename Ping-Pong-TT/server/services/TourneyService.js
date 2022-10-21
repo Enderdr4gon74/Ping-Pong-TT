@@ -141,10 +141,20 @@ class TourneyService {
       if the index is not 1 less than the amount of players
       else it 
   */
+
+  async shufflePlayers(players) {
+    for (let i = players.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = players[i];
+      players[i] = players[j];
+      players[j] = temp;
+    }
+    return players
+  }
   async generateMatches(tourneyId) {
     await matchesService.deleteMatchesByTournamentId(tourneyId)
     const tourney = await this.getTourneyById(tourneyId)
-    const players = tourney.players
+    const players = await this.shufflePlayers(tourney.players)
 
     if (!players.length) {
       return
