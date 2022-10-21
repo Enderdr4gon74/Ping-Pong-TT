@@ -311,7 +311,8 @@ class TourneyService {
     const winner = await dbContext.Account.findById(winnerId)
     // @ts-ignore
     winner.wins++
-    winner?.save()
+    // @ts-ignore
+    winner.save()
 
 
 

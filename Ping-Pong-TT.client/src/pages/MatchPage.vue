@@ -1,11 +1,13 @@
 <template>
 
   <div class="container-fluid">
-    <!-- <div class="row">
-      <div class="col-2">
-        <button class="btn btn-success">Back To Brackets</button>
+    <div class="row">
+      <div class="col-2 p-2">
+        <router-link :to="{name: 'Tourney', params: {id: tourney?.id}}">
+          <button class="btn btn-success">Back To Brackets</button>
+        </router-link>
       </div>
-    </div> -->
+    </div>
     <div v-if="!match?.isABuy" class="row justify-content-around mt-5">
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-danger rounded-4 box-shadow d-flex flex-column align-items-center">
