@@ -1,9 +1,17 @@
 <template>
+
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 p-2">
+        <router-link :to="{name: 'Tourney', params: {id: tourney?.id}}">
+          <button class="btn btn-success">Back To Brackets</button>
+        </router-link>
+      </div>
+    </div>
     <div v-if="!match?.isABuy" class="row justify-content-around mt-5">
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-danger rounded-4 box-shadow d-flex flex-column align-items-center">
-          <p v-if="match?.homePlayer">{{match?.homePlayer.name}}</p>
+          <p v-if="match?.homePlayer" class="fs-2">{{match?.homePlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.homePull}}</p>
           <h1>{{match?.homeScore}}</h1>
         </div>
@@ -18,14 +26,15 @@
         <div
           v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
+          <button v-if="match?.homeScore > match?.awayScore"
+            class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('home')">Declare
             Winner</button>
         </div>
       </div>
 
       <div class="col-3 d-flex flex-column align-items-around scoreCard">
         <div class="bg-primary rounded-4 box-shadow d-flex flex-column align-items-center">
-          <p v-if="match?.awayPlayer">{{match?.awayPlayer.name}}</p>
+          <p v-if="match?.awayPlayer" class="fs-2">{{match?.awayPlayer.name}}</p>
           <p v-else>Winner of Match: {{match?.set-1}}-{{match?.awayPull}}</p>
           <h1>{{match?.awayScore}}</h1>
         </div>
@@ -40,7 +49,8 @@
         <div
           v-if="(!match?.winner && tourney?.status == 'active') && (tourney?.creatorId == account?.id || tourney?.creatorId == user?.id)"
           class="d-flex justify-content-center">
-          <button class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
+          <button v-if="match?.awayScore > match?.homeScore"
+            class="btn box-shadow rounded-pill btn-warning fs-3 w-100 mt-2" @click="declareWinner('away')">Declare
             Winner</button>
         </div>
       </div>
@@ -54,8 +64,8 @@
     <div v-if="match?.winner || match?.isABuy" class="row mt-5">
       <div class="col-12 d-flex justify-content-center mt-5">
         <h1 v-if="!match?.isABuy">Winner is: {{match?.winner.name}}</h1>
-        <h1 v-else-if="match?.isABuy && match?.winner">{{match?.winner.name}} Has A Buy</h1>
-        <h1 v-else>This is a Buy Round for the winner of match {{match.set - 1}}/{{match.homePull}}</h1>
+        <h1 v-else-if="match?.isABuy && match?.winner">{{match?.winner.name}} Has A Bye</h1>
+        <h1 v-else>This is a Bye Round for the winner of match {{match.set - 1}}/{{match.homePull}}</h1>
       </div>
     </div>
 
@@ -112,8 +122,12 @@ export default {
 
       async declareWinner(team) {
         try {
+          if (!await Pop.confirm('Are you sure this dude won?')) {
+            return
+          }
           console.log(team)
           await matchService.declareWinner(route.params.id, team)
+
         } catch (error) {
           Pop.error(error, '[Declaring Winner]')
         }

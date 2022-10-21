@@ -55,7 +55,7 @@
               </select>
             </div>
 
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
           </form>
 
 
