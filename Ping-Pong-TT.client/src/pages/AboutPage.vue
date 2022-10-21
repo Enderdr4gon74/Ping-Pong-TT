@@ -118,7 +118,7 @@
           <ol class="">
             <li class="ps-1 row" v-for="rule in rules">
               <div class="col-1">
-                <input type="check" @change="toggleRule(rule.title)">
+                <input type="checkbox" @change="toggleRule(rule.title)">
               </div>
               <div class="col-11">
                 <h4>{{rule.title}}</h4>
