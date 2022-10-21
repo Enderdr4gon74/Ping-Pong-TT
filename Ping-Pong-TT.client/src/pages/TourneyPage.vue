@@ -1,8 +1,10 @@
 <template>
 
-  <!-- <MorphingCubeLoader v-if="tourney?.status == 'pending'" /> -->
+  <PIngPongLoader v-if="tourney?.status == 'pending'" />
 
   <div class="container-fluid">
+
+
 
 
     <div class="row justify-content-around mt-2">
@@ -14,7 +16,7 @@
         <p>Status: {{tourney?.status}}</p>
         <p>Players: {{tourney?.players.length}}</p>
         <p>Spots Remaining: {{ tourney?.poolLimit - tourney?.players.length }}</p>
-        <div class="mb-3 d-flex justify-content-around w-100">
+        <div class="mb-3 d-flex justify-content-around w-100" v-if="tourney?.status == 'pending'">
           <button v-if="!isCompeting" class="btn btn-success fs-5 px-4" @click="joinTourney()"
             id="joinButton">Join</button>
 
@@ -35,14 +37,14 @@
 
 
     <!-- v-if="tourney?.status != 'pending'" -->
-    <div class="bg-grey d-flex">
+    <div class="bg-grey d-flex" v-if="tourney?.status != 'pending'">
       <div v-for="m in matches.length+1" class="d-flex flex-column justify-content-evenly align-items-center set m-0">
         <MatchCard v-for="s in matches[m-1]" :key="s.id" :match="s" class="my-4 mx-5 matchCard" />
       </div>
     </div>
 
 
-    <div v-if="tourney?.status != 'pending'" class="row justify-content-center pt-3">
+    <div class="row justify-content-center pt-3 playerCard">
       <div class="col-6 bg-grey">
         <div class="d-flex justify-content-center">
           <h4>Players</h4>
@@ -161,5 +163,11 @@ export default {
 
 .set {
   width: 18rem;
+}
+
+.playerCard {
+  position: absolute;
+  bottom: 1rem;
+  width: 100vw;
 }
 </style>
