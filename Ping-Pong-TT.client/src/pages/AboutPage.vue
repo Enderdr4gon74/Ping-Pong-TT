@@ -45,7 +45,7 @@
               </div>
               <div class="col-8">
                 <h4>Sam Wilkins</h4>
-                <p>Hello, I was the Scrum Master and mostly assisted with front end on this project.</p>
+                <p>Hello, I was the Scrum Master for this project, I assisted with front end on this project.</p>
                 <ul>
                   <a href="https://samwilkins.com">
                     <li>https://samwilkins.com</li>
