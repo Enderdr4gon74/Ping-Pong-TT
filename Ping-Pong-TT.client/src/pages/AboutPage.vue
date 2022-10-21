@@ -67,7 +67,7 @@
             <div class="row h-100">
               <div class="col-4 d-flex align-items-center p-0">
                 <img
-                  src="https://media.discordapp.net/attachments/1029089848574877750/1033047394142650439/tcoxjpg.jpg?width=497&height=662"
+                  src="https://cdn.discordapp.com/attachments/1029089848574877750/1033055277878104186/tcoxjpg.jpg"
                   alt="profile pic" class="img-fluid w-100">
               </div>
               <div class="col-8 d-flex flex-column justify-content-between">
