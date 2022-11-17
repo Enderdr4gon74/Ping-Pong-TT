@@ -314,6 +314,7 @@ class TourneyService {
 
     tourney.winnerId = winnerId
     tourney.status = 'complete'
+    // await tourney.save()
     // await this.editStatus('complete', tourneyId, userId)
     await awardsService.createAward(winnerId, { name: tourney.name, img: tourney.coverImg })
 

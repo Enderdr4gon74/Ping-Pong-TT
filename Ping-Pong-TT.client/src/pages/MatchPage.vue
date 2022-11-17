@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-2 p-2">
-        <router-link :to="{name: 'Tourney', params: {id: tourney?.id}}">
+        <router-link v-if="tourney" :to="{name: 'Tourney', params: {id: tourney?.id}}">
           <button class="btn btn-success">Back To Brackets</button>
         </router-link>
       </div>
