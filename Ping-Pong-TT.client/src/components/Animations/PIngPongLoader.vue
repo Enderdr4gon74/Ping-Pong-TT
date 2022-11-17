@@ -27,7 +27,7 @@
       <div class="ball-container">
         <svg class="ball">
           <circle cx="20" cy="20" r="12" />
-          <!-- <image height="50"
+          <!-- <image height="100" width="100"
             href="https://images.ctfassets.net/dqh2h7mvo1xq/7JsbDikYLbhDgPuTdqGhz3/4600c4ff48cfe6a32987244a48826269/00301490039564_C1N1.png" /> -->
         </svg>
       </div>
